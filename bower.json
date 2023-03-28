@@ -1,0 +1,28 @@
+{
+  "name": "fornform",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Felipe Ferreira <felipehfj@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/felipehfj/FornForm",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-sanitize": "^1.8.3",
+    "angular-messages": "^1.8.3",
+    "angular-ui-select": "^0.19.8",
+    "angular-toastr": "^2.1.1",
+    "lodash": "^4.17.21",
+    "bootstrap": "3",
+    "angular-animate": "^1.8.3",
+    "angular": "^1.8.3"
+  }
+}

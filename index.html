@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+  <title>Teste</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css" />
+  <link rel="stylesheet" href="bower_components/angular/angular-csp.css" />
+  <link rel="stylesheet" href="bower_components/angular-ui-select/dist/select.min.css" />
+  <link rel="stylesheet" href="bower_components/angular-toastr/dist/angular-toastr.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="css/global-style.css" />
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+  <main data-ng-app="TestApp" data-ng-controller="TestController as ctrl" class="ng-cloak">
+    <div class="container">
+      <!-- <pre>{{scope | json}}</pre>
+      <pre>{{ctrl | json}}</pre>
+      <button type="button" data-ng-click="ctrl.c.b()">Eu sou um botão</button>
+      <button type="button" data-ng-click="ctrl.c.uid()">uid</button>
+      <button type="button" data-ng-click="ctrl.c.uuid()">uuid</button> -->
+      <button type="button" data-ng-click="ctrl.c.section()">create section</button>
+
+      <div class="col-md-12" data-ng-repeat="section in ctrl.c.structure">
+        <div class="col-md-12">
+          <h2>[{{section.id}}] {{section.title}}</h2>
+
+          <div class="col-md-12" data-ng-repeat="element in section.elements | orderBy: 'order' ">
+            <div data-ng-switch="element.type">
+
+              <div class="row" data-ng-switch-when="label">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <i class="fa-solid fa-tag fa-xs"></i>
+                    Text
+                  </div>
+                  <div class="panel-body">
+                    <div>
+                      <div class="form-group">
+                        <label class="control-label">Título <span class="required">*</span></label>
+                        <input type="text" class="form-control" data-ng-model="element.title" placeholder="O que?">
+                      </div>
+
+                      <div class="form-group">
+                        <label class="control-label">Descrição</label>
+                        <input type="text" class="form-control" data-ng-model="element.description"
+                          placeholder="Explique melhor...[opcional]">
+                      </div>
+
+                      <div class="form-group">
+                        <label class="control-label">O campo é de preenchimento obrigatório?</label>
+                        <input type="radio" name="" value="true" class="form-control"
+                          data-ng-model="element.required">Sim</input>
+                        <input type="radio" name="" value="false" class="form-control"
+                          data-ng-model="element.required">Não</input>
+                      </div>
+                    </div>
+                    <div>
+                      <input type="file" disabled="disabled">
+                    </div>
+
+                  </div>
+                  <div class="panel-footer"></div>
+                </div>
+                <h3> {{element.title}}</h3>
+                <div>{{element.description}} </div>
+              </div>
+
+              <div class="row" data-ng-switch-when="text">
+                <h3><i class="fa-solid fa-font fa-xs"></i> {{element.title}}</h3>
+                <div>{{element.description}} </div>
+              </div>
+
+              <div class="row" data-ng-switch-when="paragraph">
+                <h3><i class="fa-solid fa-paragraph fa-xs"></i> {{element.id}} {{element.title}}</h3>
+                <div>{{element.description}} </div>
+              </div>
+
+              <div class="row" data-ng-switch-when="number">
+                <h3><i class="fa-solid fa-hashtag fa-xs"></i> {{element.title}}</h3>
+                <div>{{element.description}} </div>
+              </div>
+
+              <div class="row" data-ng-switch-when="email">
+                <h3><i class="fa-solid fa-envelope fa-xs"></i> {{element.title}}</h3>
+                <div>{{element.description}} </div>
+              </div>
+
+              <div class="row" data-ng-switch-when="date">
+                <h3><i class="fa-solid fa-calendar fa-xs"></i> {{element.title}}</h3>
+                <div>{{element.description}} </div>
+              </div>
+
+              <div class="row" data-ng-switch-when="radio">
+                <h3><i class="fa-solid fa-circle-dot fa-xs"></i> {{element.title}}</h3>
+                <div>{{element.description}} </div>
+              </div>
+
+              <div class="row" data-ng-switch-when="select">
+                <h3><i class="fa-solid fa-check fa-xs"></i> {{element.title}}</h3>
+                <div>{{element.description}} </div>
+              </div>
+
+              <div class="row" data-ng-switch-when="multiple">
+                <h3><i class="fa-solid fa-list-check fa-xs"></i> {{element.title}}</h3>
+                <div>{{element.description}} </div>
+              </div>
+
+              <div class="row" data-ng-switch-when="file">
+                <h3><i class="fa-solid fa-file fa-xs"></i> {{element.title}}</h3>
+                <div>
+                  <div class="form-group">
+                    <label class="control-label">Título <span class="required">*</span></label>
+                    <input type="text" class="form-control" data-ng-model="element.title" placeholder="O que?">
+                  </div>
+
+                  <div class="form-group">
+                    <label class="control-label">Descrição</label>
+                    <input type="text" class="form-control" data-ng-model="element.description"
+                      placeholder="Explique melhor...[opcional]">
+                  </div>
+
+                  <div class="form-group">
+                    <label class="control-label">O campo é de preenchimento obrigatório?</label>
+                    <input type="radio" name="" value="true" class="form-control"
+                      data-ng-model="element.required">Sim</input>
+                    <input type="radio" name="" value="false" class="form-control"
+                      data-ng-model="element.required">Não</input>
+                  </div>
+                </div>
+                <div>
+                  <input type="file" disabled="disabled">
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+  </main>
+
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="bower_components/angular/angular.min.js"></script>
+  <script src="bower_components/angular-messages/angular-messages.min.js"></script>
+  <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+  <script src="bower_components/angular-ui-select/dist/select.min.js"></script>
+  <script src="bower_components/angular-toastr/dist/angular-toastr.min.js"></script>
+  <script src="bower_components/angular-toastr/dist/angular-toastr.tpls.min.js"></script>
+  <script src="bower_components/lodash/dist/lodash.min.js"></script>
+
+  <script src="js/app.js"></script>
+  <script src="js/controllers.js"></script>
+  <script src="js/fornFormUtils.fact.js"></script>
+  <script src="js/fornForm.js"></script>
+</body>
+
+</html>
