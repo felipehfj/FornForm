@@ -12,7 +12,9 @@
     var service = {
       createElement,
       createSection,
-      addElementToSection
+      addElementToSection,
+      deleteSectionById,
+      deleteElementFromSectionById
     };
     return service;
 
@@ -48,7 +50,7 @@
 
       switch (type) {
         case FFUService.FormElementType.Label:
-          Object.assign(element, { type: FFUService.FormElementType.Label });
+          Object.assign(element, { type: FFUService.FormElementType.Label, title: "" });
           break;
         case FFUService.FormElementType.Text:
           Object.assign(element, { type: FFUService.FormElementType.Text });
@@ -70,7 +72,7 @@
             {
               id: FFUService.makeid(8),
               order: 0,
-              name: elementId,              
+              name: elementId,
               title: "Nova opção",
               description: "",
               value: "nova opção",
@@ -95,7 +97,7 @@
           Object.assign(element, { type: FFUService.FormElementType.SingleSelect, options: selectOptions });
           break;
         case FFUService.FormElementType.MultipleSelect:
-          let id = FFUService.makeid(8);          
+          let id = FFUService.makeid(8);
           let multipleOptions = [
             {
               id: id,
@@ -119,23 +121,59 @@
     }
 
     function createSection(structure) {
-      let index = structure.length??0;
+      let index = structure.length ?? 0;
 
       let sectionId = FFUService.makeid(8);
       let section = {
         id: sectionId,
         order: index,
         type: "section",
-        title: `Seção ${index+1}`,
+        title: `Seção ${index + 1}`,
         description: "",
         navigation: FFUService.NavigationType.NextSection,
         elements: []
       }
-      
+
       Object.assign(section, { order: index })
       structure.push(section);
 
       return [sectionId, section];
+    }
+    function deleteSectionById(structure, sectionId) {
+
+      console.log(structure);
+      structure = _.filter(structure, (el => el.id !== sectionId));
+      console.log(structure);
+
+      if(structure && structure.length>0) {
+        let newStructure = _.each(structure, (el, index) => { el.order = index });
+        angular.copy(structure, newStructure);
+      } 
+      else angular.copy(structure, []);;
+      console.log(structure);
+
+      
+    }
+
+    function deleteElementFromSectionById(structure, sectionId, elementId) {
+      const findSectionById = (i) => { return i.id == sectionId; }
+      let innerSection = _.find(structure, findSectionById);
+      let sectionIndex = _.findIndex(structure, findSectionById);
+
+
+      console.log(innerSection, sectionIndex);
+
+      let innerSectionElements = innerSection.elements.filter((i) => i.id !== elementId);
+
+      innerSectionElements = _.each(innerSectionElements, (el, index) => { el.order = index });
+
+      innerSection.elements = innerSectionElements;
+
+      console.log(innerSection);     
+
+      structure[sectionIndex] = innerSection;
+
+      console.log(structure);     
     }
   }
 })();

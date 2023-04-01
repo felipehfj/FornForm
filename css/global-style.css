@@ -15,6 +15,26 @@ body {
   font-size: 1.6rem;
 }
 
-.required{
+.right {
+  text-align: right;
+}
+
+.required {
   color: red;
+}
+
+#section-parent .section-hidden-child {
+  visibility: hidden;
+}
+
+#section-parent:hover .section-hidden-child {
+  visibility: visible;
+}
+
+#element-parent .element-hidden-child {
+  visibility: hidden;
+}
+
+#element-parent:hover .element-hidden-child {
+  visibility: visible;
 }

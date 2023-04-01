@@ -17,6 +17,10 @@
     integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="css/global-style.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/components-md.css" />
+  <link rel="stylesheet" href="css/plugins.css" />
+  <link rel="stylesheet" href="css/plugins-md.css" />
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -28,131 +32,279 @@
 <body>
   <main data-ng-app="TestApp" data-ng-controller="TestController as ctrl" class="ng-cloak">
     <div class="container">
-      <!-- <pre>{{scope | json}}</pre>
-      <pre>{{ctrl | json}}</pre>
-      <button type="button" data-ng-click="ctrl.c.b()">Eu sou um botão</button>
-      <button type="button" data-ng-click="ctrl.c.uid()">uid</button>
-      <button type="button" data-ng-click="ctrl.c.uuid()">uuid</button> -->
+
       <button type="button" data-ng-click="ctrl.c.section()">create section</button>
 
-      <div class="col-md-12" data-ng-repeat="section in ctrl.c.structure">
-        <div class="col-md-12">
-          <h2>[{{section.id}}] {{section.title}}</h2>
+      <div data-ng-form="" name="STRUCTURE" novalidate>
+        <div data-ng-repeat="section in ctrl.c.structure">
+          <div data-ng-form="" name="SECTION" novalidate>
 
-          <div class="col-md-12" data-ng-repeat="element in section.elements | orderBy: 'order' ">
-            <div data-ng-switch="element.type">
+            <div class="portlet portlet-light" id="section-parent">
+              <div class="portlet-title">
+                <div class="caption">
+                  <i class="fa-solid fa-tag fa-xs"></i>
+                  <span class="caption-subject bold uppercase">Seção {{$index+1}}</span>
+                  <span class="caption-helper">seção</span>
+                </div>
 
-              <div class="row" data-ng-switch-when="label">
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <i class="fa-solid fa-tag fa-xs"></i>
-                    Text
+                <div class="actions section-hidden-child">
+                  <div class="btn-group btn-group-xs">
+                    <button type="button" class="btn btn-link" title="Adicionar novo elemento"><i
+                        class="fa fa-plus fa-xs"></i></button>
+                    <button type="button" class="btn btn-link" title="Alterar ordem deste elemento para cima"><i
+                        class="fa fa-arrow-up fa-xs"></i></button>
+                    <button type="button" class="btn btn-link" title="Alterar ordem deste elemento para baixo"><i
+                        class="fa fa-arrow-down fa-xs"></i></button>
+                    <button type="button" class="btn btn-link" title="Remover este elemento" data-ng-click="ctrl.c.deleteSectionById(section.id);"><i
+                        class="fa fa-trash fa-xs"></i></button>
+                    <button type="button" class="btn btn-link" title="Recolher este elemento" data-toggle="collapse"
+                      data-target="#collapse{{$index+1}}"><i class="fa fa-chevron-up fa-xs"></i></button>
                   </div>
-                  <div class="panel-body">
-                    <div>
-                      <div class="form-group">
-                        <label class="control-label">Título <span class="required">*</span></label>
-                        <input type="text" class="form-control" data-ng-model="element.title" placeholder="O que?">
-                      </div>
+                </div>
+              </div>
+              <div class="portlet-body">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label class="control-label">Nome da seção <span class="required">*</span></label>
+                      <textarea type="text" class="form-control" data-ng-model="element.title"
+                        placeholder="Qual é o nome desta seção?" maxlength="1000" data-ng-maxlength="1000" rows="3"
+                        name="TITULO"></textarea>
+                      <span class="help-block error-group" data-ng-messages="SECTION.TITULO.$error"
+                        data-ng-if="SECTION.TITULO.$dirty && SECTION.TITULO.$invalid">
+                        <span data-ng-message="maxlength">O campo precisa ter no máximo 1000 caracteres</span>
+                      </span>
+                    </div>
 
-                      <div class="form-group">
-                        <label class="control-label">Descrição</label>
-                        <input type="text" class="form-control" data-ng-model="element.description"
-                          placeholder="Explique melhor...[opcional]">
-                      </div>
+                    <div class="form-group">
+                      <label class="control-label">Descrição</label>
+                      <textarea type="text" class="form-control" data-ng-model="element.description"
+                        placeholder="Explique melhor...[opcional]" maxlength="4000" data-ng-maxlength="4000" rows="3"
+                        name="DESCRICAO"></textarea>
+                      <span class="help-block error-group" data-ng-messages="SECTION.DESCRICAO.$error"
+                        data-ng-if="SECTION.DESCRICAO.$dirty && SECTION.DESCRICAO.$invalid">
+                        <span data-ng-message="maxlength">O campo precisa ter no máximo 4000 caracteres</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <fieldset>
+                  <legend>Componentes da Seção {{$index+1}}</legend>
+                  <div id="collapse{{$index+1}}" class="collapse in">
+                    <div class="row" data-ng-repeat="element in section.elements | orderBy: 'order' ">
+                      <div data-ng-switch="element.type" data-ng-form name="ELEMENT" class="col-md-12">
 
-                      <div class="form-group">
-                        <label class="control-label">O campo é de preenchimento obrigatório?</label>
-                        <input type="radio" name="" value="true" class="form-control"
-                          data-ng-model="element.required">Sim</input>
-                        <input type="radio" name="" value="false" class="form-control"
-                          data-ng-model="element.required">Não</input>
+                        <div class="row" data-ng-switch-when="label">
+                          <div class="col-md-12">
+                            <div class="portlet portlet-light" id="element-parent">
+                              <div class="portlet-title">
+                                <div class="caption">
+                                  <i class="fa-solid fa-tag fa-xs"></i>
+                                  <span class="caption-subject bold uppercase">Título</span>
+                                  <span class="caption-helper">elemento de título</span>
+                                </div>
+
+                                <div class="actions element-hidden-child">
+                                  <div class="btn-group btn-group-xs">
+                                    <button type="button" class="btn btn-link"
+                                      title="Alterar ordem deste elemento para cima"><i
+                                        class="fa fa-arrow-up fa-xs"></i></button>
+                                    <button type="button" class="btn btn-link"
+                                      title="Alterar ordem deste elemento para baixo"><i
+                                        class="fa fa-arrow-down fa-xs"></i></button>
+                                    <button type="button" class="btn btn-link" title="Remover este elemento" data-ng-click="ctrl.c.deleteElementFromSectionById(section.id, element.id);"><i
+                                        class="fa fa-trash fa-xs"></i></button>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="portlet-body">
+                                <div>
+                                  <div class="form-group">
+                                    <label class="control-label">Título</label>
+                                    <textarea type="text" class="form-control" data-ng-model="element.title"
+                                      placeholder="Qual é o título?" data-ng-required="true" minlength="3"
+                                      maxlength="1000" data-ng-minlength="3" data-ng-maxlength="1000" rows="3"
+                                      name="TITULO"></textarea>
+                                    <span class="help-block error-group" data-ng-messages="ELEMENT.TITULO.$error"
+                                      data-ng-if="ELEMENT.TITULO.$dirty && ELEMENT.TITULO.$invalid">
+                                      <span data-ng-message="required">Este campo é obrigatório</span>
+                                      <span data-ng-message="maxlength">O campo precisa ter no mínimo 3
+                                        caracteres</span>
+                                      <span data-ng-message="maxlength">O campo precisa ter no máximo 1000
+                                        caracteres</span>
+                                    </span>
+                                  </div>
+
+                                  <div class="form-group">
+                                    <label class="control-label">Descrição</label>
+                                    <textarea type="text" class="form-control" data-ng-model="element.description"
+                                      placeholder="Explique melhor...[opcional]" maxlength="4000"
+                                      data-ng-maxlength="4000" rows="3" name="DESCRICAO"></textarea>
+                                    <span class="help-block error-group" data-ng-messages="ELEMENT.DESCRICAO.$error"
+                                      data-ng-if="ELEMENT.DESCRICAO.$dirty && ELEMENT.DESCRICAO.$invalid">
+                                      <span data-ng-message="maxlength">O campo precisa ter no máximo 4000
+                                        caracteres</span>
+                                    </span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+
+                        <div class="row" data-ng-switch-when="text">
+                          <div class="col-md-12">
+                            <div class="portlet portlet-light" id="element-parent">
+                              <div class="portlet-title">
+                                <div class="caption">
+                                  <i class="fa-solid fa-font fa-xs"></i>
+                                  <span class="caption-subject bold uppercase">Texto</span>
+                                  <span class="caption-helper">elemento de texto simples</span>
+                                </div>
+
+                                <div class="actions element-hidden-child">
+                                  <div class="btn-group btn-group-xs">
+                                    <button type="button" class="btn btn-link"
+                                      title="Alterar ordem deste elemento para cima"><i
+                                        class="fa fa-arrow-up fa-xs"></i></button>
+                                    <button type="button" class="btn btn-link"
+                                      title="Alterar ordem deste elemento para baixo"><i
+                                        class="fa fa-arrow-down fa-xs"></i></button>
+                                    <button type="button" class="btn btn-link" title="Remover este elemento"><i
+                                        class="fa fa-trash fa-xs"></i></button>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="portlet-body">
+                                <div>
+                                  <div class="form-group">
+                                    <label class="control-label">Título <span class="required">*</span></label>
+                                    <textarea type="text" class="form-control" data-ng-model="element.title"
+                                      placeholder="O que?" data-ng-required="true" minlength="3" maxlength="1000"
+                                      data-ng-minlength="3" data-ng-maxlength="1000" rows="3" name="TITULO"></textarea>
+                                    <span class="help-block error-group" data-ng-messages="ELEMENT.TITULO.$error"
+                                      data-ng-if="ELEMENT.TITULO.$dirty && ELEMENT.TITULO.$invalid">
+                                      <span data-ng-message="required">Este campo é obrigatório</span>
+                                      <span data-ng-message="maxlength">O campo precisa ter no mínimo 3
+                                        caracteres</span>
+                                      <span data-ng-message="maxlength">O campo precisa ter no máximo 1000
+                                        caracteres</span>
+                                    </span>
+                                  </div>
+
+                                  <div class="form-group">
+                                    <label class="control-label">Descrição</label>
+                                    <textarea type="text" class="form-control" data-ng-model="element.description"
+                                      placeholder="Explique melhor...[opcional]" maxlength="4000"
+                                      data-ng-maxlength="4000" rows="3" name="DESCRICAO"></textarea>
+                                    <span class="help-block error-group" data-ng-messages="ELEMENT.DESCRICAO.$error"
+                                      data-ng-if="ELEMENT.DESCRICAO.$dirty && ELEMENT.DESCRICAO.$invalid">
+                                      <span data-ng-message="maxlength">O campo precisa ter no máximo 4000
+                                        caracteres</span>
+                                    </span>
+                                  </div>
+
+                                  <div class="form-group">
+                                    <label class="control-label">O campo é de preenchimento obrigatório? <span
+                                        class="required">*</span></label>
+                                    <div class="block">
+                                      <label class="control-label inline-block"
+                                        title="Configura o preenchimento deste campo como obrigatório"><input
+                                          type="radio" name="radio-{{element.id}}" data-ng-value="true"
+                                          data-ng-model="element.required" />
+                                        Sim</label>
+                                      <label class="control-label inline-block"
+                                        title="Configura o preenchimento deste campo como não obrigatório"><input
+                                          type="radio" name="radio-{{element.id}}" data-ng-value="false"
+                                          data-ng-model="element.required" />
+                                        Não</label>
+                                    </div>
+
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row" data-ng-switch-when="paragraph">
+                          <h3><i class="fa-solid fa-paragraph fa-xs"></i> {{element.id}} {{element.title}}</h3>
+                          <div>{{element.description}} </div>
+                        </div>
+
+                        <div class="row" data-ng-switch-when="number">
+                          <h3><i class="fa-solid fa-hashtag fa-xs"></i> {{element.title}}</h3>
+                          <div>{{element.description}} </div>
+                        </div>
+
+                        <div class="row" data-ng-switch-when="email">
+                          <h3><i class="fa-solid fa-envelope fa-xs"></i> {{element.title}}</h3>
+                          <div>{{element.description}} </div>
+                        </div>
+
+                        <div class="row" data-ng-switch-when="date">
+                          <h3><i class="fa-solid fa-calendar fa-xs"></i> {{element.title}}</h3>
+                          <div>{{element.description}} </div>
+                        </div>
+
+                        <div class="row" data-ng-switch-when="radio">
+                          <h3><i class="fa-solid fa-circle-dot fa-xs"></i> {{element.title}}</h3>
+                          <div>{{element.description}} </div>
+                        </div>
+
+                        <div class="row" data-ng-switch-when="select">
+                          <h3><i class="fa-solid fa-check fa-xs"></i> {{element.title}}</h3>
+                          <div>{{element.description}} </div>
+                        </div>
+
+                        <div class="row" data-ng-switch-when="multiple">
+                          <h3><i class="fa-solid fa-list-check fa-xs"></i> {{element.title}}</h3>
+                          <div>{{element.description}} </div>
+                        </div>
+
+                        <div class="row" data-ng-switch-when="file">
+                          <h3><i class="fa-solid fa-file fa-xs"></i> {{element.title}}</h3>
+                          <div>{{element.description}} </div>
+                        </div>
+
+
                       </div>
                     </div>
-                    <div>
-                      <input type="file" disabled="disabled">
-                    </div>
-
                   </div>
-                  <div class="panel-footer"></div>
-                </div>
-                <h3> {{element.title}}</h3>
-                <div>{{element.description}} </div>
+                </fieldset>
               </div>
 
-              <div class="row" data-ng-switch-when="text">
-                <h3><i class="fa-solid fa-font fa-xs"></i> {{element.title}}</h3>
-                <div>{{element.description}} </div>
-              </div>
-
-              <div class="row" data-ng-switch-when="paragraph">
-                <h3><i class="fa-solid fa-paragraph fa-xs"></i> {{element.id}} {{element.title}}</h3>
-                <div>{{element.description}} </div>
-              </div>
-
-              <div class="row" data-ng-switch-when="number">
-                <h3><i class="fa-solid fa-hashtag fa-xs"></i> {{element.title}}</h3>
-                <div>{{element.description}} </div>
-              </div>
-
-              <div class="row" data-ng-switch-when="email">
-                <h3><i class="fa-solid fa-envelope fa-xs"></i> {{element.title}}</h3>
-                <div>{{element.description}} </div>
-              </div>
-
-              <div class="row" data-ng-switch-when="date">
-                <h3><i class="fa-solid fa-calendar fa-xs"></i> {{element.title}}</h3>
-                <div>{{element.description}} </div>
-              </div>
-
-              <div class="row" data-ng-switch-when="radio">
-                <h3><i class="fa-solid fa-circle-dot fa-xs"></i> {{element.title}}</h3>
-                <div>{{element.description}} </div>
-              </div>
-
-              <div class="row" data-ng-switch-when="select">
-                <h3><i class="fa-solid fa-check fa-xs"></i> {{element.title}}</h3>
-                <div>{{element.description}} </div>
-              </div>
-
-              <div class="row" data-ng-switch-when="multiple">
-                <h3><i class="fa-solid fa-list-check fa-xs"></i> {{element.title}}</h3>
-                <div>{{element.description}} </div>
-              </div>
-
-              <div class="row" data-ng-switch-when="file">
-                <h3><i class="fa-solid fa-file fa-xs"></i> {{element.title}}</h3>
-                <div>
-                  <div class="form-group">
-                    <label class="control-label">Título <span class="required">*</span></label>
-                    <input type="text" class="form-control" data-ng-model="element.title" placeholder="O que?">
-                  </div>
-
-                  <div class="form-group">
-                    <label class="control-label">Descrição</label>
-                    <input type="text" class="form-control" data-ng-model="element.description"
-                      placeholder="Explique melhor...[opcional]">
-                  </div>
-
-                  <div class="form-group">
-                    <label class="control-label">O campo é de preenchimento obrigatório?</label>
-                    <input type="radio" name="" value="true" class="form-control"
-                      data-ng-model="element.required">Sim</input>
-                    <input type="radio" name="" value="false" class="form-control"
-                      data-ng-model="element.required">Não</input>
-                  </div>
-                </div>
-                <div>
-                  <input type="file" disabled="disabled">
+              <div class="portlet-footer right">
+                <div class="btn-group btn-group-xs section-hidden-child">
+                  <button type="button" class="btn btn-link" title="Adicionar um elemento Título" data-ng-click="ctrl.c.addElementToSection('label',section.id);"><i
+                      class="fa-solid fa-tag fa-xs"></i></button>
+                  <button type="button" class="btn btn-link" title="Adicionar um elemento Texto" data-ng-click="ctrl.c.addElementToSection('text',section.id);"><i
+                      class="fa-solid fa-font fa-xs"></i></button>
+                  <button type="button" class="btn btn-link" title="Adicionar um elemento Parágrafo" data-ng-click="ctrl.c.addElementToSection('paragraph',section.id);"><i
+                      class="fa-solid fa-paragraph fa-xs"></i></button>
+                  <button type="button" class="btn btn-link" title="Adicionar um elemento Número" data-ng-click="ctrl.c.addElementToSection('number',section.id);"><i
+                      class="fa-solid fa-hashtag fa-xs"></i></button>
+                  <button type="button" class="btn btn-link" title="Adicionar um elemento E-mail" data-ng-click="ctrl.c.addElementToSection('email',section.id);"><i
+                      class="fa-solid fa-envelope fa-xs"></i></button>
+                  <button type="button" class="btn btn-link" title="Adicionar um elemento Data" data-ng-click="ctrl.c.addElementToSection('date',section.id);"><i
+                      class="fa-solid fa-calendar fa-xs"></i></button>
+                  <button type="button" class="btn btn-link" title="Adicionar um elemento Seleção Única - Rádio" data-ng-click="ctrl.c.addElementToSection('radio',section.id);"><i
+                      class="fa-solid fa-circle-dot fa-xs"></i></button>
+                  <button type="button" class="btn btn-link" title="Adicionar um elemento Seleção Única - Lista" data-ng-click="ctrl.c.addElementToSection('select',section.id);"><i
+                      class="fa-solid fa-check fa-xs"></i></button>
+                  <button type="button" class="btn btn-link" title="Adicionar um elemento Seleção Múltipla" data-ng-click="ctrl.c.addElementToSection('multiple',section.id);"><i
+                      class="fa-solid fa-list-check fa-xs"></i></button>
+                  <button type="button" class="btn btn-link" title="Adicionar um elemento Arquivo" data-ng-click="ctrl.c.addElementToSection('file',section.id);"><i
+                      class="fa-solid fa-file fa-xs"></i></button>
                 </div>
               </div>
-
-
             </div>
+
+
           </div>
         </div>
       </div>
-
     </div>
 
 
