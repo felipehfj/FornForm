@@ -33,10 +33,10 @@
   <main data-ng-app="TestApp" data-ng-controller="TestController as ctrl" class="ng-cloak">
     <div class="container">
 
-      <button type="button" data-ng-click="ctrl.c.section()">create section</button>
+      <button type="button" data-ng-click="ctrl.form.addSectionToStructure()">create section</button>
 
       <div data-ng-form="" name="STRUCTURE" novalidate>
-        <div data-ng-repeat="section in ctrl.c.structure">
+        <div data-ng-repeat="section in ctrl.form.structure">
           <div data-ng-form="" name="SECTION" novalidate>
 
             <div class="portlet portlet-light" id="section-parent">
@@ -49,13 +49,13 @@
 
                 <div class="actions section-hidden-child">
                   <div class="btn-group btn-group-xs">
-                    <button type="button" class="btn btn-link" title="Adicionar novo elemento"><i
+                    <button type="button" class="btn btn-link" title="Adicionar nova Seção" data-ng-click="ctrl.form.addSectionToStructure(section.order+1)"><i
                         class="fa fa-plus fa-xs"></i></button>
-                    <button type="button" class="btn btn-link" title="Alterar ordem deste elemento para cima"><i
+                    <button type="button" class="btn btn-link" title="Alterar ordem deste elemento para cima" data-ng-click="ctrl.form.changeSectionOrder(section.id, 'up');"><i
                         class="fa fa-arrow-up fa-xs"></i></button>
-                    <button type="button" class="btn btn-link" title="Alterar ordem deste elemento para baixo"><i
+                    <button type="button" class="btn btn-link" title="Alterar ordem deste elemento para baixo" data-ng-click="ctrl.form.changeSectionOrder(section.id, 'down');"><i
                         class="fa fa-arrow-down fa-xs"></i></button>
-                    <button type="button" class="btn btn-link" title="Remover este elemento" data-ng-click="ctrl.c.deleteSectionById(section.id);"><i
+                    <button type="button" class="btn btn-link" title="Remover este elemento" data-ng-click="ctrl.form.deleteSectionById(section.id);"><i
                         class="fa fa-trash fa-xs"></i></button>
                     <button type="button" class="btn btn-link" title="Recolher este elemento" data-toggle="collapse"
                       data-target="#collapse{{$index+1}}"><i class="fa fa-chevron-up fa-xs"></i></button>
@@ -107,12 +107,12 @@
                                 <div class="actions element-hidden-child">
                                   <div class="btn-group btn-group-xs">
                                     <button type="button" class="btn btn-link"
-                                      title="Alterar ordem deste elemento para cima"><i
+                                      title="Alterar ordem deste elemento para cima" data-ng-click="ctrl.form.changeElementOrder(section.id, element, 'up');"><i
                                         class="fa fa-arrow-up fa-xs"></i></button>
                                     <button type="button" class="btn btn-link"
-                                      title="Alterar ordem deste elemento para baixo"><i
+                                      title="Alterar ordem deste elemento para baixo" data-ng-click="ctrl.form.changeElementOrder(section.id, element, 'down');"><i
                                         class="fa fa-arrow-down fa-xs"></i></button>
-                                    <button type="button" class="btn btn-link" title="Remover este elemento" data-ng-click="ctrl.c.deleteElementFromSectionById(section.id, element.id);"><i
+                                    <button type="button" class="btn btn-link" title="Remover este elemento" data-ng-click="ctrl.form.deleteElementFromSectionById(section.id, element.id);"><i
                                         class="fa fa-trash fa-xs"></i></button>
                                   </div>
                                 </div>
@@ -171,7 +171,7 @@
                                     <button type="button" class="btn btn-link"
                                       title="Alterar ordem deste elemento para baixo"><i
                                         class="fa fa-arrow-down fa-xs"></i></button>
-                                    <button type="button" class="btn btn-link" title="Remover este elemento"><i
+                                    <button type="button" class="btn btn-link" title="Remover este elemento" data-ng-click="ctrl.form.deleteElementFromSectionById(section.id, element.id);"><i
                                         class="fa fa-trash fa-xs"></i></button>
                                   </div>
                                 </div>
@@ -277,25 +277,25 @@
 
               <div class="portlet-footer right">
                 <div class="btn-group btn-group-xs section-hidden-child">
-                  <button type="button" class="btn btn-link" title="Adicionar um elemento Título" data-ng-click="ctrl.c.addElementToSection('label',section.id);"><i
+                  <button type="button" class="btn btn-link" title="Adicionar um elemento Título" data-ng-click="ctrl.form.addElementToSection('label',section.id);"><i
                       class="fa-solid fa-tag fa-xs"></i></button>
-                  <button type="button" class="btn btn-link" title="Adicionar um elemento Texto" data-ng-click="ctrl.c.addElementToSection('text',section.id);"><i
+                  <button type="button" class="btn btn-link" title="Adicionar um elemento Texto" data-ng-click="ctrl.form.addElementToSection('text',section.id);"><i
                       class="fa-solid fa-font fa-xs"></i></button>
-                  <button type="button" class="btn btn-link" title="Adicionar um elemento Parágrafo" data-ng-click="ctrl.c.addElementToSection('paragraph',section.id);"><i
+                  <button type="button" class="btn btn-link" title="Adicionar um elemento Parágrafo" data-ng-click="ctrl.form.addElementToSection('paragraph',section.id);"><i
                       class="fa-solid fa-paragraph fa-xs"></i></button>
-                  <button type="button" class="btn btn-link" title="Adicionar um elemento Número" data-ng-click="ctrl.c.addElementToSection('number',section.id);"><i
+                  <button type="button" class="btn btn-link" title="Adicionar um elemento Número" data-ng-click="ctrl.form.addElementToSection('number',section.id);"><i
                       class="fa-solid fa-hashtag fa-xs"></i></button>
-                  <button type="button" class="btn btn-link" title="Adicionar um elemento E-mail" data-ng-click="ctrl.c.addElementToSection('email',section.id);"><i
+                  <button type="button" class="btn btn-link" title="Adicionar um elemento E-mail" data-ng-click="ctrl.form.addElementToSection('email',section.id);"><i
                       class="fa-solid fa-envelope fa-xs"></i></button>
-                  <button type="button" class="btn btn-link" title="Adicionar um elemento Data" data-ng-click="ctrl.c.addElementToSection('date',section.id);"><i
+                  <button type="button" class="btn btn-link" title="Adicionar um elemento Data" data-ng-click="ctrl.form.addElementToSection('date',section.id);"><i
                       class="fa-solid fa-calendar fa-xs"></i></button>
-                  <button type="button" class="btn btn-link" title="Adicionar um elemento Seleção Única - Rádio" data-ng-click="ctrl.c.addElementToSection('radio',section.id);"><i
+                  <button type="button" class="btn btn-link" title="Adicionar um elemento Seleção Única - Rádio" data-ng-click="ctrl.form.addElementToSection('radio',section.id);"><i
                       class="fa-solid fa-circle-dot fa-xs"></i></button>
-                  <button type="button" class="btn btn-link" title="Adicionar um elemento Seleção Única - Lista" data-ng-click="ctrl.c.addElementToSection('select',section.id);"><i
+                  <button type="button" class="btn btn-link" title="Adicionar um elemento Seleção Única - Lista" data-ng-click="ctrl.form.addElementToSection('select',section.id);"><i
                       class="fa-solid fa-check fa-xs"></i></button>
-                  <button type="button" class="btn btn-link" title="Adicionar um elemento Seleção Múltipla" data-ng-click="ctrl.c.addElementToSection('multiple',section.id);"><i
+                  <button type="button" class="btn btn-link" title="Adicionar um elemento Seleção Múltipla" data-ng-click="ctrl.form.addElementToSection('multiple',section.id);"><i
                       class="fa-solid fa-list-check fa-xs"></i></button>
-                  <button type="button" class="btn btn-link" title="Adicionar um elemento Arquivo" data-ng-click="ctrl.c.addElementToSection('file',section.id);"><i
+                  <button type="button" class="btn btn-link" title="Adicionar um elemento Arquivo" data-ng-click="ctrl.form.addElementToSection('file',section.id);"><i
                       class="fa-solid fa-file fa-xs"></i></button>
                 </div>
               </div>
@@ -324,7 +324,7 @@
   <script src="js/app.js"></script>
   <script src="js/controllers.js"></script>
   <script src="js/fornFormUtils.fact.js"></script>
-  <script src="js/fornForm.js"></script>
+  
 </body>
 
 </html>

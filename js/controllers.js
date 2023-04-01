@@ -7,64 +7,236 @@
 		.module('TestApp')
 		.controller('TestController', TestController);
 
-	TestController.$inject = ['$scope', '$http', 'toastr', 'FornFormUtilsService', '_', 'FornForm'];
+	TestController.$inject = ['$scope', '$http', 'toastr', 'FornFormUtilsService', '_'];
 
-	function TestController($scope, $http, toastr, FFUService, _, FornForm) {
+	function TestController($scope, $http, toastr, FFUService, _) {
 		var vm = this;
 
-		vm.c = {
-			d: "Felipe",
-			b: () => toastr.info('ola', 'teste'),
-			uid: () => toastr.info(`${FFUService.makeid(8)}`, 'uid'),
-			uuid: () => toastr.success(`${FFUService.UUIDv4()}`, 'uid'),
-			s: () => _.multiply(2, 3),
+		vm.form = {
 			structure: [],
-			section: () => {
-				let [secId] = FornForm.createSection(vm.c.structure);
-
-				// let elLabel = FornForm.createElement(FFUService.FormElementType.Label);
-				// let elText = FornForm.createElement(FFUService.FormElementType.Text);
-				// let elParagraph = FornForm.createElement(FFUService.FormElementType.Paragraph);
-				// let elNumber = FornForm.createElement(FFUService.FormElementType.Number);
-				// let elEmail = FornForm.createElement(FFUService.FormElementType.Email);
-				// let elDate = FornForm.createElement(FFUService.FormElementType.Date);
-				// let elRadio = FornForm.createElement(FFUService.FormElementType.Radio);
-				// let elSingleSelect = FornForm.createElement(FFUService.FormElementType.SingleSelect);
-				// let elMultipleSelect = FornForm.createElement(FFUService.FormElementType.MultipleSelect);
-				// let elFile = FornForm.createElement(FFUService.FormElementType.File);
-
-				// FornForm.addElementToSection(vm.c.structure, secId, elLabel);
-				// FornForm.addElementToSection(vm.c.structure, secId, elText);
-				// FornForm.addElementToSection(vm.c.structure, secId, elParagraph);
-				// FornForm.addElementToSection(vm.c.structure, secId, elNumber);
-				// FornForm.addElementToSection(vm.c.structure, secId, elEmail);
-				// FornForm.addElementToSection(vm.c.structure, secId, elDate);
-				// FornForm.addElementToSection(vm.c.structure, secId, elRadio);
-				// FornForm.addElementToSection(vm.c.structure, secId, elSingleSelect);
-				// FornForm.addElementToSection(vm.c.structure, secId, elMultipleSelect);
-				// FornForm.addElementToSection(vm.c.structure, secId, elFile);
+			addSectionToStructure: function (index) {
+				let order = 0;
+				if (index) {
+					order = index
+				} else {
+					order = this.structure.length ?? 0;
+				}
 
 
-				console.log(vm.c.structure);
+				let sectionId = FFUService.makeid(8);
+				let section = {
+					id: sectionId,
+					order: order,
+					type: "section",
+					title: `Seção ${order + 1}`,
+					description: "",
+					navigation: FFUService.NavigationType.NextSection,
+					elements: []
+				}
 
-				return vm.c.structure;
+				Object.assign(section, { order: order })
+
+				this.structure.splice(order, 0, section);
+
+				if (this.structure.length > 0) {
+					this.structure.forEach((el, index) => { el.order = index });
+				}
 			},
-			addElementToSection: (elementType, sectionId) => {
-				let el = FornForm.createElement(elementType);
-				FornForm.addElementToSection(vm.c.structure, sectionId, el);
+			deleteSectionById: function (sectionId) {
+				let newStructure = this.structure.filter(el => el.id != sectionId);
+				if (newStructure.length > 0) {
+					newStructure.forEach((el, index) => { el.order = index });
+				}
+				this.structure = newStructure;
 			},
-			deleteSectionById: (sectionId) => {
-				FornForm.deleteSectionById(vm.c.structure, sectionId);
-			},
-			deleteElementFromSectionById: (sectionId, elementId) => {
-				FornForm.deleteElementFromSectionById(vm.c.structure, sectionId, elementId);
-			},
-		};
+			addElementToSection: function (elementType, sectionId) {
 
-		function init() {
-			vm.c.section()
-		};
+				const findSectionById = (i) => { return i.id == sectionId; }
+				let innerSection = _.find(this.structure, findSectionById);
+				let sectionIndex = _.findIndex(this.structure, findSectionById);
 
-		init();
+				let element = this.createElement(elementType);
+
+				let elementOrder = innerSection.elements.length;
+				innerSection.elements.push({ ...element, order: elementOrder });
+
+				this.structure[sectionIndex] = innerSection;
+			},
+			deleteElementFromSectionById: function (sectionId, elementId) {
+				const findSectionById = (i) => { return i.id == sectionId; }
+				let innerSection = _.find(this.structure, findSectionById);
+				let sectionIndex = _.findIndex(this.structure, findSectionById);
+
+				let innerSectionElements = innerSection.elements.filter((i) => i.id !== elementId);
+
+				innerSectionElements = _.each(innerSectionElements, (el, index) => { el.order = index });
+
+				innerSection.elements = innerSectionElements;
+
+				this.structure[sectionIndex] = innerSection;
+			},
+			createElement: function createElement(type) {
+				let elementId = FFUService.makeid(8);
+				let element = {
+					id: elementId,
+					order: 0,
+					type: "",
+					required: false,
+					title: "Nova pergunta",
+					description: "",
+					puntuation: 0,
+					options: [],
+					response: [],
+					correctAnswers: [],
+					navigation: FFUService.NavigationType.NextSection
+				};
+
+				switch (type) {
+					case FFUService.FormElementType.Label:
+						Object.assign(element, { type: FFUService.FormElementType.Label, title: "" });
+						break;
+					case FFUService.FormElementType.Text:
+						Object.assign(element, { type: FFUService.FormElementType.Text });
+						break;
+					case FFUService.FormElementType.Paragraph:
+						Object.assign(element, { type: FFUService.FormElementType.Paragraph });
+						break;
+					case FFUService.FormElementType.Number:
+						Object.assign(element, { type: FFUService.FormElementType.Number });
+						break;
+					case FFUService.FormElementType.Email:
+						Object.assign(element, { type: FFUService.FormElementType.Email });
+						break;
+					case FFUService.FormElementType.Date:
+						Object.assign(element, { type: FFUService.FormElementType.Date });
+						break;
+					case FFUService.FormElementType.Radio:
+						let radioOptions = [
+							{
+								id: FFUService.makeid(8),
+								order: 0,
+								name: elementId,
+								title: "Nova opção",
+								description: "",
+								value: "nova opção",
+								checked: false,
+							}
+						]
+
+						Object.assign(element, { type: FFUService.FormElementType.Radio, options: radioOptions });
+						break;
+					case FFUService.FormElementType.SingleSelect:
+						let selectOptions = [
+							{
+								id: FFUService.makeid(8),
+								order: 0,
+								name: elementId,
+								title: "Nova opção",
+								description: "",
+								value: "Nova opção",
+								checked: false,
+							}
+						]
+						Object.assign(element, { type: FFUService.FormElementType.SingleSelect, options: selectOptions });
+						break;
+					case FFUService.FormElementType.MultipleSelect:
+						let id = FFUService.makeid(8);
+						let multipleOptions = [
+							{
+								id: id,
+								order: 0,
+								name: id,
+								title: "Nova opção",
+								description: "",
+								value: "nova opção",
+								checked: false,
+							}
+						]
+
+						Object.assign(element, { type: FFUService.FormElementType.MultipleSelect, options: multipleOptions });
+						break;
+					case FFUService.FormElementType.File:
+						Object.assign(element, { type: FFUService.FormElementType.File });
+						break;
+					default: break;
+				}
+				return element;
+
+			},
+			changeElementOrder: function (sectionId, element, type) {
+				const findSectionById = (i) => { return i.id == sectionId; }
+
+				let sectionIndex = _.findIndex(this.structure, findSectionById);
+
+				if (this.structure[sectionIndex].elements.length <= 1) return;
+
+				let elementIndex = element.order;
+
+				switch (type) {
+					case 'up':
+						if (elementIndex == 0) return;
+
+						let prevElement = this.structure[sectionIndex].elements[elementIndex - 1];
+
+						prevElement.order = elementIndex
+						element.order = elementIndex - 1
+
+						this.structure[sectionIndex].elements[elementIndex - 1] = element;
+						this.structure[sectionIndex].elements[elementIndex] = prevElement;
+
+						break;
+					case 'down':
+						if (elementIndex == this.structure[sectionIndex].elements.length - 1) return;
+
+						let nextElement = this.structure[sectionIndex].elements[elementIndex + 1];
+
+						nextElement.order = elementIndex
+						element.order = elementIndex + 1
+
+						this.structure[sectionIndex].elements[elementIndex + 1] = element;
+						this.structure[sectionIndex].elements[elementIndex] = nextElement;
+						break
+					default:
+						break
+				}
+			},
+			changeSectionOrder: function (sectionId, type) {
+				const findSectionById = (i) => { return i.id == sectionId; }
+				let sectionIndex = _.findIndex(this.structure, findSectionById);
+
+				if (this.structure[sectionIndex].length <= 1) return;
+
+				let currentSectionOrder = this.structure[sectionIndex].order;
+
+				switch (type) {
+					case 'up':
+						if (currentSectionOrder == 0) return;
+
+						let prevSection = this.structure[sectionIndex - 1];
+						let currentSection = this.structure[sectionIndex]
+						prevSection.order = currentSectionOrder
+						currentSection.order = currentSectionOrder - 1
+
+						this.structure[currentSectionOrder - 1] = currentSection;
+						this.structure[currentSectionOrder] = prevSection;
+
+						break;
+					case 'down':
+						if (sectionIndex == this.structure[sectionIndex].length - 1) return;
+
+						let nextSection = this.structure[sectionIndex + 1];
+						let currentSection1 = this.structure[sectionIndex]
+
+						nextSection.order = currentSectionOrder
+						currentSection1.order = currentSectionOrder + 1
+
+						this.structure[currentSectionOrder + 1] = currentSection1;
+						this.structure[currentSectionOrder] = nextSection;
+						break
+					default:
+						break
+				}
+			}
+		}
 	};
 })();
