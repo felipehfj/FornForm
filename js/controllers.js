@@ -53,7 +53,7 @@
 				this.structure = newStructure;
 
 				this.updateNavigationRoutes();
-				this.updateSectionNavigationRoutes();				
+				this.updateSectionNavigationRoutes();
 			},
 			addElementToSection: function (elementType, sectionId) {
 
@@ -258,7 +258,7 @@
 
 				this.structure
 					.forEach(item => {
-						if (! _.includes(routesRoute, item.navigation)) {
+						if (!_.includes(routesRoute, item.navigation)) {
 							item.navigation = FFUService.NavigationType.NextSection;
 						}
 					});
