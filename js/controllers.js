@@ -14,6 +14,7 @@
 
 		vm.form = {
 			structure: [],
+			routes: [{ title: "Próxima seção", route: FFUService.NavigationType.NextSection }, { title: "Fim do formulário", route: FFUService.NavigationType.EndForm }],
 			addSectionToStructure: function (index) {
 				let order = 0;
 				if (index) {
@@ -41,6 +42,8 @@
 				if (this.structure.length > 0) {
 					this.structure.forEach((el, index) => { el.order = index });
 				}
+
+				this.updateNavigationRoutes();
 			},
 			deleteSectionById: function (sectionId) {
 				let newStructure = this.structure.filter(el => el.id != sectionId);
@@ -48,6 +51,9 @@
 					newStructure.forEach((el, index) => { el.order = index });
 				}
 				this.structure = newStructure;
+
+				this.updateNavigationRoutes();
+				this.updateSectionNavigationRoutes();				
 			},
 			addElementToSection: function (elementType, sectionId) {
 
@@ -84,9 +90,11 @@
 					required: false,
 					title: "Nova pergunta",
 					description: "",
-					puntuation: 0,
+					usePunctuation: false,
+					punctuation: 0,
 					options: [],
 					response: [],
+					useCorrectAnswers: false,
 					correctAnswers: [],
 					navigation: FFUService.NavigationType.NextSection
 				};
@@ -236,7 +244,25 @@
 					default:
 						break
 				}
-			}
+			},
+			updateNavigationRoutes: function () {
+				let routes = this.structure.map(item => { return { title: `${item.title}`, route: item.id } });
+
+				routes.push({ title: "Próxima Seção", route: FFUService.NavigationType.NextSection });
+				routes.push({ title: "Fim do Formulário", route: FFUService.NavigationType.EndForm });
+
+				this.routes = routes;
+			},
+			updateSectionNavigationRoutes: function () {
+				let routesRoute = this.routes.map(i => i.route);
+
+				this.structure
+					.forEach(item => {
+						if (! _.includes(routesRoute, item.navigation)) {
+							item.navigation = FFUService.NavigationType.NextSection;
+						}
+					});
+			},
 		}
 	};
 })();

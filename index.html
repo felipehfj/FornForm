@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="img/favicon.ico">
   <title>Teste</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
@@ -43,19 +43,23 @@
               <div class="portlet-title">
                 <div class="caption">
                   <i class="fa-solid fa-tag fa-xs"></i>
-                  <span class="caption-subject bold uppercase">Seção {{$index+1}}</span>
-                  <span class="caption-helper">seção</span>
+                  <span class="caption-subject bold uppercase">{{section.title}}</span>
+                  <span class="caption-helper">seção {{$index+1}}</span>
                 </div>
 
                 <div class="actions section-hidden-child">
                   <div class="btn-group btn-group-xs">
-                    <button type="button" class="btn btn-link" title="Adicionar nova Seção" data-ng-click="ctrl.form.addSectionToStructure(section.order+1)"><i
+                    <button type="button" class="btn btn-link" title="Adicionar nova Seção"
+                      data-ng-click="ctrl.form.addSectionToStructure(section.order+1)"><i
                         class="fa fa-plus fa-xs"></i></button>
-                    <button type="button" class="btn btn-link" title="Alterar ordem deste elemento para cima" data-ng-click="ctrl.form.changeSectionOrder(section.id, 'up');"><i
+                    <button type="button" class="btn btn-link" title="Alterar ordem deste elemento para cima"
+                      data-ng-click="ctrl.form.changeSectionOrder(section.id, 'up');"><i
                         class="fa fa-arrow-up fa-xs"></i></button>
-                    <button type="button" class="btn btn-link" title="Alterar ordem deste elemento para baixo" data-ng-click="ctrl.form.changeSectionOrder(section.id, 'down');"><i
+                    <button type="button" class="btn btn-link" title="Alterar ordem deste elemento para baixo"
+                      data-ng-click="ctrl.form.changeSectionOrder(section.id, 'down');"><i
                         class="fa fa-arrow-down fa-xs"></i></button>
-                    <button type="button" class="btn btn-link" title="Remover este elemento" data-ng-click="ctrl.form.deleteSectionById(section.id);"><i
+                    <button type="button" class="btn btn-link" title="Remover este elemento"
+                      data-ng-click="ctrl.form.deleteSectionById(section.id);"><i
                         class="fa fa-trash fa-xs"></i></button>
                     <button type="button" class="btn btn-link" title="Recolher este elemento" data-toggle="collapse"
                       data-target="#collapse{{$index+1}}"><i class="fa fa-chevron-up fa-xs"></i></button>
@@ -63,31 +67,57 @@
                 </div>
               </div>
               <div class="portlet-body">
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <label class="control-label">Nome da seção <span class="required">*</span></label>
-                      <textarea type="text" class="form-control" data-ng-model="element.title"
-                        placeholder="Qual é o nome desta seção?" maxlength="1000" data-ng-maxlength="1000" rows="3"
-                        name="TITULO"></textarea>
-                      <span class="help-block error-group" data-ng-messages="SECTION.TITULO.$error"
-                        data-ng-if="SECTION.TITULO.$dirty && SECTION.TITULO.$invalid">
+                <div class="form-body">
+                  <div class="form-group form-md-line-input"
+                    data-ng-class="SECTION.TITLE.$invalid ? 'has-error' : '' ">
+                    <div class="input-icon right">
+                      <textarea type="text" class="form-control input-sm" data-ng-model="section.title"
+                      data-ng-blur="ctrl.form.updateNavigationRoutes();"
+                        title="Qual é o nome desta seção?" maxlength="1001" data-ng-maxlength="1000" rows="1"
+                        name="TITLE"></textarea>
+                      <label class="control-label">Nome da seção</label>
+                      <span class="help-block" data-ng-messages="SECTION.TITLE.$error"
+                        data-ng-if="SECTION.TITLE.$dirty && SECTION.TITLE.$invalid">
                         <span data-ng-message="maxlength">O campo precisa ter no máximo 1000 caracteres</span>
                       </span>
-                    </div>
-
-                    <div class="form-group">
-                      <label class="control-label">Descrição</label>
-                      <textarea type="text" class="form-control" data-ng-model="element.description"
-                        placeholder="Explique melhor...[opcional]" maxlength="4000" data-ng-maxlength="4000" rows="3"
-                        name="DESCRICAO"></textarea>
-                      <span class="help-block error-group" data-ng-messages="SECTION.DESCRICAO.$error"
-                        data-ng-if="SECTION.DESCRICAO.$dirty && SECTION.DESCRICAO.$invalid">
-                        <span data-ng-message="maxlength">O campo precisa ter no máximo 4000 caracteres</span>
-                      </span>
+                      <i class="fa fa-warning" data-ng-show="SECTION.TITLE.$invalid"
+                        title="Existe um problema com a validação"></i>
                     </div>
                   </div>
+
+                  <div class="form-group form-md-line-input"
+                    data-ng-class="SECTION.DESCRIPTION.$invalid ? 'has-error' : '' ">
+                    <div class="input-icon right">
+                      <textarea type="text" class="form-control input-sm" data-ng-model="section.description"
+                        title="Explique melhor...[opcional]" maxlength="4001" data-ng-maxlength="4000" rows="1"
+                        name="DESCRIPTION"></textarea>
+                      <label class="control-label">Descrição</label>
+                      <span class="help-block" data-ng-messages="SECTION.DESCRIPTION.$error"
+                        data-ng-if="SECTION.DESCRIPTION.$dirty && SECTION.DESCRIPTION.$invalid">
+                        <span data-ng-message="maxlength">O campo precisa ter no máximo 4000 caracteres</span>
+                      </span>
+                      <i class="fa fa-warning" data-ng-show="SECTION.DESCRIPTION.$invalid"
+                        title="Existe um problema com a validação"></i>
+                    </div>
+                  </div>
+
+                  <div class="form-group" title="Navegação de seção"
+                    data-ng-class="SECTION.NAVIGATION.$invalid ? 'has-error' : '' ">
+                    <label class="control-label">Navegação</label>
+                    <ui-select name="NAVIGATION" style="width: 100%;" data-ng-model="section.navigation"
+                      theme="bootstrap" title="Insira as respostas corretas">
+                      <ui-select-match placeholder="Navegar para">{{$select.selected.title}}</ui-select-match>
+                      <ui-select-choices repeat="route.route as route in ctrl.form.routes | filter:$select.search">
+                        {{route.title}}
+                      </ui-select-choices>
+                    </ui-select>
+                    <span class="help-block error-group" data-ng-messages="SECTION.NAVIGATION.$error"
+                      data-ng-if="SECTION.NAVIGATION.$dirty && SECTION.NAVIGATION.$invalid">
+                      <span data-ng-message="required">Este campo é obrigatório</span>
+                    </span>
+                  </div>
                 </div>
+
                 <fieldset>
                   <legend>Componentes da Seção {{$index+1}}</legend>
                   <div id="collapse{{$index+1}}" class="collapse in">
@@ -107,41 +137,46 @@
                                 <div class="actions element-hidden-child">
                                   <div class="btn-group btn-group-xs">
                                     <button type="button" class="btn btn-link"
-                                      title="Alterar ordem deste elemento para cima" data-ng-click="ctrl.form.changeElementOrder(section.id, element, 'up');"><i
+                                      title="Alterar ordem deste elemento para cima"
+                                      data-ng-click="ctrl.form.changeElementOrder(section.id, element, 'up');"><i
                                         class="fa fa-arrow-up fa-xs"></i></button>
                                     <button type="button" class="btn btn-link"
-                                      title="Alterar ordem deste elemento para baixo" data-ng-click="ctrl.form.changeElementOrder(section.id, element, 'down');"><i
+                                      title="Alterar ordem deste elemento para baixo"
+                                      data-ng-click="ctrl.form.changeElementOrder(section.id, element, 'down');"><i
                                         class="fa fa-arrow-down fa-xs"></i></button>
-                                    <button type="button" class="btn btn-link" title="Remover este elemento" data-ng-click="ctrl.form.deleteElementFromSectionById(section.id, element.id);"><i
+                                    <button type="button" class="btn btn-link" title="Remover este elemento"
+                                      data-ng-click="ctrl.form.deleteElementFromSectionById(section.id, element.id);"><i
                                         class="fa fa-trash fa-xs"></i></button>
                                   </div>
                                 </div>
                               </div>
                               <div class="portlet-body">
-                                <div>
-                                  <div class="form-group">
-                                    <label class="control-label">Título</label>
-                                    <textarea type="text" class="form-control" data-ng-model="element.title"
+                                <div class="form-body">
+                                  <div class="form-group"
+                                    data-ng-class="ELEMENT.TITLE.$dirty && ELEMENT.TITLE.$invalid ? 'has-error' : '' ">
+                                    <label class="control-label">Título <span class="required">*</span></label>
+                                    <textarea type="text" class="form-control input-sm" data-ng-model="element.title"
                                       placeholder="Qual é o título?" data-ng-required="true" minlength="3"
-                                      maxlength="1000" data-ng-minlength="3" data-ng-maxlength="1000" rows="3"
-                                      name="TITULO"></textarea>
-                                    <span class="help-block error-group" data-ng-messages="ELEMENT.TITULO.$error"
-                                      data-ng-if="ELEMENT.TITULO.$dirty && ELEMENT.TITULO.$invalid">
+                                      maxlength="1001" data-ng-minlength="3" data-ng-maxlength="1000" rows="1"
+                                      name="TITLE"></textarea>
+                                    <span class="help-block" data-ng-messages="ELEMENT.TITLE.$error"
+                                      data-ng-if="ELEMENT.TITLE.$dirty && ELEMENT.TITLE.$invalid">
                                       <span data-ng-message="required">Este campo é obrigatório</span>
-                                      <span data-ng-message="maxlength">O campo precisa ter no mínimo 3
+                                      <span data-ng-message="minlength">O campo precisa ter no mínimo 3
                                         caracteres</span>
                                       <span data-ng-message="maxlength">O campo precisa ter no máximo 1000
                                         caracteres</span>
                                     </span>
                                   </div>
 
-                                  <div class="form-group">
+                                  <div class="form-group"
+                                    data-ng-class="ELEMENT.DESCRIPTION.$invalid ? 'has-error' : '' ">
                                     <label class="control-label">Descrição</label>
-                                    <textarea type="text" class="form-control" data-ng-model="element.description"
-                                      placeholder="Explique melhor...[opcional]" maxlength="4000"
-                                      data-ng-maxlength="4000" rows="3" name="DESCRICAO"></textarea>
-                                    <span class="help-block error-group" data-ng-messages="ELEMENT.DESCRICAO.$error"
-                                      data-ng-if="ELEMENT.DESCRICAO.$dirty && ELEMENT.DESCRICAO.$invalid">
+                                    <textarea type="text" class="form-control input-sm"
+                                      data-ng-model="element.description" placeholder="Explique melhor...[opcional]"
+                                      maxlength="4001" data-ng-maxlength="4000" rows="1" name="DESCRIPTION"></textarea>
+                                    <span class="help-block error-group" data-ng-messages="ELEMENT.DESCRIPTION.$error"
+                                      data-ng-if="ELEMENT.DESCRIPTION.$dirty && ELEMENT.DESCRIPTION.$invalid">
                                       <span data-ng-message="maxlength">O campo precisa ter no máximo 4000
                                         caracteres</span>
                                     </span>
@@ -154,7 +189,7 @@
 
 
                         <div class="row" data-ng-switch-when="text">
-                          <div class="col-md-12">
+                          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="portlet portlet-light" id="element-parent">
                               <div class="portlet-title">
                                 <div class="caption">
@@ -171,57 +206,149 @@
                                     <button type="button" class="btn btn-link"
                                       title="Alterar ordem deste elemento para baixo"><i
                                         class="fa fa-arrow-down fa-xs"></i></button>
-                                    <button type="button" class="btn btn-link" title="Remover este elemento" data-ng-click="ctrl.form.deleteElementFromSectionById(section.id, element.id);"><i
+                                    <button type="button" class="btn btn-link" title="Remover este elemento"
+                                      data-ng-click="ctrl.form.deleteElementFromSectionById(section.id, element.id);"><i
                                         class="fa fa-trash fa-xs"></i></button>
                                   </div>
                                 </div>
                               </div>
                               <div class="portlet-body">
-                                <div>
-                                  <div class="form-group">
+                                <div class="form-body">
+                                  <div class="form-group" title="Esta é a pergunta que será apresentada no formulário"
+                                    data-ng-class="ELEMENT.TITLE.$dirty && ELEMENT.TITLE.$invalid ? 'has-error' : '' ">
                                     <label class="control-label">Título <span class="required">*</span></label>
-                                    <textarea type="text" class="form-control" data-ng-model="element.title"
-                                      placeholder="O que?" data-ng-required="true" minlength="3" maxlength="1000"
-                                      data-ng-minlength="3" data-ng-maxlength="1000" rows="3" name="TITULO"></textarea>
-                                    <span class="help-block error-group" data-ng-messages="ELEMENT.TITULO.$error"
-                                      data-ng-if="ELEMENT.TITULO.$dirty && ELEMENT.TITULO.$invalid">
+                                    <textarea type="text" class="form-control input-sm" data-ng-model="element.title"
+                                      placeholder="Qual é o título da pergunta" data-ng-required="true" minlength="3"
+                                      maxlength="1001" data-ng-minlength="3" data-ng-maxlength="1000" rows="1"
+                                      name="TITLE"></textarea>
+                                    <span class="help-block" data-ng-messages="ELEMENT.TITLE.$error"
+                                      data-ng-if="ELEMENT.TITLE.$dirty && ELEMENT.TITLE.$invalid">
                                       <span data-ng-message="required">Este campo é obrigatório</span>
-                                      <span data-ng-message="maxlength">O campo precisa ter no mínimo 3
+                                      <span data-ng-message="minlength">O campo precisa ter no mínimo 3
                                         caracteres</span>
                                       <span data-ng-message="maxlength">O campo precisa ter no máximo 1000
                                         caracteres</span>
                                     </span>
                                   </div>
 
-                                  <div class="form-group">
+                                  <div class="form-group"
+                                    title="Este campo permite que sejam apresentadas maiores informações sobre a que se deseja na pergunta"
+                                    data-ng-class="ELEMENT.DESCRIPTION.$invalid ? 'has-error' : '' ">
                                     <label class="control-label">Descrição</label>
-                                    <textarea type="text" class="form-control" data-ng-model="element.description"
-                                      placeholder="Explique melhor...[opcional]" maxlength="4000"
-                                      data-ng-maxlength="4000" rows="3" name="DESCRICAO"></textarea>
-                                    <span class="help-block error-group" data-ng-messages="ELEMENT.DESCRICAO.$error"
-                                      data-ng-if="ELEMENT.DESCRICAO.$dirty && ELEMENT.DESCRICAO.$invalid">
+                                    <textarea type="text" class="form-control input-sm"
+                                      data-ng-model="element.description"
+                                      placeholder="Ajude o respondente explicando melhor o que se deseja com a resposta [opcional]"
+                                      maxlength="4001" data-ng-maxlength="4000" rows="1" name="DESCRIPTION"></textarea>
+                                    <span class="help-block error-group" data-ng-messages="ELEMENT.DESCRIPTION.$error"
+                                      data-ng-if="ELEMENT.DESCRIPTION.$dirty && ELEMENT.DESCRIPTION.$invalid">
                                       <span data-ng-message="maxlength">O campo precisa ter no máximo 4000
                                         caracteres</span>
                                     </span>
                                   </div>
 
-                                  <div class="form-group">
-                                    <label class="control-label">O campo é de preenchimento obrigatório? <span
-                                        class="required">*</span></label>
-                                    <div class="block">
-                                      <label class="control-label inline-block"
-                                        title="Configura o preenchimento deste campo como obrigatório"><input
-                                          type="radio" name="radio-{{element.id}}" data-ng-value="true"
-                                          data-ng-model="element.required" />
-                                        Sim</label>
-                                      <label class="control-label inline-block"
-                                        title="Configura o preenchimento deste campo como não obrigatório"><input
-                                          type="radio" name="radio-{{element.id}}" data-ng-value="false"
-                                          data-ng-model="element.required" />
-                                        Não</label>
+
+                                  <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                      <div class="form-group"
+                                        title="Define se o campo é de preenchimento obrigatório pelo respondente">
+                                        <label class="control-label">Preenchimento obrigatório <span
+                                            class="required">*</span></label>
+                                        <div class="block">
+                                          <label class="control-label inline-block"
+                                            title="Configura o preenchimento deste campo como obrigatório"><input
+                                              type="radio" name="radio-required-{{element.id}}" data-ng-value="true"
+                                              data-ng-model="element.required" />
+                                            Sim</label>
+                                          <label class="control-label inline-block"
+                                            title="Configura o preenchimento deste campo como não obrigatório"><input
+                                              type="radio" name="radio-required-{{element.id}}" data-ng-value="false"
+                                              data-ng-model="element.required" />
+                                            Não</label>
+                                        </div>
+                                      </div>
                                     </div>
 
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                      <div class="form-group"
+                                        title="Define se o sistema utilizará a funcionalidade de pontuação">
+                                        <label class="control-label">Usar Pontuação <span
+                                            class="required">*</span></label>
+                                        <div class="block">
+                                          <label class="control-label inline-block"
+                                            title="Configura o uso de pontuação como ativo"><input type="radio"
+                                              name="radio-punctuation-{{element.id}}" data-ng-value="true"
+                                              data-ng-model="element.usePunctuation" />
+                                            Sim</label>
+                                          <label class="control-label inline-block"
+                                            title="Configura o uso de pontuação como inativo"><input type="radio"
+                                              name="radio-punctuation-{{element.id}}" data-ng-value="false"
+                                              data-ng-model="element.usePunctuation" />
+                                            Não</label>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                      <div class="form-group"
+                                        title="Define se o sistema utilizará a funcionalidade de respostas corretas para aplicar a pontuação">
+                                        <label class="control-label">Usar Respostas Corretas <span
+                                            class="required">*</span></label>
+                                        <div class="block">
+                                          <label class="control-label inline-block"
+                                            title="Configura o uso de respostas corretas como ativo"><input type="radio"
+                                              name="radio-correct-{{element.id}}" data-ng-value="true"
+                                              data-ng-model="element.useCorrectAnswers" />
+                                            Sim</label>
+                                          <label class="control-label inline-block"
+                                            title="Configura o uso de respostas corretas como inativo"><input
+                                              type="radio" name="radio-correct-{{element.id}}" data-ng-value="false"
+                                              data-ng-model="element.useCorrectAnswers" />
+                                            Não</label>
+                                        </div>
+                                      </div>
+                                    </div>
                                   </div>
+
+                                  <div class="form-group"
+                                    title="Quantidade de pontos atribuidos a resposta caso a mesma seja considerada correta pelo sistema"
+                                    data-ng-if="element.usePunctuation"
+                                    data-ng-class="ELEMENT.PUNCTUATION.$invalid ? 'has-error' : '' ">
+                                    <label class="control-label">Peso</label>
+                                    <input type="number" class="form-control input-sm" step="0.1"
+                                      data-ng-required="element.usePunctuation"
+                                      data-ng-disabled="!element.usePunctuation" data-ng-model="element.punctuation"
+                                      placeholder="(000 | 0.00) [opcional]" name="PUNCTUATION" />
+                                    <span class="help-block error-group" data-ng-messages="ELEMENT.PUNCTUATION.$error"
+                                      data-ng-if="ELEMENT.PUNCTUATION.$dirty && ELEMENT.PUNCTUATION.$invalid">
+                                      <span data-ng-message="required">Este campo é obrigatório</span>
+                                      <span data-ng-message="number">O número não é valido</span>
+                                    </span>
+                                  </div>
+
+                                  <div class="form-group"
+                                    title="Relação das respostas consideradas corretas pelo sistema"
+                                    data-ng-if="element.useCorrectAnswers"
+                                    data-ng-class="ELEMENT.CORRECTANSWERS.$invalid ? 'has-error' : '' ">
+                                    <label class="control-label">Respostas Corretas</label>
+                                    <ui-select multiple tagging tagging-label="false" name="CORRECTANSWERS"
+                                      style="width: 100%;" data-ng-model="element.correctAnswers" theme="bootstrap"
+                                      data-ng-required="element.useCorrectAnswers"
+                                      data-ng-disabled="!element.useCorrectAnswers"
+                                      title="Insira as respostas corretas">
+                                      <ui-select-match
+                                        placeholder="Insira as respostas corretas...">{{$item}}</ui-select-match>
+                                      <ui-select-choices
+                                        repeat="answer in element.correctAnswers | filter:$select.search">
+                                        {{answer}}
+                                      </ui-select-choices>
+                                    </ui-select>
+                                    <span class="help-block error-group"
+                                      data-ng-messages="ELEMENT.CORRECTANSWERS.$error"
+                                      data-ng-if="ELEMENT.CORRECTANSWERS.$dirty && ELEMENT.CORRECTANSWERS.$invalid">
+                                      <span data-ng-message="required">Este campo é obrigatório</span>
+                                    </span>
+                                  </div>
+
                                 </div>
                               </div>
                             </div>
@@ -277,25 +404,35 @@
 
               <div class="portlet-footer right">
                 <div class="btn-group btn-group-xs section-hidden-child">
-                  <button type="button" class="btn btn-link" title="Adicionar um elemento Título" data-ng-click="ctrl.form.addElementToSection('label',section.id);"><i
+                  <button type="button" class="btn btn-link" title="Adicionar um elemento Título"
+                    data-ng-click="ctrl.form.addElementToSection('label',section.id);"><i
                       class="fa-solid fa-tag fa-xs"></i></button>
-                  <button type="button" class="btn btn-link" title="Adicionar um elemento Texto" data-ng-click="ctrl.form.addElementToSection('text',section.id);"><i
+                  <button type="button" class="btn btn-link" title="Adicionar um elemento Texto"
+                    data-ng-click="ctrl.form.addElementToSection('text',section.id);"><i
                       class="fa-solid fa-font fa-xs"></i></button>
-                  <button type="button" class="btn btn-link" title="Adicionar um elemento Parágrafo" data-ng-click="ctrl.form.addElementToSection('paragraph',section.id);"><i
+                  <button type="button" class="btn btn-link" title="Adicionar um elemento Parágrafo"
+                    data-ng-click="ctrl.form.addElementToSection('paragraph',section.id);"><i
                       class="fa-solid fa-paragraph fa-xs"></i></button>
-                  <button type="button" class="btn btn-link" title="Adicionar um elemento Número" data-ng-click="ctrl.form.addElementToSection('number',section.id);"><i
+                  <button type="button" class="btn btn-link" title="Adicionar um elemento Número"
+                    data-ng-click="ctrl.form.addElementToSection('number',section.id);"><i
                       class="fa-solid fa-hashtag fa-xs"></i></button>
-                  <button type="button" class="btn btn-link" title="Adicionar um elemento E-mail" data-ng-click="ctrl.form.addElementToSection('email',section.id);"><i
+                  <button type="button" class="btn btn-link" title="Adicionar um elemento E-mail"
+                    data-ng-click="ctrl.form.addElementToSection('email',section.id);"><i
                       class="fa-solid fa-envelope fa-xs"></i></button>
-                  <button type="button" class="btn btn-link" title="Adicionar um elemento Data" data-ng-click="ctrl.form.addElementToSection('date',section.id);"><i
+                  <button type="button" class="btn btn-link" title="Adicionar um elemento Data"
+                    data-ng-click="ctrl.form.addElementToSection('date',section.id);"><i
                       class="fa-solid fa-calendar fa-xs"></i></button>
-                  <button type="button" class="btn btn-link" title="Adicionar um elemento Seleção Única - Rádio" data-ng-click="ctrl.form.addElementToSection('radio',section.id);"><i
+                  <button type="button" class="btn btn-link" title="Adicionar um elemento Seleção Única - Rádio"
+                    data-ng-click="ctrl.form.addElementToSection('radio',section.id);"><i
                       class="fa-solid fa-circle-dot fa-xs"></i></button>
-                  <button type="button" class="btn btn-link" title="Adicionar um elemento Seleção Única - Lista" data-ng-click="ctrl.form.addElementToSection('select',section.id);"><i
+                  <button type="button" class="btn btn-link" title="Adicionar um elemento Seleção Única - Lista"
+                    data-ng-click="ctrl.form.addElementToSection('select',section.id);"><i
                       class="fa-solid fa-check fa-xs"></i></button>
-                  <button type="button" class="btn btn-link" title="Adicionar um elemento Seleção Múltipla" data-ng-click="ctrl.form.addElementToSection('multiple',section.id);"><i
+                  <button type="button" class="btn btn-link" title="Adicionar um elemento Seleção Múltipla"
+                    data-ng-click="ctrl.form.addElementToSection('multiple',section.id);"><i
                       class="fa-solid fa-list-check fa-xs"></i></button>
-                  <button type="button" class="btn btn-link" title="Adicionar um elemento Arquivo" data-ng-click="ctrl.form.addElementToSection('file',section.id);"><i
+                  <button type="button" class="btn btn-link" title="Adicionar um elemento Arquivo"
+                    data-ng-click="ctrl.form.addElementToSection('file',section.id);"><i
                       class="fa-solid fa-file fa-xs"></i></button>
                 </div>
               </div>
@@ -324,7 +461,7 @@
   <script src="js/app.js"></script>
   <script src="js/controllers.js"></script>
   <script src="js/fornFormUtils.fact.js"></script>
-  
+
 </body>
 
 </html>
