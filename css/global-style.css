@@ -23,6 +23,45 @@ body {
   color: red;
 }
 
+.soft-border {
+  border: solid 1px rgba(0, 0, 0, 0.2);
+}
+
+.p5 {
+  padding: 5px 5px;
+}
+
+.float-right {
+  float: right;
+}
+
+.scale-dot1 {
+  transform: scale(.9);
+}
+.scale-dot2 {
+  transform: scale(.8);
+}
+
+.scale-1dot {
+  transform: scale(1.1);
+}
+.scale-2dot {
+  transform: scale(1.2);
+}
+
+.green {
+  color: green;
+}
+
+.red {
+  color: red;
+}
+
+#section-parent:hover,
+#element-parent:hover {
+  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
+}
+
 #section-parent .section-hidden-child {
   visibility: hidden;
 }
@@ -36,5 +75,13 @@ body {
 }
 
 #element-parent:hover .element-hidden-child {
+  visibility: visible;
+}
+
+#option-parent .option-hidden-child {
+  visibility: hidden;
+}
+
+#option-parent:hover .option-hidden-child {
   visibility: visible;
 }

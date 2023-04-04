@@ -7,7 +7,7 @@
 
     FornFormUtilsService.$inject = [];
 
-    
+
     function FornFormUtilsService() {
 
         const UUIDv4 = new function () {
@@ -63,7 +63,7 @@
             Paragraph: "paragraph",
             Number: "number",
             Email: "email",
-            Date: "date",            
+            Date: "date",
             Radio: "radio",
             SingleSelect: "select",
             MultipleSelect: "multiple",
@@ -73,13 +73,22 @@
             NextSection: "next",
             EndForm: "end"
         };
+        const AllowedFileExtensions = [
+            { title: "Processador de Texto", ext: ".doc,.docx,.odt" },
+            { title: "Planilha eletrônica", ext: ".xls,.xlsx,.ods" },
+            { title: "Apresentação", ext: ".ppt,.pptx,.odp" },
+            { title: "PDF", ext: ".pdf" },
+            { title: "Imagens", ext: ".jpeg,.jpg,.png,.bmp" },
+            { title: "Arquivos compactados", ext: ".zip,.rar" }            
+        ]
 
 
         var service = {
             UUIDv4: () => UUIDv4.generate(),
             makeid,
-            FormElementType : Object.freeze(FormElementType),
-            NavigationType: Object.freeze(NavigationType),           
+            FormElementType: Object.freeze(FormElementType),
+            NavigationType: Object.freeze(NavigationType),
+            AllowedFileExtensions: Object.freeze(AllowedFileExtensions),
         };
         return service;
     }
