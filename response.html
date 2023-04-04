@@ -1,0 +1,1989 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+  <title>Form Response</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css" />
+  <link rel="stylesheet" href="bower_components/angular/angular-csp.css" />
+  <link rel="stylesheet" href="bower_components/angular-ui-select/dist/select.min.css" />
+  <link rel="stylesheet" href="bower_components/angular-toastr/dist/angular-toastr.min.css" />
+  <link rel="stylesheet" href="bower_components/Font-Awesome/css/all.min.css" />
+  <link rel="stylesheet" href="css/global-style.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/components-md.css" />
+  <link rel="stylesheet" href="css/plugins.css" />
+  <link rel="stylesheet" href="css/plugins-md.css" />
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+  <main data-ng-app="TestApp" data-ng-controller="FormResponseController as ctrl" class="ng-cloak">
+    <div class="container">
+
+      <div class="portlet portlet-light">
+        <div class="portlet-title">
+          <div class="caption">
+            <i class="fa-solid fa-tag fa-xs"></i>
+            <span class="caption-subject bold uppercase">Formulário Informação Preliminar</span>
+            <span class="caption-helper">Fornecedores</span>
+          </div>
+
+          <div class="actions">
+            <div class="btn-group btn-group-xs">
+              <input type="file" fileModel="ctrl.form.file" id="file" title="Carregar formulario" />
+              <span title="O Formulário {{STRUCTURE.$valid ? 'não':''}} contém erro."><i class="fa-solid "
+                  data-ng-class="STRUCTURE.$valid ? 'fa-thumbs-up green':'fa-thumbs-down red'"></i></span>
+            </div>
+          </div>
+        </div>
+        <div class="portlet-body">
+          <div data-ng-form="" name="STRUCTURE" novalidate>
+            <div data-ng-repeat="section in ctrl.form.structure">
+              <div data-ng-form="" name="SECTION" novalidate>
+
+                <div class="portlet portlet-light" id="section-parent">
+                  <div class="portlet-title">
+                    <h3>{{section.title}}</h3>
+                    <h4>{{section.description}}</h4>
+                  </div>
+                  <div class="portlet-body">
+
+                    <fieldset>
+                      <legend></legend>
+                      <div class="row" data-ng-repeat="element in section.elements | orderBy: 'order' ">
+
+                        <div class="col-md-12">
+                          <div class="portlet portlet-light" id="element-parent">
+                            <div class="portlet-title">
+                              <h4><strong>{{element.title}}</strong></h4>
+                              <h5>{{element.description}}</h5>
+                            </div>
+                            <div class="portlet-body">
+                              <div data-ng-switch="element.type" data-ng-form name="ELEMENT" class="row">
+                                <div class="col-md-12" data-ng-switch-when="label"></div>
+                                <div class="col-md-12" data-ng-switch-when="text">
+                                  <div class="form-body">
+                                    <div class="form-group" title="Escreva a sua resposta"
+                                      data-ng-class="ELEMENT.RESPONSE.$dirty && ELEMENT.RESPONSE.$invalid ? 'has-error' : '' ">
+                                      <label class="control-label">Resposta <span class="required"
+                                          data-ng-if="element.required">*</span></label>
+                                      <textarea type="text" class="form-control input-sm"
+                                        data-ng-model="element.response[0]" placeholder="Escreva sua resposta aqui"
+                                        data-ng-required="element.required" maxlength="201" data-ng-maxlength="200"
+                                        rows="2" name="RESPONSE"></textarea>
+                                      <span class="help-block" data-ng-messages="ELEMENT.RESPONSE.$error"
+                                        data-ng-if="ELEMENT.RESPONSE.$dirty && ELEMENT.RESPONSE.$invalid">
+                                        <span data-ng-message="required">Este campo é obrigatório</span>
+                                        <span data-ng-message="maxlength">O campo precisa ter no máximo 200
+                                          caracteres</span>
+                                      </span>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-md-12" data-ng-switch-when="paragraph">
+                                  <div class="form-body">
+                                    <div class="form-group" title="Escreva a sua resposta"
+                                      data-ng-class="ELEMENT.RESPONSE.$dirty && ELEMENT.RESPONSE.$invalid ? 'has-error' : '' ">
+                                      <label class="control-label">Resposta <span class="required"
+                                          data-ng-if="element.required">*</span></label>
+                                      <textarea type="text" class="form-control input-sm"
+                                        data-ng-model="element.response[0]" placeholder="Escreva sua resposta aqui"
+                                        data-ng-required="element.required" maxlength="4001" data-ng-maxlength="4000"
+                                        rows="4" name="RESPONSE"></textarea>
+                                      <span class="help-block" data-ng-messages="ELEMENT.RESPONSE.$error"
+                                        data-ng-if="ELEMENT.RESPONSE.$dirty && ELEMENT.RESPONSE.$invalid">
+                                        <span data-ng-message="required">Este campo é obrigatório</span>
+                                        <span data-ng-message="maxlength">O campo precisa ter no máximo 100
+                                          caracteres</span>
+                                      </span>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-md-12" data-ng-switch-when="number">
+                                  <div class="form-body">
+                                    <div class="form-group" title="Escreva a sua resposta"
+                                      data-ng-class="ELEMENT.RESPONSE.$dirty && ELEMENT.RESPONSE.$invalid ? 'has-error' : '' ">
+                                      <label class="control-label">Resposta <span class="required"
+                                          data-ng-if="element.required">*</span></label>
+                                      <input type="number" class="form-control input-sm"
+                                        data-ng-model="element.response[0]" placeholder="Escreva sua resposta aqui"
+                                        data-ng-required="element.required" name="RESPONSE"></input>
+                                      <span class="help-block" data-ng-messages="ELEMENT.RESPONSE.$error"
+                                        data-ng-if="ELEMENT.RESPONSE.$dirty && ELEMENT.RESPONSE.$invalid">
+                                        <span data-ng-message="required">Este campo é obrigatório</span>
+                                        <span data-ng-message="number">O campo precisa ter um número válido</span>
+                                      </span>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-md-12" data-ng-switch-when="email">
+                                  <div class="form-body">
+                                    <div class="form-group" title="Escreva a sua resposta"
+                                      data-ng-class="ELEMENT.RESPONSE.$dirty && ELEMENT.RESPONSE.$invalid ? 'has-error' : '' ">
+                                      <label class="control-label">Resposta <span class="required"
+                                          data-ng-if="element.required">*</span></label>
+                                      <input type="email" class="form-control input-sm"
+                                        data-ng-model="element.response[0]" placeholder="Escreva sua resposta aqui"
+                                        data-ng-maxlength="200" maxlength="201" data-ng-required="element.required"
+                                        name="RESPONSE"></input>
+                                      <span class="help-block" data-ng-messages="ELEMENT.RESPONSE.$error"
+                                        data-ng-if="ELEMENT.RESPONSE.$dirty && ELEMENT.RESPONSE.$invalid">
+                                        <span data-ng-message="required">Este campo é obrigatório</span>
+                                        <span data-ng-message="maxlength">O campo precisa ter no máximo 200
+                                          caracteres</span>
+                                        <span data-ng-message="email">O campo precisa ter um e-mail válido</span>
+                                      </span>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-md-12" data-ng-switch-when="date">
+                                  <div class="form-body">
+                                    <div class="form-group" title="Escreva a sua resposta"
+                                      data-ng-class="ELEMENT.RESPONSE.$dirty && ELEMENT.RESPONSE.$invalid ? 'has-error' : '' ">
+                                      <label class="control-label">Resposta <span class="required"
+                                          data-ng-if="element.required">*</span></label>
+                                      <input type="date" class="form-control input-sm"
+                                        data-ng-model="element.response[0]" placeholder="Escreva sua resposta aqui"
+                                        data-ng-maxlength="200" maxlength="201" data-ng-required="element.required"
+                                        name="RESPONSE"></input>
+                                      <span class="help-block" data-ng-messages="ELEMENT.RESPONSE.$error"
+                                        data-ng-if="ELEMENT.RESPONSE.$dirty && ELEMENT.RESPONSE.$invalid">
+                                        <span data-ng-message="required">Este campo é obrigatório</span>
+                                        <span data-ng-message="maxlength">O campo precisa ter no máximo 200
+                                          caracteres</span>
+                                        <span data-ng-message="email">O campo precisa ter um e-mail válido</span>
+                                      </span>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-md-12" data-ng-switch-when="radio">
+                                  <div class="form-body">
+                                    <div class="form-group" title="Escreva a sua resposta"
+                                      data-ng-class="ELEMENT.RESPONSE.$dirty && ELEMENT.RESPONSE.$invalid ? 'has-error' : '' ">
+                                      <label class="control-label">Resposta <span class="required"
+                                          data-ng-if="element.required">*</span></label>
+
+                                      <div data-ng-repeat="option in element.options">
+                                        <label title="{{option.description}}">
+                                          <input type="radio" name="{{option.name}}" data-ng-value="option.value"
+                                            data-ng-model="element.response[0]" /> {{option.value}}
+                                        </label>
+                                      </div>
+                                      <span class="help-block" data-ng-messages="ELEMENT.RESPONSE.$error"
+                                        data-ng-if="ELEMENT.RESPONSE.$dirty && ELEMENT.RESPONSE.$invalid">
+                                        <span data-ng-message="required">Este campo é obrigatório</span>
+                                      </span>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-md-12" data-ng-switch-when="select">
+                                  <div class="form-body">
+                                    <div class="form-group" title="Escreva a sua resposta"
+                                      data-ng-class="ELEMENT.RESPONSE.$dirty && ELEMENT.RESPONSE.$invalid ? 'has-error' : '' ">
+                                      <label class="control-label">Resposta <span class="required"
+                                          data-ng-if="element.required">*</span></label>
+
+                                      <ui-select name="RESPONSE" style="width: 100%;"
+                                        data-ng-model="element.response[0]" data-ng-required="element.required"
+                                        theme="bootstrap" title="Insira as respostas corretas">
+                                        <ui-select-match
+                                          placeholder="Selecione sua resposta">{{$select.selected.value}}</ui-select-match>
+                                        <ui-select-choices
+                                          repeat="option.value as option in element.options | filter:$select.search">
+                                          {{option.value}}
+                                        </ui-select-choices>
+                                      </ui-select>
+
+                                      <span class="help-block" data-ng-messages="ELEMENT.RESPONSE.$error"
+                                        data-ng-if="ELEMENT.RESPONSE.$dirty && ELEMENT.RESPONSE.$invalid">
+                                        <span data-ng-message="required">Este campo é obrigatório</span>
+                                        <span data-ng-message="maxlength">O campo precisa ter no máximo 200
+                                          caracteres</span>
+                                        <span data-ng-message="email">O campo precisa ter um e-mail válido</span>
+                                      </span>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-md-12" data-ng-switch-when="multiple">
+                                  <div class="form-body">
+                                    <div class="form-group" title="Escreva a sua resposta"
+                                      data-ng-class="ELEMENT.RESPONSE.$dirty && ELEMENT.RESPONSE.$invalid ? 'has-error' : '' ">
+                                      <label class="control-label">Resposta <span class="required"
+                                          data-ng-if="element.required">*</span></label>
+
+                                      <div data-ng-repeat="option in element.options">
+                                        <label title="{{option.description}}">
+                                          <input type="checkbox" name="{{option.name}}" data-ng-value="option.value"
+                                            data-ng-model="element.response[$index]" /> {{option.value}}
+                                        </label>
+                                      </div>
+                                      <span class="help-block" data-ng-messages="ELEMENT.RESPONSE.$error"
+                                        data-ng-if="ELEMENT.RESPONSE.$dirty && ELEMENT.RESPONSE.$invalid">
+                                        <span data-ng-message="required">Este campo é obrigatório</span>
+                                      </span>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-md-12" data-ng-switch-when="file">
+                                  <div class="form-body">
+                                    <div class="form-group" title="Escreva a sua resposta"
+                                      data-ng-class="ELEMENT.RESPONSE.$dirty && ELEMENT.RESPONSE.$invalid ? 'has-error' : '' ">
+                                      <label class="control-label">Resposta <span class="required"
+                                          data-ng-if="element.required">*</span></label>
+                                      <input type="file" class="form-control input-sm"
+                                        accept="{{ctrl.form.join(element.acceptedFilesExtensions)}}"
+                                        data-ng-fileModel="element.response[0]" placeholder="Escolha um arquivo"
+                                        data-ng-required="element.required" name="RESPONSE"></input>
+                                      <span class="help-block" data-ng-messages="ELEMENT.RESPONSE.$error"
+                                        data-ng-if="ELEMENT.RESPONSE.$dirty && ELEMENT.RESPONSE.$invalid">
+                                        <span data-ng-message="required">Este campo é obrigatório</span>
+                                        <span data-ng-message="maxlength">O campo precisa ter no máximo 200
+                                          caracteres</span>
+                                        <span data-ng-message="file">O campo precisa ter um arquivo válido</span>
+                                      </span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+
+                        <!-- <div class="row" data-ng-switch-when="text">
+                          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="portlet portlet-light" id="element-parent">
+                              <div class="portlet-title">
+                                <p><strong>{{element.title}}</strong></p>
+                                <p>{{element.description}}</p>
+                              </div>
+                              <div class="portlet-body">
+                                <div class="form-body">
+                                  <div class="form-group" title="Esta é a pergunta que será apresentada no formulário"
+                                    data-ng-class="ELEMENT.TITLE.$dirty && ELEMENT.TITLE.$invalid ? 'has-error' : '' ">
+                                    <label class="control-label">Título <span class="required">*</span></label>
+                                    <textarea type="text" class="form-control input-sm" data-ng-model="element.title"
+                                      placeholder="Qual é o título da pergunta" data-ng-required="true" minlength="3"
+                                      maxlength="1001" data-ng-minlength="3" data-ng-maxlength="1000" rows="1"
+                                      name="TITLE"></textarea>
+                                    <span class="help-block" data-ng-messages="ELEMENT.TITLE.$error"
+                                      data-ng-if="ELEMENT.TITLE.$dirty && ELEMENT.TITLE.$invalid">
+                                      <span data-ng-message="required">Este campo é obrigatório</span>
+                                      <span data-ng-message="minlength">O campo precisa ter no mínimo 3
+                                        caracteres</span>
+                                      <span data-ng-message="maxlength">O campo precisa ter no máximo 1000
+                                        caracteres</span>
+                                    </span>
+                                  </div>
+
+                                  <div class="form-group"
+                                    title="Este campo permite que sejam apresentadas maiores informações sobre a que se deseja na pergunta"
+                                    data-ng-class="ELEMENT.DESCRIPTION.$invalid ? 'has-error' : '' ">
+                                    <label class="control-label">Descrição</label>
+                                    <textarea type="text" class="form-control input-sm"
+                                      data-ng-model="element.description"
+                                      placeholder="Ajude o respondente explicando melhor o que se deseja com a resposta [opcional]"
+                                      maxlength="4001" data-ng-maxlength="4000" rows="1" name="DESCRIPTION"></textarea>
+                                    <span class="help-block error-group" data-ng-messages="ELEMENT.DESCRIPTION.$error"
+                                      data-ng-if="ELEMENT.DESCRIPTION.$dirty && ELEMENT.DESCRIPTION.$invalid">
+                                      <span data-ng-message="maxlength">O campo precisa ter no máximo 4000
+                                        caracteres</span>
+                                    </span>
+                                  </div>
+
+
+                                  <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                      <div class="form-group"
+                                        title="Define se o campo é de preenchimento obrigatório pelo respondente">
+                                        <label class="control-label">Preenchimento obrigatório <span
+                                            class="required">*</span></label>
+                                        <div class="block">
+                                          <label class="control-label inline-block"
+                                            title="Configura o preenchimento deste campo como obrigatório"><input
+                                              type="radio" name="radio-required-{{element.id}}" data-ng-value="true"
+                                              data-ng-model="element.required" />
+                                            Sim</label>
+                                          <label class="control-label inline-block"
+                                            title="Configura o preenchimento deste campo como não obrigatório"><input
+                                              type="radio" name="radio-required-{{element.id}}" data-ng-value="false"
+                                              data-ng-model="element.required" />
+                                            Não</label>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                      <div class="form-group"
+                                        title="Define se o sistema utilizará a funcionalidade de pontuação">
+                                        <label class="control-label">Usar Pontuação <span
+                                            class="required">*</span></label>
+                                        <div class="block">
+                                          <label class="control-label inline-block"
+                                            title="Configura o uso de pontuação como ativo"><input type="radio"
+                                              name="radio-punctuation-{{element.id}}" data-ng-value="true"
+                                              data-ng-model="element.usePunctuation" />
+                                            Sim</label>
+                                          <label class="control-label inline-block"
+                                            title="Configura o uso de pontuação como inativo"><input type="radio"
+                                              name="radio-punctuation-{{element.id}}" data-ng-value="false"
+                                              data-ng-model="element.usePunctuation" />
+                                            Não</label>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                      <div class="form-group"
+                                        title="Define se o sistema utilizará a funcionalidade de respostas corretas para aplicar a pontuação">
+                                        <label class="control-label">Usar Respostas Corretas <span
+                                            class="required">*</span></label>
+                                        <div class="block">
+                                          <label class="control-label inline-block"
+                                            title="Configura o uso de respostas corretas como ativo"><input type="radio"
+                                              name="radio-correct-{{element.id}}" data-ng-value="true"
+                                              data-ng-model="element.useCorrectAnswers" />
+                                            Sim</label>
+                                          <label class="control-label inline-block"
+                                            title="Configura o uso de respostas corretas como inativo"><input
+                                              type="radio" name="radio-correct-{{element.id}}" data-ng-value="false"
+                                              data-ng-model="element.useCorrectAnswers" />
+                                            Não</label>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div class="form-group"
+                                    title="Quantidade de pontos atribuídos a resposta caso a mesma seja considerada correta pelo sistema"
+                                    data-ng-if="element.usePunctuation"
+                                    data-ng-class="ELEMENT.PUNCTUATION.$invalid ? 'has-error' : '' ">
+                                    <label class="control-label">Peso</label>
+                                    <input type="number" class="form-control input-sm" step="0.1"
+                                      data-ng-required="element.usePunctuation"
+                                      data-ng-disabled="!element.usePunctuation" data-ng-model="element.punctuation"
+                                      placeholder="(000 | 0.00) [opcional]" name="PUNCTUATION" />
+                                    <span class="help-block error-group" data-ng-messages="ELEMENT.PUNCTUATION.$error"
+                                      data-ng-if="ELEMENT.PUNCTUATION.$dirty && ELEMENT.PUNCTUATION.$invalid">
+                                      <span data-ng-message="required">Este campo é obrigatório</span>
+                                      <span data-ng-message="number">O número não é valido</span>
+                                    </span>
+                                  </div>
+
+                                  <div class="form-group"
+                                    title="Relação das respostas consideradas corretas pelo sistema"
+                                    data-ng-if="element.useCorrectAnswers"
+                                    data-ng-class="ELEMENT.CORRECTANSWERS.$invalid ? 'has-error' : '' ">
+                                    <label class="control-label">Respostas Corretas</label>
+                                    <ui-select multiple tagging tagging-label="false" name="CORRECTANSWERS"
+                                      style="width: 100%;" data-ng-model="element.correctAnswers" theme="bootstrap"
+                                      data-ng-required="element.useCorrectAnswers"
+                                      data-ng-disabled="!element.useCorrectAnswers"
+                                      title="Insira as respostas corretas">
+                                      <ui-select-match
+                                        placeholder="Insira as respostas corretas...">{{$item}}</ui-select-match>
+                                      <ui-select-choices
+                                        repeat="answer in element.correctAnswers | filter:$select.search">
+                                        {{answer}}
+                                      </ui-select-choices>
+                                    </ui-select>
+                                    <span class="help-block error-group"
+                                      data-ng-messages="ELEMENT.CORRECTANSWERS.$error"
+                                      data-ng-if="ELEMENT.CORRECTANSWERS.$dirty && ELEMENT.CORRECTANSWERS.$invalid">
+                                      <span data-ng-message="required">Este campo é obrigatório</span>
+                                    </span>
+                                  </div>
+
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row" data-ng-switch-when="paragraph">
+                          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="portlet portlet-light" id="element-parent">
+                              <div class="portlet-title">
+                                <div class="caption">
+                                  <i class="fa-solid fa-paragraph fa-xs"></i>
+                                  <span class="caption-subject bold uppercase">Parágrafo</span>
+                                  <span class="caption-helper">elemento de texto em parágrafo (longo)</span>
+                                </div>
+
+                                <div class="actions element-hidden-child">
+                                  <div class="btn-group btn-group-xs">
+                                    <button type="button" class="btn btn-link"
+                                      title="Alterar ordem deste elemento para cima"
+                                      data-ng-click="ctrl.form.changeElementOrder(section.id, element, 'up');"><i
+                                        class="fa fa-arrow-up fa-xs"></i></button>
+                                    <button type="button" class="btn btn-link"
+                                      title="Alterar ordem deste elemento para baixo"
+                                      data-ng-click="ctrl.form.changeElementOrder(section.id, element, 'down');"><i
+                                        class="fa fa-arrow-down fa-xs"></i></button>
+                                    <button type="button" class="btn btn-link" title="Remover este elemento"
+                                      data-ng-click="ctrl.form.deleteElementFromSectionById(section.id, element.id);"><i
+                                        class="fa fa-trash fa-xs"></i></button>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="portlet-body">
+                                <div class="form-body">
+                                  <div class="form-group" title="Esta é a pergunta que será apresentada no formulário"
+                                    data-ng-class="ELEMENT.TITLE.$dirty && ELEMENT.TITLE.$invalid ? 'has-error' : '' ">
+                                    <label class="control-label">Título <span class="required">*</span></label>
+                                    <textarea type="text" class="form-control input-sm" data-ng-model="element.title"
+                                      placeholder="Qual é o título da pergunta" data-ng-required="true" minlength="3"
+                                      maxlength="1001" data-ng-minlength="3" data-ng-maxlength="1000" rows="1"
+                                      name="TITLE"></textarea>
+                                    <span class="help-block" data-ng-messages="ELEMENT.TITLE.$error"
+                                      data-ng-if="ELEMENT.TITLE.$dirty && ELEMENT.TITLE.$invalid">
+                                      <span data-ng-message="required">Este campo é obrigatório</span>
+                                      <span data-ng-message="minlength">O campo precisa ter no mínimo 3
+                                        caracteres</span>
+                                      <span data-ng-message="maxlength">O campo precisa ter no máximo 1000
+                                        caracteres</span>
+                                    </span>
+                                  </div>
+
+                                  <div class="form-group"
+                                    title="Este campo permite que sejam apresentadas maiores informações sobre a que se deseja na pergunta"
+                                    data-ng-class="ELEMENT.DESCRIPTION.$invalid ? 'has-error' : '' ">
+                                    <label class="control-label">Descrição</label>
+                                    <textarea type="text" class="form-control input-sm"
+                                      data-ng-model="element.description"
+                                      placeholder="Ajude o respondente explicando melhor o que se deseja com a resposta [opcional]"
+                                      maxlength="4001" data-ng-maxlength="4000" rows="1" name="DESCRIPTION"></textarea>
+                                    <span class="help-block error-group" data-ng-messages="ELEMENT.DESCRIPTION.$error"
+                                      data-ng-if="ELEMENT.DESCRIPTION.$dirty && ELEMENT.DESCRIPTION.$invalid">
+                                      <span data-ng-message="maxlength">O campo precisa ter no máximo 4000
+                                        caracteres</span>
+                                    </span>
+                                  </div>
+
+
+                                  <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                      <div class="form-group"
+                                        title="Define se o campo é de preenchimento obrigatório pelo respondente">
+                                        <label class="control-label">Preenchimento obrigatório <span
+                                            class="required">*</span></label>
+                                        <div class="block">
+                                          <label class="control-label inline-block"
+                                            title="Configura o preenchimento deste campo como obrigatório"><input
+                                              type="radio" name="radio-required-{{element.id}}" data-ng-value="true"
+                                              data-ng-model="element.required" />
+                                            Sim</label>
+                                          <label class="control-label inline-block"
+                                            title="Configura o preenchimento deste campo como não obrigatório"><input
+                                              type="radio" name="radio-required-{{element.id}}" data-ng-value="false"
+                                              data-ng-model="element.required" />
+                                            Não</label>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                      <div class="form-group"
+                                        title="Define se o sistema utilizará a funcionalidade de pontuação">
+                                        <label class="control-label">Usar Pontuação <span
+                                            class="required">*</span></label>
+                                        <div class="block">
+                                          <label class="control-label inline-block"
+                                            title="Configura o uso de pontuação como ativo"><input type="radio"
+                                              name="radio-punctuation-{{element.id}}" data-ng-value="true"
+                                              data-ng-model="element.usePunctuation" />
+                                            Sim</label>
+                                          <label class="control-label inline-block"
+                                            title="Configura o uso de pontuação como inativo"><input type="radio"
+                                              name="radio-punctuation-{{element.id}}" data-ng-value="false"
+                                              data-ng-model="element.usePunctuation" />
+                                            Não</label>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                      <div class="form-group"
+                                        title="Define se o sistema utilizará a funcionalidade de respostas corretas para aplicar a pontuação">
+                                        <label class="control-label">Usar Respostas Corretas <span
+                                            class="required">*</span></label>
+                                        <div class="block">
+                                          <label class="control-label inline-block"
+                                            title="Configura o uso de respostas corretas como ativo"><input type="radio"
+                                              name="radio-correct-{{element.id}}" data-ng-value="true"
+                                              data-ng-model="element.useCorrectAnswers" />
+                                            Sim</label>
+                                          <label class="control-label inline-block"
+                                            title="Configura o uso de respostas corretas como inativo"><input
+                                              type="radio" name="radio-correct-{{element.id}}" data-ng-value="false"
+                                              data-ng-model="element.useCorrectAnswers" />
+                                            Não</label>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div class="form-group"
+                                    title="Quantidade de pontos atribuídos a resposta caso a mesma seja considerada correta pelo sistema"
+                                    data-ng-if="element.usePunctuation"
+                                    data-ng-class="ELEMENT.PUNCTUATION.$invalid ? 'has-error' : '' ">
+                                    <label class="control-label">Peso</label>
+                                    <input type="number" class="form-control input-sm" step="0.1"
+                                      data-ng-required="element.usePunctuation"
+                                      data-ng-disabled="!element.usePunctuation" data-ng-model="element.punctuation"
+                                      placeholder="(000 | 0.00) [opcional]" name="PUNCTUATION" />
+                                    <span class="help-block error-group" data-ng-messages="ELEMENT.PUNCTUATION.$error"
+                                      data-ng-if="ELEMENT.PUNCTUATION.$dirty && ELEMENT.PUNCTUATION.$invalid">
+                                      <span data-ng-message="required">Este campo é obrigatório</span>
+                                      <span data-ng-message="number">O número não é valido</span>
+                                    </span>
+                                  </div>
+
+                                  <div class="form-group"
+                                    title="Relação das respostas consideradas corretas pelo sistema"
+                                    data-ng-if="element.useCorrectAnswers"
+                                    data-ng-class="ELEMENT.CORRECTANSWERS.$invalid ? 'has-error' : '' ">
+                                    <label class="control-label">Respostas Corretas</label>
+                                    <ui-select multiple tagging tagging-label="false" name="CORRECTANSWERS"
+                                      style="width: 100%;" data-ng-model="element.correctAnswers" theme="bootstrap"
+                                      data-ng-required="element.useCorrectAnswers"
+                                      data-ng-disabled="!element.useCorrectAnswers"
+                                      title="Insira as respostas corretas">
+                                      <ui-select-match
+                                        placeholder="Insira as respostas corretas...">{{$item}}</ui-select-match>
+                                      <ui-select-choices
+                                        repeat="answer in element.correctAnswers | filter:$select.search">
+                                        {{answer}}
+                                      </ui-select-choices>
+                                    </ui-select>
+                                    <span class="help-block error-group"
+                                      data-ng-messages="ELEMENT.CORRECTANSWERS.$error"
+                                      data-ng-if="ELEMENT.CORRECTANSWERS.$dirty && ELEMENT.CORRECTANSWERS.$invalid">
+                                      <span data-ng-message="required">Este campo é obrigatório</span>
+                                    </span>
+                                  </div>
+
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row" data-ng-switch-when="number">
+                          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="portlet portlet-light" id="element-parent">
+                              <div class="portlet-title">
+                                <div class="caption">
+                                  <i class="fa-solid fa-hashtag fa-xs"></i>
+                                  <span class="caption-subject bold uppercase">Número</span>
+                                  <span class="caption-helper">elemento de número</span>
+                                </div>
+
+                                <div class="actions element-hidden-child">
+                                  <div class="btn-group btn-group-xs">
+                                    <button type="button" class="btn btn-link"
+                                      title="Alterar ordem deste elemento para cima"
+                                      data-ng-click="ctrl.form.changeElementOrder(section.id, element, 'up');"><i
+                                        class="fa fa-arrow-up fa-xs"></i></button>
+                                    <button type="button" class="btn btn-link"
+                                      title="Alterar ordem deste elemento para baixo"
+                                      data-ng-click="ctrl.form.changeElementOrder(section.id, element, 'down');"><i
+                                        class="fa fa-arrow-down fa-xs"></i></button>
+                                    <button type="button" class="btn btn-link" title="Remover este elemento"
+                                      data-ng-click="ctrl.form.deleteElementFromSectionById(section.id, element.id);"><i
+                                        class="fa fa-trash fa-xs"></i></button>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="portlet-body">
+                                <div class="form-body">
+                                  <div class="form-group" title="Esta é a pergunta que será apresentada no formulário"
+                                    data-ng-class="ELEMENT.TITLE.$dirty && ELEMENT.TITLE.$invalid ? 'has-error' : '' ">
+                                    <label class="control-label">Título <span class="required">*</span></label>
+                                    <textarea type="text" class="form-control input-sm" data-ng-model="element.title"
+                                      placeholder="Qual é o título da pergunta" data-ng-required="true" minlength="3"
+                                      maxlength="1001" data-ng-minlength="3" data-ng-maxlength="1000" rows="1"
+                                      name="TITLE"></textarea>
+                                    <span class="help-block" data-ng-messages="ELEMENT.TITLE.$error"
+                                      data-ng-if="ELEMENT.TITLE.$dirty && ELEMENT.TITLE.$invalid">
+                                      <span data-ng-message="required">Este campo é obrigatório</span>
+                                      <span data-ng-message="minlength">O campo precisa ter no mínimo 3
+                                        caracteres</span>
+                                      <span data-ng-message="maxlength">O campo precisa ter no máximo 1000
+                                        caracteres</span>
+                                    </span>
+                                  </div>
+
+                                  <div class="form-group"
+                                    title="Este campo permite que sejam apresentadas maiores informações sobre a que se deseja na pergunta"
+                                    data-ng-class="ELEMENT.DESCRIPTION.$invalid ? 'has-error' : '' ">
+                                    <label class="control-label">Descrição</label>
+                                    <textarea type="text" class="form-control input-sm"
+                                      data-ng-model="element.description"
+                                      placeholder="Ajude o respondente explicando melhor o que se deseja com a resposta [opcional]"
+                                      maxlength="4001" data-ng-maxlength="4000" rows="1" name="DESCRIPTION"></textarea>
+                                    <span class="help-block error-group" data-ng-messages="ELEMENT.DESCRIPTION.$error"
+                                      data-ng-if="ELEMENT.DESCRIPTION.$dirty && ELEMENT.DESCRIPTION.$invalid">
+                                      <span data-ng-message="maxlength">O campo precisa ter no máximo 4000
+                                        caracteres</span>
+                                    </span>
+                                  </div>
+
+
+                                  <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                      <div class="form-group"
+                                        title="Define se o campo é de preenchimento obrigatório pelo respondente">
+                                        <label class="control-label">Preenchimento obrigatório <span
+                                            class="required">*</span></label>
+                                        <div class="block">
+                                          <label class="control-label inline-block"
+                                            title="Configura o preenchimento deste campo como obrigatório"><input
+                                              type="radio" name="radio-required-{{element.id}}" data-ng-value="true"
+                                              data-ng-model="element.required" />
+                                            Sim</label>
+                                          <label class="control-label inline-block"
+                                            title="Configura o preenchimento deste campo como não obrigatório"><input
+                                              type="radio" name="radio-required-{{element.id}}" data-ng-value="false"
+                                              data-ng-model="element.required" />
+                                            Não</label>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                      <div class="form-group"
+                                        title="Define se o sistema utilizará a funcionalidade de pontuação">
+                                        <label class="control-label">Usar Pontuação <span
+                                            class="required">*</span></label>
+                                        <div class="block">
+                                          <label class="control-label inline-block"
+                                            title="Configura o uso de pontuação como ativo"><input type="radio"
+                                              name="radio-punctuation-{{element.id}}" data-ng-value="true"
+                                              data-ng-model="element.usePunctuation" />
+                                            Sim</label>
+                                          <label class="control-label inline-block"
+                                            title="Configura o uso de pontuação como inativo"><input type="radio"
+                                              name="radio-punctuation-{{element.id}}" data-ng-value="false"
+                                              data-ng-model="element.usePunctuation" />
+                                            Não</label>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                      <div class="form-group"
+                                        title="Define se o sistema utilizará a funcionalidade de respostas corretas para aplicar a pontuação">
+                                        <label class="control-label">Usar Respostas Corretas <span
+                                            class="required">*</span></label>
+                                        <div class="block">
+                                          <label class="control-label inline-block"
+                                            title="Configura o uso de respostas corretas como ativo"><input type="radio"
+                                              name="radio-correct-{{element.id}}" data-ng-value="true"
+                                              data-ng-model="element.useCorrectAnswers" />
+                                            Sim</label>
+                                          <label class="control-label inline-block"
+                                            title="Configura o uso de respostas corretas como inativo"><input
+                                              type="radio" name="radio-correct-{{element.id}}" data-ng-value="false"
+                                              data-ng-model="element.useCorrectAnswers" />
+                                            Não</label>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div class="form-group"
+                                    title="Quantidade de pontos atribuídos a resposta caso a mesma seja considerada correta pelo sistema"
+                                    data-ng-if="element.usePunctuation"
+                                    data-ng-class="ELEMENT.PUNCTUATION.$invalid ? 'has-error' : '' ">
+                                    <label class="control-label">Peso</label>
+                                    <input type="number" class="form-control input-sm" step="0.1"
+                                      data-ng-required="element.usePunctuation"
+                                      data-ng-disabled="!element.usePunctuation" data-ng-model="element.punctuation"
+                                      placeholder="(000 | 0.00) [opcional]" name="PUNCTUATION" />
+                                    <span class="help-block error-group" data-ng-messages="ELEMENT.PUNCTUATION.$error"
+                                      data-ng-if="ELEMENT.PUNCTUATION.$dirty && ELEMENT.PUNCTUATION.$invalid">
+                                      <span data-ng-message="required">Este campo é obrigatório</span>
+                                      <span data-ng-message="number">O número não é valido</span>
+                                    </span>
+                                  </div>
+
+                                  <div class="form-group"
+                                    title="Relação das respostas consideradas corretas pelo sistema"
+                                    data-ng-if="element.useCorrectAnswers"
+                                    data-ng-class="ELEMENT.CORRECTANSWERS.$invalid ? 'has-error' : '' ">
+                                    <label class="control-label">Respostas Corretas</label>
+                                    <ui-select multiple tagging tagging-label="false" name="CORRECTANSWERS"
+                                      style="width: 100%;" data-ng-model="element.correctAnswers" theme="bootstrap"
+                                      data-ng-required="element.useCorrectAnswers"
+                                      data-ng-disabled="!element.useCorrectAnswers"
+                                      title="Insira as respostas corretas">
+                                      <ui-select-match
+                                        placeholder="Insira as respostas corretas...">{{$item}}</ui-select-match>
+                                      <ui-select-choices
+                                        repeat="answer in element.correctAnswers | filter:$select.search">
+                                        {{answer}}
+                                      </ui-select-choices>
+                                    </ui-select>
+                                    <span class="help-block error-group"
+                                      data-ng-messages="ELEMENT.CORRECTANSWERS.$error"
+                                      data-ng-if="ELEMENT.CORRECTANSWERS.$dirty && ELEMENT.CORRECTANSWERS.$invalid">
+                                      <span data-ng-message="required">Este campo é obrigatório</span>
+                                    </span>
+                                  </div>
+
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row" data-ng-switch-when="email">
+                          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="portlet portlet-light" id="element-parent">
+                              <div class="portlet-title">
+                                <div class="caption">
+                                  <i class="fa-solid fa-envelope fa-xs"></i>
+                                  <span class="caption-subject bold uppercase">E-Mail</span>
+                                  <span class="caption-helper">elemento de e-mail</span>
+                                </div>
+
+                                <div class="actions element-hidden-child">
+                                  <div class="btn-group btn-group-xs">
+                                    <button type="button" class="btn btn-link"
+                                      title="Alterar ordem deste elemento para cima"
+                                      data-ng-click="ctrl.form.changeElementOrder(section.id, element, 'up');"><i
+                                        class="fa fa-arrow-up fa-xs"></i></button>
+                                    <button type="button" class="btn btn-link"
+                                      title="Alterar ordem deste elemento para baixo"
+                                      data-ng-click="ctrl.form.changeElementOrder(section.id, element, 'down');"><i
+                                        class="fa fa-arrow-down fa-xs"></i></button>
+                                    <button type="button" class="btn btn-link" title="Remover este elemento"
+                                      data-ng-click="ctrl.form.deleteElementFromSectionById(section.id, element.id);"><i
+                                        class="fa fa-trash fa-xs"></i></button>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="portlet-body">
+                                <div class="form-body">
+                                  <div class="form-group" title="Esta é a pergunta que será apresentada no formulário"
+                                    data-ng-class="ELEMENT.TITLE.$dirty && ELEMENT.TITLE.$invalid ? 'has-error' : '' ">
+                                    <label class="control-label">Título <span class="required">*</span></label>
+                                    <textarea type="text" class="form-control input-sm" data-ng-model="element.title"
+                                      placeholder="Qual é o título da pergunta" data-ng-required="true" minlength="3"
+                                      maxlength="1001" data-ng-minlength="3" data-ng-maxlength="1000" rows="1"
+                                      name="TITLE"></textarea>
+                                    <span class="help-block" data-ng-messages="ELEMENT.TITLE.$error"
+                                      data-ng-if="ELEMENT.TITLE.$dirty && ELEMENT.TITLE.$invalid">
+                                      <span data-ng-message="required">Este campo é obrigatório</span>
+                                      <span data-ng-message="minlength">O campo precisa ter no mínimo 3
+                                        caracteres</span>
+                                      <span data-ng-message="maxlength">O campo precisa ter no máximo 1000
+                                        caracteres</span>
+                                    </span>
+                                  </div>
+
+                                  <div class="form-group"
+                                    title="Este campo permite que sejam apresentadas maiores informações sobre a que se deseja na pergunta"
+                                    data-ng-class="ELEMENT.DESCRIPTION.$invalid ? 'has-error' : '' ">
+                                    <label class="control-label">Descrição</label>
+                                    <textarea type="text" class="form-control input-sm"
+                                      data-ng-model="element.description"
+                                      placeholder="Ajude o respondente explicando melhor o que se deseja com a resposta [opcional]"
+                                      maxlength="4001" data-ng-maxlength="4000" rows="1" name="DESCRIPTION"></textarea>
+                                    <span class="help-block error-group" data-ng-messages="ELEMENT.DESCRIPTION.$error"
+                                      data-ng-if="ELEMENT.DESCRIPTION.$dirty && ELEMENT.DESCRIPTION.$invalid">
+                                      <span data-ng-message="maxlength">O campo precisa ter no máximo 4000
+                                        caracteres</span>
+                                    </span>
+                                  </div>
+
+
+                                  <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                      <div class="form-group"
+                                        title="Define se o campo é de preenchimento obrigatório pelo respondente">
+                                        <label class="control-label">Preenchimento obrigatório <span
+                                            class="required">*</span></label>
+                                        <div class="block">
+                                          <label class="control-label inline-block"
+                                            title="Configura o preenchimento deste campo como obrigatório"><input
+                                              type="radio" name="radio-required-{{element.id}}" data-ng-value="true"
+                                              data-ng-model="element.required" />
+                                            Sim</label>
+                                          <label class="control-label inline-block"
+                                            title="Configura o preenchimento deste campo como não obrigatório"><input
+                                              type="radio" name="radio-required-{{element.id}}" data-ng-value="false"
+                                              data-ng-model="element.required" />
+                                            Não</label>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                      <div class="form-group"
+                                        title="Define se o sistema utilizará a funcionalidade de pontuação">
+                                        <label class="control-label">Usar Pontuação <span
+                                            class="required">*</span></label>
+                                        <div class="block">
+                                          <label class="control-label inline-block"
+                                            title="Configura o uso de pontuação como ativo"><input type="radio"
+                                              name="radio-punctuation-{{element.id}}" data-ng-value="true"
+                                              data-ng-model="element.usePunctuation" />
+                                            Sim</label>
+                                          <label class="control-label inline-block"
+                                            title="Configura o uso de pontuação como inativo"><input type="radio"
+                                              name="radio-punctuation-{{element.id}}" data-ng-value="false"
+                                              data-ng-model="element.usePunctuation" />
+                                            Não</label>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                      <div class="form-group"
+                                        title="Define se o sistema utilizará a funcionalidade de respostas corretas para aplicar a pontuação">
+                                        <label class="control-label">Usar Respostas Corretas <span
+                                            class="required">*</span></label>
+                                        <div class="block">
+                                          <label class="control-label inline-block"
+                                            title="Configura o uso de respostas corretas como ativo"><input type="radio"
+                                              name="radio-correct-{{element.id}}" data-ng-value="true"
+                                              data-ng-model="element.useCorrectAnswers" />
+                                            Sim</label>
+                                          <label class="control-label inline-block"
+                                            title="Configura o uso de respostas corretas como inativo"><input
+                                              type="radio" name="radio-correct-{{element.id}}" data-ng-value="false"
+                                              data-ng-model="element.useCorrectAnswers" />
+                                            Não</label>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div class="form-group"
+                                    title="Quantidade de pontos atribuídos a resposta caso a mesma seja considerada correta pelo sistema"
+                                    data-ng-if="element.usePunctuation"
+                                    data-ng-class="ELEMENT.PUNCTUATION.$invalid ? 'has-error' : '' ">
+                                    <label class="control-label">Peso</label>
+                                    <input type="number" class="form-control input-sm" step="0.1"
+                                      data-ng-required="element.usePunctuation"
+                                      data-ng-disabled="!element.usePunctuation" data-ng-model="element.punctuation"
+                                      placeholder="(000 | 0.00) [opcional]" name="PUNCTUATION" />
+                                    <span class="help-block error-group" data-ng-messages="ELEMENT.PUNCTUATION.$error"
+                                      data-ng-if="ELEMENT.PUNCTUATION.$dirty && ELEMENT.PUNCTUATION.$invalid">
+                                      <span data-ng-message="required">Este campo é obrigatório</span>
+                                      <span data-ng-message="number">O número não é valido</span>
+                                    </span>
+                                  </div>
+
+                                  <div class="form-group"
+                                    title="Relação das respostas consideradas corretas pelo sistema"
+                                    data-ng-if="element.useCorrectAnswers"
+                                    data-ng-class="ELEMENT.CORRECTANSWERS.$invalid ? 'has-error' : '' ">
+                                    <label class="control-label">Respostas Corretas</label>
+                                    <ui-select multiple tagging tagging-label="false" name="CORRECTANSWERS"
+                                      style="width: 100%;" data-ng-model="element.correctAnswers" theme="bootstrap"
+                                      data-ng-required="element.useCorrectAnswers"
+                                      data-ng-disabled="!element.useCorrectAnswers"
+                                      title="Insira as respostas corretas">
+                                      <ui-select-match
+                                        placeholder="Insira as respostas corretas...">{{$item}}</ui-select-match>
+                                      <ui-select-choices
+                                        repeat="answer in element.correctAnswers | filter:$select.search">
+                                        {{answer}}
+                                      </ui-select-choices>
+                                    </ui-select>
+                                    <span class="help-block error-group"
+                                      data-ng-messages="ELEMENT.CORRECTANSWERS.$error"
+                                      data-ng-if="ELEMENT.CORRECTANSWERS.$dirty && ELEMENT.CORRECTANSWERS.$invalid">
+                                      <span data-ng-message="required">Este campo é obrigatório</span>
+                                    </span>
+                                  </div>
+
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row" data-ng-switch-when="date">
+                          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="portlet portlet-light" id="element-parent">
+                              <div class="portlet-title">
+                                <div class="caption">
+                                  <i class="fa-solid fa-calendar fa-xs"></i>
+                                  <span class="caption-subject bold uppercase">Data</span>
+                                  <span class="caption-helper">elemento de data</span>
+                                </div>
+
+                                <div class="actions element-hidden-child">
+                                  <div class="btn-group btn-group-xs">
+                                    <button type="button" class="btn btn-link"
+                                      title="Alterar ordem deste elemento para cima"
+                                      data-ng-click="ctrl.form.changeElementOrder(section.id, element, 'up');"><i
+                                        class="fa fa-arrow-up fa-xs"></i></button>
+                                    <button type="button" class="btn btn-link"
+                                      title="Alterar ordem deste elemento para baixo"
+                                      data-ng-click="ctrl.form.changeElementOrder(section.id, element, 'down');"><i
+                                        class="fa fa-arrow-down fa-xs"></i></button>
+                                    <button type="button" class="btn btn-link" title="Remover este elemento"
+                                      data-ng-click="ctrl.form.deleteElementFromSectionById(section.id, element.id);"><i
+                                        class="fa fa-trash fa-xs"></i></button>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="portlet-body">
+                                <div class="form-body">
+                                  <div class="form-group" title="Esta é a pergunta que será apresentada no formulário"
+                                    data-ng-class="ELEMENT.TITLE.$dirty && ELEMENT.TITLE.$invalid ? 'has-error' : '' ">
+                                    <label class="control-label">Título <span class="required">*</span></label>
+                                    <textarea type="text" class="form-control input-sm" data-ng-model="element.title"
+                                      placeholder="Qual é o título da pergunta" data-ng-required="true" minlength="3"
+                                      maxlength="1001" data-ng-minlength="3" data-ng-maxlength="1000" rows="1"
+                                      name="TITLE"></textarea>
+                                    <span class="help-block" data-ng-messages="ELEMENT.TITLE.$error"
+                                      data-ng-if="ELEMENT.TITLE.$dirty && ELEMENT.TITLE.$invalid">
+                                      <span data-ng-message="required">Este campo é obrigatório</span>
+                                      <span data-ng-message="minlength">O campo precisa ter no mínimo 3
+                                        caracteres</span>
+                                      <span data-ng-message="maxlength">O campo precisa ter no máximo 1000
+                                        caracteres</span>
+                                    </span>
+                                  </div>
+
+                                  <div class="form-group"
+                                    title="Este campo permite que sejam apresentadas maiores informações sobre a que se deseja na pergunta"
+                                    data-ng-class="ELEMENT.DESCRIPTION.$invalid ? 'has-error' : '' ">
+                                    <label class="control-label">Descrição</label>
+                                    <textarea type="text" class="form-control input-sm"
+                                      data-ng-model="element.description"
+                                      placeholder="Ajude o respondente explicando melhor o que se deseja com a resposta [opcional]"
+                                      maxlength="4001" data-ng-maxlength="4000" rows="1" name="DESCRIPTION"></textarea>
+                                    <span class="help-block error-group" data-ng-messages="ELEMENT.DESCRIPTION.$error"
+                                      data-ng-if="ELEMENT.DESCRIPTION.$dirty && ELEMENT.DESCRIPTION.$invalid">
+                                      <span data-ng-message="maxlength">O campo precisa ter no máximo 4000
+                                        caracteres</span>
+                                    </span>
+                                  </div>
+
+
+                                  <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                      <div class="form-group"
+                                        title="Define se o campo é de preenchimento obrigatório pelo respondente">
+                                        <label class="control-label">Preenchimento obrigatório <span
+                                            class="required">*</span></label>
+                                        <div class="block">
+                                          <label class="control-label inline-block"
+                                            title="Configura o preenchimento deste campo como obrigatório"><input
+                                              type="radio" name="radio-required-{{element.id}}" data-ng-value="true"
+                                              data-ng-model="element.required" />
+                                            Sim</label>
+                                          <label class="control-label inline-block"
+                                            title="Configura o preenchimento deste campo como não obrigatório"><input
+                                              type="radio" name="radio-required-{{element.id}}" data-ng-value="false"
+                                              data-ng-model="element.required" />
+                                            Não</label>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                      <div class="form-group"
+                                        title="Define se o sistema utilizará a funcionalidade de pontuação">
+                                        <label class="control-label">Usar Pontuação <span
+                                            class="required">*</span></label>
+                                        <div class="block">
+                                          <label class="control-label inline-block"
+                                            title="Configura o uso de pontuação como ativo"><input type="radio"
+                                              name="radio-punctuation-{{element.id}}" data-ng-value="true"
+                                              data-ng-model="element.usePunctuation" />
+                                            Sim</label>
+                                          <label class="control-label inline-block"
+                                            title="Configura o uso de pontuação como inativo"><input type="radio"
+                                              name="radio-punctuation-{{element.id}}" data-ng-value="false"
+                                              data-ng-model="element.usePunctuation" />
+                                            Não</label>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                      <div class="form-group"
+                                        title="Define se o sistema utilizará a funcionalidade de respostas corretas para aplicar a pontuação">
+                                        <label class="control-label">Usar Respostas Corretas <span
+                                            class="required">*</span></label>
+                                        <div class="block">
+                                          <label class="control-label inline-block"
+                                            title="Configura o uso de respostas corretas como ativo"><input type="radio"
+                                              name="radio-correct-{{element.id}}" data-ng-value="true"
+                                              data-ng-model="element.useCorrectAnswers" />
+                                            Sim</label>
+                                          <label class="control-label inline-block"
+                                            title="Configura o uso de respostas corretas como inativo"><input
+                                              type="radio" name="radio-correct-{{element.id}}" data-ng-value="false"
+                                              data-ng-model="element.useCorrectAnswers" />
+                                            Não</label>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div class="form-group"
+                                    title="Quantidade de pontos atribuídos a resposta caso a mesma seja considerada correta pelo sistema"
+                                    data-ng-if="element.usePunctuation"
+                                    data-ng-class="ELEMENT.PUNCTUATION.$invalid ? 'has-error' : '' ">
+                                    <label class="control-label">Peso</label>
+                                    <input type="number" class="form-control input-sm" step="0.1"
+                                      data-ng-required="element.usePunctuation"
+                                      data-ng-disabled="!element.usePunctuation" data-ng-model="element.punctuation"
+                                      placeholder="(000 | 0.00) [opcional]" name="PUNCTUATION" />
+                                    <span class="help-block error-group" data-ng-messages="ELEMENT.PUNCTUATION.$error"
+                                      data-ng-if="ELEMENT.PUNCTUATION.$dirty && ELEMENT.PUNCTUATION.$invalid">
+                                      <span data-ng-message="required">Este campo é obrigatório</span>
+                                      <span data-ng-message="number">O número não é valido</span>
+                                    </span>
+                                  </div>
+
+                                  <div class="form-group"
+                                    title="Relação das respostas consideradas corretas pelo sistema"
+                                    data-ng-if="element.useCorrectAnswers"
+                                    data-ng-class="ELEMENT.CORRECTANSWERS.$invalid ? 'has-error' : '' ">
+                                    <label class="control-label">Respostas Corretas</label>
+                                    <ui-select multiple tagging tagging-label="false" name="CORRECTANSWERS"
+                                      style="width: 100%;" data-ng-model="element.correctAnswers" theme="bootstrap"
+                                      data-ng-required="element.useCorrectAnswers"
+                                      data-ng-disabled="!element.useCorrectAnswers"
+                                      title="Insira as respostas corretas">
+                                      <ui-select-match
+                                        placeholder="Insira as respostas corretas...">{{$item}}</ui-select-match>
+                                      <ui-select-choices
+                                        repeat="answer in element.correctAnswers | filter:$select.search">
+                                        {{answer}}
+                                      </ui-select-choices>
+                                    </ui-select>
+                                    <span class="help-block error-group"
+                                      data-ng-messages="ELEMENT.CORRECTANSWERS.$error"
+                                      data-ng-if="ELEMENT.CORRECTANSWERS.$dirty && ELEMENT.CORRECTANSWERS.$invalid">
+                                      <span data-ng-message="required">Este campo é obrigatório</span>
+                                    </span>
+                                  </div>
+
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row" data-ng-switch-when="radio">
+                          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="portlet portlet-light" id="element-parent">
+                              <div class="portlet-title">
+                                <div class="caption">
+                                  <i class="fa-solid fa-circle-dot fa-xs"></i>
+                                  <span class="caption-subject bold uppercase">Seleção Única</span>
+                                  <span class="caption-helper">elemento radio</span>
+                                </div>
+
+                                <div class="actions element-hidden-child">
+                                  <div class="btn-group btn-group-xs">
+                                    <button type="button" class="btn btn-link"
+                                      title="Alterar ordem deste elemento para cima"
+                                      data-ng-click="ctrl.form.changeElementOrder(section.id, element, 'up');"><i
+                                        class="fa fa-arrow-up fa-xs"></i></button>
+                                    <button type="button" class="btn btn-link"
+                                      title="Alterar ordem deste elemento para baixo"
+                                      data-ng-click="ctrl.form.changeElementOrder(section.id, element, 'down');"><i
+                                        class="fa fa-arrow-down fa-xs"></i></button>
+                                    <button type="button" class="btn btn-link" title="Remover este elemento"
+                                      data-ng-click="ctrl.form.deleteElementFromSectionById(section.id, element.id);"><i
+                                        class="fa fa-trash fa-xs"></i></button>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="portlet-body">
+                                <div class="form-body">
+                                  <div class="form-group" title="Esta é a pergunta que será apresentada no formulário"
+                                    data-ng-class="ELEMENT.TITLE.$dirty && ELEMENT.TITLE.$invalid ? 'has-error' : '' ">
+                                    <label class="control-label">Título <span class="required">*</span></label>
+                                    <textarea type="text" class="form-control input-sm" data-ng-model="element.title"
+                                      placeholder="Qual é o título da pergunta" data-ng-required="true" minlength="3"
+                                      maxlength="1001" data-ng-minlength="3" data-ng-maxlength="1000" rows="1"
+                                      name="TITLE"></textarea>
+                                    <span class="help-block" data-ng-messages="ELEMENT.TITLE.$error"
+                                      data-ng-if="ELEMENT.TITLE.$dirty && ELEMENT.TITLE.$invalid">
+                                      <span data-ng-message="required">Este campo é obrigatório</span>
+                                      <span data-ng-message="minlength">O campo precisa ter no mínimo 3
+                                        caracteres</span>
+                                      <span data-ng-message="maxlength">O campo precisa ter no máximo 1000
+                                        caracteres</span>
+                                    </span>
+                                  </div>
+
+                                  <div class="form-group"
+                                    title="Este campo permite que sejam apresentadas maiores informações sobre a que se deseja na pergunta"
+                                    data-ng-class="ELEMENT.DESCRIPTION.$invalid ? 'has-error' : '' ">
+                                    <label class="control-label">Descrição</label>
+                                    <textarea type="text" class="form-control input-sm"
+                                      data-ng-model="element.description"
+                                      placeholder="Ajude o respondente explicando melhor o que se deseja com a resposta [opcional]"
+                                      maxlength="4001" data-ng-maxlength="4000" rows="1" name="DESCRIPTION"></textarea>
+                                    <span class="help-block error-group" data-ng-messages="ELEMENT.DESCRIPTION.$error"
+                                      data-ng-if="ELEMENT.DESCRIPTION.$dirty && ELEMENT.DESCRIPTION.$invalid">
+                                      <span data-ng-message="maxlength">O campo precisa ter no máximo 4000
+                                        caracteres</span>
+                                    </span>
+                                  </div>
+
+                                  <div class="soft-border p5">
+                                    <legend>Opções</legend>
+
+                                    <div data-ng-repeat="option in element.options" data-ng-form name="OPTION">
+                                      <div class="row" id="option-parent">
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                          <div class="form-group form-md-line-input"
+                                            data-ng-class="OPTION.VALUE.$invalid ? 'has-error' : '' ">
+                                            <input type="text" class="form-control" placeholder="Título da opção"
+                                              data-ng-required="true" data-ng-maxlength="50" maxlength="51" name="VALUE"
+                                              data-ng-model="option.value">
+                                            <span class="help-block error-group" data-ng-messages="OPTION.VALUE.$error"
+                                              data-ng-if="OPTION.VALUE.$dirty && OPTION.VALUE.$invalid">
+                                              <span data-ng-message="required">Este campo é obrigatório</span>
+                                              <span data-ng-message="maxlength">O campo precisa ter no máximo 50
+                                                caracteres</span>
+                                            </span>
+                                          </div>
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                          <div class="form-group form-md-line-input"
+                                            data-ng-class="OPTION.DESCRIPTION.$invalid ? 'has-error' : '' ">
+                                            <input type="text" class="form-control" placeholder="Descrição da opção"
+                                              data-ng-maxlength="50" maxlength="51" name="DESCRIPTION"
+                                              data-ng-model="option.description">
+                                            <span class="help-block error-group"
+                                              data-ng-messages="OPTION.DESCRIPTION.$error"
+                                              data-ng-if="OPTION.DESCRIPTION.$dirty && OPTION.DESCRIPTION.$invalid">
+                                              <span data-ng-message="maxlength">O campo precisa ter no máximo 50
+                                                caracteres</span>
+                                            </span>
+                                          </div>
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                          <div class="form-group" title="Navegação de seção"
+                                            data-ng-class="OPTION.NAVIGATETO.$invalid ? 'has-error' : '' ">
+                                            <label class="control-label">Navegação</label>
+                                            <ui-select name="NAVIGATETO" style="width: 100%;"
+                                              data-ng-model="option.navigateTo" theme="bootstrap"
+                                              title="Selecione a rota">
+                                              <ui-select-match
+                                                placeholder="Navegar para">{{$select.selected.title}}</ui-select-match>
+                                              <ui-select-choices
+                                                repeat="route.route as route in ctrl.form.routes | filter:$select.search"
+                                                ui-disable-choice="route.route == section.id">
+                                                {{route.title}}
+                                              </ui-select-choices>
+                                            </ui-select>
+                                            <span class="help-block error-group"
+                                              data-ng-messages="OPTION.NAVIGATETO.$error"
+                                              data-ng-if="OPTION.NAVIGATETO.$dirty && OPTION.NAVIGATETO.$invalid">
+                                              <span data-ng-message="required">Este campo é obrigatório</span>
+                                            </span>
+                                          </div>
+                                        </div>
+
+                                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                                          <div class="btn-group btn-group-xs option-hidden-child">
+                                            <button type="button" class="btn btn-link" title="Adicionar nova opção"
+                                              data-ng-click="ctrl.form.addOptionToElement(section.id, element.id, 'radio', option.order+1);"><i
+                                                class="fa fa-add fa-xs"></i></button>
+                                            <button type="button" class="btn btn-link"
+                                              data-ng-click="ctrl.form.changeOptionOrder(section.id, element.id, option.id, 'up');"
+                                              title="Alterar ordem deste elemento para cima"><i
+                                                class="fa fa-arrow-up fa-xs"></i></button>
+                                            <button type="button" class="btn btn-link"
+                                              data-ng-click="ctrl.form.changeOptionOrder(section.id, element.id, option.id, 'down');"
+                                              title="Alterar ordem deste elemento para baixo"><i
+                                                class="fa fa-arrow-down fa-xs"></i></button>
+                                            <button type="button" class="btn btn-link" title="Remover este elemento"
+                                              data-ng-click="ctrl.form.deleteOptionFromElement(section.id, element.id, option.id)"><i
+                                                class="fa fa-trash fa-xs"></i></button>
+                                          </div>
+                                        </div>
+                                      </div>
+
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                      <div class="form-group"
+                                        title="Define se o campo é de preenchimento obrigatório pelo respondente">
+                                        <label class="control-label">Preenchimento obrigatório <span
+                                            class="required">*</span></label>
+                                        <div class="block">
+                                          <label class="control-label inline-block"
+                                            title="Configura o preenchimento deste campo como obrigatório"><input
+                                              type="radio" name="radio-required-{{element.id}}" data-ng-value="true"
+                                              data-ng-model="element.required" />
+                                            Sim</label>
+                                          <label class="control-label inline-block"
+                                            title="Configura o preenchimento deste campo como não obrigatório"><input
+                                              type="radio" name="radio-required-{{element.id}}" data-ng-value="false"
+                                              data-ng-model="element.required" />
+                                            Não</label>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                      <div class="form-group"
+                                        title="Define se o sistema utilizará a funcionalidade de pontuação">
+                                        <label class="control-label">Usar Pontuação <span
+                                            class="required">*</span></label>
+                                        <div class="block">
+                                          <label class="control-label inline-block"
+                                            title="Configura o uso de pontuação como ativo"><input type="radio"
+                                              name="radio-punctuation-{{element.id}}" data-ng-value="true"
+                                              data-ng-model="element.usePunctuation" />
+                                            Sim</label>
+                                          <label class="control-label inline-block"
+                                            title="Configura o uso de pontuação como inativo"><input type="radio"
+                                              name="radio-punctuation-{{element.id}}" data-ng-value="false"
+                                              data-ng-model="element.usePunctuation" />
+                                            Não</label>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                      <div class="form-group"
+                                        title="Define se o sistema utilizará a funcionalidade de respostas corretas para aplicar a pontuação">
+                                        <label class="control-label">Usar Respostas Corretas <span
+                                            class="required">*</span></label>
+                                        <div class="block">
+                                          <label class="control-label inline-block"
+                                            title="Configura o uso de respostas corretas como ativo"><input type="radio"
+                                              name="radio-correct-{{element.id}}" data-ng-value="true"
+                                              data-ng-model="element.useCorrectAnswers" />
+                                            Sim</label>
+                                          <label class="control-label inline-block"
+                                            title="Configura o uso de respostas corretas como inativo"><input
+                                              type="radio" name="radio-correct-{{element.id}}" data-ng-value="false"
+                                              data-ng-model="element.useCorrectAnswers" />
+                                            Não</label>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div class="form-group"
+                                    title="Quantidade de pontos atribuídos a resposta caso a mesma seja considerada correta pelo sistema"
+                                    data-ng-if="element.usePunctuation"
+                                    data-ng-class="ELEMENT.PUNCTUATION.$invalid ? 'has-error' : '' ">
+                                    <label class="control-label">Peso</label>
+                                    <input type="number" class="form-control input-sm" step="0.1"
+                                      data-ng-required="element.usePunctuation"
+                                      data-ng-disabled="!element.usePunctuation" data-ng-model="element.punctuation"
+                                      placeholder="(000 | 0.00) [opcional]" name="PUNCTUATION" />
+                                    <span class="help-block error-group" data-ng-messages="ELEMENT.PUNCTUATION.$error"
+                                      data-ng-if="ELEMENT.PUNCTUATION.$dirty && ELEMENT.PUNCTUATION.$invalid">
+                                      <span data-ng-message="required">Este campo é obrigatório</span>
+                                      <span data-ng-message="number">O número não é valido</span>
+                                    </span>
+                                  </div>
+
+                                  <div class="form-group"
+                                    title="Relação das respostas consideradas corretas pelo sistema"
+                                    data-ng-if="element.useCorrectAnswers"
+                                    data-ng-class="ELEMENT.CORRECTANSWERS.$invalid ? 'has-error' : '' ">
+                                    <label class="control-label">Respostas Corretas</label>
+                                    <ui-select multiple name="CORRECTANSWERS" style="width: 100%;"
+                                      data-ng-model="element.correctAnswers" theme="bootstrap"
+                                      data-ng-required="element.useCorrectAnswers"
+                                      data-ng-disabled="!element.useCorrectAnswers"
+                                      title="Insira as respostas corretas">
+                                      <ui-select-match
+                                        placeholder="Insira as respostas corretas...">{{$item.value}}</ui-select-match>
+                                      <ui-select-choices
+                                        repeat="answer.id as answer in element.options | filter:$select.search">
+                                        {{answer.value}}
+                                      </ui-select-choices>
+                                    </ui-select>
+                                    <span class="help-block error-group"
+                                      data-ng-messages="ELEMENT.CORRECTANSWERS.$error"
+                                      data-ng-if="ELEMENT.CORRECTANSWERS.$dirty && ELEMENT.CORRECTANSWERS.$invalid">
+                                      <span data-ng-message="required">Este campo é obrigatório</span>
+                                    </span>
+                                  </div>
+
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row" data-ng-switch-when="select">
+                          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="portlet portlet-light" id="element-parent">
+                              <div class="portlet-title">
+                                <div class="caption">
+                                  <i class="fa-solid fa-check fa-xs"></i>
+                                  <span class="caption-subject bold uppercase">Seleção Única</span>
+                                  <span class="caption-helper">elemento lista</span>
+                                </div>
+
+                                <div class="actions element-hidden-child">
+                                  <div class="btn-group btn-group-xs">
+                                    <button type="button" class="btn btn-link"
+                                      title="Alterar ordem deste elemento para cima"
+                                      data-ng-click="ctrl.form.changeElementOrder(section.id, element, 'up');"><i
+                                        class="fa fa-arrow-up fa-xs"></i></button>
+                                    <button type="button" class="btn btn-link"
+                                      title="Alterar ordem deste elemento para baixo"
+                                      data-ng-click="ctrl.form.changeElementOrder(section.id, element, 'down');"><i
+                                        class="fa fa-arrow-down fa-xs"></i></button>
+                                    <button type="button" class="btn btn-link" title="Remover este elemento"
+                                      data-ng-click="ctrl.form.deleteElementFromSectionById(section.id, element.id);"><i
+                                        class="fa fa-trash fa-xs"></i></button>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="portlet-body">
+                                <div class="form-body">
+                                  <div class="form-group" title="Esta é a pergunta que será apresentada no formulário"
+                                    data-ng-class="ELEMENT.TITLE.$dirty && ELEMENT.TITLE.$invalid ? 'has-error' : '' ">
+                                    <label class="control-label">Título <span class="required">*</span></label>
+                                    <textarea type="text" class="form-control input-sm" data-ng-model="element.title"
+                                      placeholder="Qual é o título da pergunta" data-ng-required="true" minlength="3"
+                                      maxlength="1001" data-ng-minlength="3" data-ng-maxlength="1000" rows="1"
+                                      name="TITLE"></textarea>
+                                    <span class="help-block" data-ng-messages="ELEMENT.TITLE.$error"
+                                      data-ng-if="ELEMENT.TITLE.$dirty && ELEMENT.TITLE.$invalid">
+                                      <span data-ng-message="required">Este campo é obrigatório</span>
+                                      <span data-ng-message="minlength">O campo precisa ter no mínimo 3
+                                        caracteres</span>
+                                      <span data-ng-message="maxlength">O campo precisa ter no máximo 1000
+                                        caracteres</span>
+                                    </span>
+                                  </div>
+
+                                  <div class="form-group"
+                                    title="Este campo permite que sejam apresentadas maiores informações sobre a que se deseja na pergunta"
+                                    data-ng-class="ELEMENT.DESCRIPTION.$invalid ? 'has-error' : '' ">
+                                    <label class="control-label">Descrição</label>
+                                    <textarea type="text" class="form-control input-sm"
+                                      data-ng-model="element.description"
+                                      placeholder="Ajude o respondente explicando melhor o que se deseja com a resposta [opcional]"
+                                      maxlength="4001" data-ng-maxlength="4000" rows="1" name="DESCRIPTION"></textarea>
+                                    <span class="help-block error-group" data-ng-messages="ELEMENT.DESCRIPTION.$error"
+                                      data-ng-if="ELEMENT.DESCRIPTION.$dirty && ELEMENT.DESCRIPTION.$invalid">
+                                      <span data-ng-message="maxlength">O campo precisa ter no máximo 4000
+                                        caracteres</span>
+                                    </span>
+                                  </div>
+
+                                  <div class="soft-border p5">
+                                    <legend>Opções</legend>
+
+                                    <div data-ng-repeat="option in element.options" data-ng-form name="OPTION">
+                                      <div class="row" id="option-parent">
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                          <div class="form-group form-md-line-input"
+                                            data-ng-class="OPTION.VALUE.$invalid ? 'has-error' : '' ">
+                                            <input type="text" class="form-control" placeholder="Título da opção"
+                                              data-ng-required="true" data-ng-maxlength="50" maxlength="51" name="VALUE"
+                                              data-ng-model="option.value">
+                                            <span class="help-block error-group" data-ng-messages="OPTION.VALUE.$error"
+                                              data-ng-if="OPTION.VALUE.$dirty && OPTION.VALUE.$invalid">
+                                              <span data-ng-message="required">Este campo é obrigatório</span>
+                                              <span data-ng-message="maxlength">O campo precisa ter no máximo 50
+                                                caracteres</span>
+                                            </span>
+                                          </div>
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                          <div class="form-group form-md-line-input"
+                                            data-ng-class="OPTION.DESCRIPTION.$invalid ? 'has-error' : '' ">
+                                            <input type="text" class="form-control" placeholder="Descrição da opção"
+                                              data-ng-maxlength="50" maxlength="51" name="DESCRIPTION"
+                                              data-ng-model="option.description">
+                                            <span class="help-block error-group"
+                                              data-ng-messages="OPTION.DESCRIPTION.$error"
+                                              data-ng-if="OPTION.DESCRIPTION.$dirty && OPTION.DESCRIPTION.$invalid">
+                                              <span data-ng-message="maxlength">O campo precisa ter no máximo 50
+                                                caracteres</span>
+                                            </span>
+                                          </div>
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                          <div class="form-group" title="Navegação de seção"
+                                            data-ng-class="OPTION.NAVIGATETO.$invalid ? 'has-error' : '' ">
+                                            <label class="control-label">Navegação</label>
+                                            <ui-select name="NAVIGATETO" style="width: 100%;"
+                                              data-ng-model="option.navigateTo" theme="bootstrap"
+                                              title="Selecione a rota">
+                                              <ui-select-match
+                                                placeholder="Navegar para">{{$select.selected.title}}</ui-select-match>
+                                              <ui-select-choices
+                                                repeat="route.route as route in ctrl.form.routes | filter:$select.search"
+                                                ui-disable-choice="route.route == section.id">
+                                                {{route.title}}
+                                              </ui-select-choices>
+                                            </ui-select>
+                                            <span class="help-block error-group"
+                                              data-ng-messages="OPTION.NAVIGATETO.$error"
+                                              data-ng-if="OPTION.NAVIGATETO.$dirty && OPTION.NAVIGATETO.$invalid">
+                                              <span data-ng-message="required">Este campo é obrigatório</span>
+                                            </span>
+                                          </div>
+                                        </div>
+
+                                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                                          <div class="btn-group btn-group-xs option-hidden-child">
+                                            <button type="button" class="btn btn-link" title="Adicionar nova opção"
+                                              data-ng-click="ctrl.form.addOptionToElement(section.id, element.id, 'radio', option.order+1);"><i
+                                                class="fa fa-add fa-xs"></i></button>
+                                            <button type="button" class="btn btn-link"
+                                              data-ng-click="ctrl.form.changeOptionOrder(section.id, element.id, option.id, 'up');"
+                                              title="Alterar ordem deste elemento para cima"><i
+                                                class="fa fa-arrow-up fa-xs"></i></button>
+                                            <button type="button" class="btn btn-link"
+                                              data-ng-click="ctrl.form.changeOptionOrder(section.id, element.id, option.id, 'down');"
+                                              title="Alterar ordem deste elemento para baixo"><i
+                                                class="fa fa-arrow-down fa-xs"></i></button>
+                                            <button type="button" class="btn btn-link" title="Remover este elemento"
+                                              data-ng-click="ctrl.form.deleteOptionFromElement(section.id, element.id, option.id)"><i
+                                                class="fa fa-trash fa-xs"></i></button>
+                                          </div>
+                                        </div>
+                                      </div>
+
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                      <div class="form-group"
+                                        title="Define se o campo é de preenchimento obrigatório pelo respondente">
+                                        <label class="control-label">Preenchimento obrigatório <span
+                                            class="required">*</span></label>
+                                        <div class="block">
+                                          <label class="control-label inline-block"
+                                            title="Configura o preenchimento deste campo como obrigatório"><input
+                                              type="radio" name="radio-required-{{element.id}}" data-ng-value="true"
+                                              data-ng-model="element.required" />
+                                            Sim</label>
+                                          <label class="control-label inline-block"
+                                            title="Configura o preenchimento deste campo como não obrigatório"><input
+                                              type="radio" name="radio-required-{{element.id}}" data-ng-value="false"
+                                              data-ng-model="element.required" />
+                                            Não</label>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                      <div class="form-group"
+                                        title="Define se o sistema utilizará a funcionalidade de pontuação">
+                                        <label class="control-label">Usar Pontuação <span
+                                            class="required">*</span></label>
+                                        <div class="block">
+                                          <label class="control-label inline-block"
+                                            title="Configura o uso de pontuação como ativo"><input type="radio"
+                                              name="radio-punctuation-{{element.id}}" data-ng-value="true"
+                                              data-ng-model="element.usePunctuation" />
+                                            Sim</label>
+                                          <label class="control-label inline-block"
+                                            title="Configura o uso de pontuação como inativo"><input type="radio"
+                                              name="radio-punctuation-{{element.id}}" data-ng-value="false"
+                                              data-ng-model="element.usePunctuation" />
+                                            Não</label>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                      <div class="form-group"
+                                        title="Define se o sistema utilizará a funcionalidade de respostas corretas para aplicar a pontuação">
+                                        <label class="control-label">Usar Respostas Corretas <span
+                                            class="required">*</span></label>
+                                        <div class="block">
+                                          <label class="control-label inline-block"
+                                            title="Configura o uso de respostas corretas como ativo"><input type="radio"
+                                              name="radio-correct-{{element.id}}" data-ng-value="true"
+                                              data-ng-model="element.useCorrectAnswers" />
+                                            Sim</label>
+                                          <label class="control-label inline-block"
+                                            title="Configura o uso de respostas corretas como inativo"><input
+                                              type="radio" name="radio-correct-{{element.id}}" data-ng-value="false"
+                                              data-ng-model="element.useCorrectAnswers" />
+                                            Não</label>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div class="form-group"
+                                    title="Quantidade de pontos atribuídos a resposta caso a mesma seja considerada correta pelo sistema"
+                                    data-ng-if="element.usePunctuation"
+                                    data-ng-class="ELEMENT.PUNCTUATION.$invalid ? 'has-error' : '' ">
+                                    <label class="control-label">Peso</label>
+                                    <input type="number" class="form-control input-sm" step="0.1"
+                                      data-ng-required="element.usePunctuation"
+                                      data-ng-disabled="!element.usePunctuation" data-ng-model="element.punctuation"
+                                      placeholder="(000 | 0.00) [opcional]" name="PUNCTUATION" />
+                                    <span class="help-block error-group" data-ng-messages="ELEMENT.PUNCTUATION.$error"
+                                      data-ng-if="ELEMENT.PUNCTUATION.$dirty && ELEMENT.PUNCTUATION.$invalid">
+                                      <span data-ng-message="required">Este campo é obrigatório</span>
+                                      <span data-ng-message="number">O número não é valido</span>
+                                    </span>
+                                  </div>
+
+                                  <div class="form-group"
+                                    title="Relação das respostas consideradas corretas pelo sistema"
+                                    data-ng-if="element.useCorrectAnswers"
+                                    data-ng-class="ELEMENT.CORRECTANSWERS.$invalid ? 'has-error' : '' ">
+                                    <label class="control-label">Respostas Corretas</label>
+                                    <ui-select multiple name="CORRECTANSWERS" style="width: 100%;"
+                                      data-ng-model="element.correctAnswers" theme="bootstrap"
+                                      data-ng-required="element.useCorrectAnswers"
+                                      data-ng-disabled="!element.useCorrectAnswers"
+                                      title="Insira as respostas corretas">
+                                      <ui-select-match
+                                        placeholder="Insira as respostas corretas...">{{$item.value}}</ui-select-match>
+                                      <ui-select-choices
+                                        repeat="answer.id as answer in element.options | filter:$select.search">
+                                        {{answer.value}}
+                                      </ui-select-choices>
+                                    </ui-select>
+                                    <span class="help-block error-group"
+                                      data-ng-messages="ELEMENT.CORRECTANSWERS.$error"
+                                      data-ng-if="ELEMENT.CORRECTANSWERS.$dirty && ELEMENT.CORRECTANSWERS.$invalid">
+                                      <span data-ng-message="required">Este campo é obrigatório</span>
+                                    </span>
+                                  </div>
+
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row" data-ng-switch-when="multiple">
+                          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="portlet portlet-light" id="element-parent">
+                              <div class="portlet-title">
+                                <div class="caption">
+                                  <i class="fa-solid fa-list-check fa-xs"></i>
+                                  <span class="caption-subject bold uppercase">Seleção Múltipla</span>
+                                  <span class="caption-helper">elemento de multiplas escolhas</span>
+                                </div>
+
+                                <div class="actions element-hidden-child">
+                                  <div class="btn-group btn-group-xs">
+                                    <button type="button" class="btn btn-link"
+                                      title="Alterar ordem deste elemento para cima"
+                                      data-ng-click="ctrl.form.changeElementOrder(section.id, element, 'up');"><i
+                                        class="fa fa-arrow-up fa-xs"></i></button>
+                                    <button type="button" class="btn btn-link"
+                                      title="Alterar ordem deste elemento para baixo"
+                                      data-ng-click="ctrl.form.changeElementOrder(section.id, element, 'down');"><i
+                                        class="fa fa-arrow-down fa-xs"></i></button>
+                                    <button type="button" class="btn btn-link" title="Remover este elemento"
+                                      data-ng-click="ctrl.form.deleteElementFromSectionById(section.id, element.id);"><i
+                                        class="fa fa-trash fa-xs"></i></button>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="portlet-body">
+                                <div class="form-body">
+                                  <div class="form-group" title="Esta é a pergunta que será apresentada no formulário"
+                                    data-ng-class="ELEMENT.TITLE.$dirty && ELEMENT.TITLE.$invalid ? 'has-error' : '' ">
+                                    <label class="control-label">Título <span class="required">*</span></label>
+                                    <textarea type="text" class="form-control input-sm" data-ng-model="element.title"
+                                      placeholder="Qual é o título da pergunta" data-ng-required="true" minlength="3"
+                                      maxlength="1001" data-ng-minlength="3" data-ng-maxlength="1000" rows="1"
+                                      name="TITLE"></textarea>
+                                    <span class="help-block" data-ng-messages="ELEMENT.TITLE.$error"
+                                      data-ng-if="ELEMENT.TITLE.$dirty && ELEMENT.TITLE.$invalid">
+                                      <span data-ng-message="required">Este campo é obrigatório</span>
+                                      <span data-ng-message="minlength">O campo precisa ter no mínimo 3
+                                        caracteres</span>
+                                      <span data-ng-message="maxlength">O campo precisa ter no máximo 1000
+                                        caracteres</span>
+                                    </span>
+                                  </div>
+
+                                  <div class="form-group"
+                                    title="Este campo permite que sejam apresentadas maiores informações sobre a que se deseja na pergunta"
+                                    data-ng-class="ELEMENT.DESCRIPTION.$invalid ? 'has-error' : '' ">
+                                    <label class="control-label">Descrição</label>
+                                    <textarea type="text" class="form-control input-sm"
+                                      data-ng-model="element.description"
+                                      placeholder="Ajude o respondente explicando melhor o que se deseja com a resposta [opcional]"
+                                      maxlength="4001" data-ng-maxlength="4000" rows="1" name="DESCRIPTION"></textarea>
+                                    <span class="help-block error-group" data-ng-messages="ELEMENT.DESCRIPTION.$error"
+                                      data-ng-if="ELEMENT.DESCRIPTION.$dirty && ELEMENT.DESCRIPTION.$invalid">
+                                      <span data-ng-message="maxlength">O campo precisa ter no máximo 4000
+                                        caracteres</span>
+                                    </span>
+                                  </div>
+
+                                  <div class="soft-border p5">
+                                    <legend>Opções</legend>
+
+                                    <div data-ng-repeat="option in element.options" data-ng-form name="OPTION">
+                                      <div class="row" id="option-parent">
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                          <div class="form-group form-md-line-input"
+                                            data-ng-class="OPTION.VALUE.$invalid ? 'has-error' : '' ">
+                                            <input type="text" class="form-control" placeholder="Título da opção"
+                                              data-ng-required="true" data-ng-maxlength="50" maxlength="51" name="VALUE"
+                                              data-ng-model="option.value">
+                                            <span class="help-block error-group" data-ng-messages="OPTION.VALUE.$error"
+                                              data-ng-if="OPTION.VALUE.$dirty && OPTION.VALUE.$invalid">
+                                              <span data-ng-message="required">Este campo é obrigatório</span>
+                                              <span data-ng-message="maxlength">O campo precisa ter no máximo 50
+                                                caracteres</span>
+                                            </span>
+                                          </div>
+                                        </div>
+
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                          <div class="form-group form-md-line-input"
+                                            data-ng-class="OPTION.DESCRIPTION.$invalid ? 'has-error' : '' ">
+                                            <input type="text" class="form-control" placeholder="Descrição da opção"
+                                              data-ng-maxlength="50" maxlength="51" name="DESCRIPTION"
+                                              data-ng-model="option.description">
+                                            <span class="help-block error-group"
+                                              data-ng-messages="OPTION.DESCRIPTION.$error"
+                                              data-ng-if="OPTION.DESCRIPTION.$dirty && OPTION.DESCRIPTION.$invalid">
+                                              <span data-ng-message="maxlength">O campo precisa ter no máximo 50
+                                                caracteres</span>
+                                            </span>
+                                          </div>
+                                        </div>
+
+                                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                                          <div class="btn-group btn-group-xs option-hidden-child">
+                                            <button type="button" class="btn btn-link" title="Adicionar nova opção"
+                                              data-ng-click="ctrl.form.addOptionToElement(section.id, element.id, 'radio', option.order+1);"><i
+                                                class="fa fa-add fa-xs"></i></button>
+                                            <button type="button" class="btn btn-link"
+                                              data-ng-click="ctrl.form.changeOptionOrder(section.id, element.id, option.id, 'up');"
+                                              title="Alterar ordem deste elemento para cima"><i
+                                                class="fa fa-arrow-up fa-xs"></i></button>
+                                            <button type="button" class="btn btn-link"
+                                              data-ng-click="ctrl.form.changeOptionOrder(section.id, element.id, option.id, 'down');"
+                                              title="Alterar ordem deste elemento para baixo"><i
+                                                class="fa fa-arrow-down fa-xs"></i></button>
+                                            <button type="button" class="btn btn-link" title="Remover este elemento"
+                                              data-ng-click="ctrl.form.deleteOptionFromElement(section.id, element.id, option.id)"><i
+                                                class="fa fa-trash fa-xs"></i></button>
+                                          </div>
+                                        </div>
+                                      </div>
+
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                      <div class="form-group"
+                                        title="Define se o campo é de preenchimento obrigatório pelo respondente">
+                                        <label class="control-label">Preenchimento obrigatório <span
+                                            class="required">*</span></label>
+                                        <div class="block">
+                                          <label class="control-label inline-block"
+                                            title="Configura o preenchimento deste campo como obrigatório"><input
+                                              type="radio" name="radio-required-{{element.id}}" data-ng-value="true"
+                                              data-ng-model="element.required" />
+                                            Sim</label>
+                                          <label class="control-label inline-block"
+                                            title="Configura o preenchimento deste campo como não obrigatório"><input
+                                              type="radio" name="radio-required-{{element.id}}" data-ng-value="false"
+                                              data-ng-model="element.required" />
+                                            Não</label>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                      <div class="form-group"
+                                        title="Define se o sistema utilizará a funcionalidade de pontuação">
+                                        <label class="control-label">Usar Pontuação <span
+                                            class="required">*</span></label>
+                                        <div class="block">
+                                          <label class="control-label inline-block"
+                                            title="Configura o uso de pontuação como ativo"><input type="radio"
+                                              name="radio-punctuation-{{element.id}}" data-ng-value="true"
+                                              data-ng-model="element.usePunctuation" />
+                                            Sim</label>
+                                          <label class="control-label inline-block"
+                                            title="Configura o uso de pontuação como inativo"><input type="radio"
+                                              name="radio-punctuation-{{element.id}}" data-ng-value="false"
+                                              data-ng-model="element.usePunctuation" />
+                                            Não</label>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                      <div class="form-group"
+                                        title="Define se o sistema utilizará a funcionalidade de respostas corretas para aplicar a pontuação">
+                                        <label class="control-label">Usar Respostas Corretas <span
+                                            class="required">*</span></label>
+                                        <div class="block">
+                                          <label class="control-label inline-block"
+                                            title="Configura o uso de respostas corretas como ativo"><input type="radio"
+                                              name="radio-correct-{{element.id}}" data-ng-value="true"
+                                              data-ng-model="element.useCorrectAnswers" />
+                                            Sim</label>
+                                          <label class="control-label inline-block"
+                                            title="Configura o uso de respostas corretas como inativo"><input
+                                              type="radio" name="radio-correct-{{element.id}}" data-ng-value="false"
+                                              data-ng-model="element.useCorrectAnswers" />
+                                            Não</label>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div class="form-group"
+                                    title="Quantidade de pontos atribuídos a resposta caso a mesma seja considerada correta pelo sistema"
+                                    data-ng-if="element.usePunctuation"
+                                    data-ng-class="ELEMENT.PUNCTUATION.$invalid ? 'has-error' : '' ">
+                                    <label class="control-label">Peso</label>
+                                    <input type="number" class="form-control input-sm" step="0.1"
+                                      data-ng-required="element.usePunctuation"
+                                      data-ng-disabled="!element.usePunctuation" data-ng-model="element.punctuation"
+                                      placeholder="(000 | 0.00) [opcional]" name="PUNCTUATION" />
+                                    <span class="help-block error-group" data-ng-messages="ELEMENT.PUNCTUATION.$error"
+                                      data-ng-if="ELEMENT.PUNCTUATION.$dirty && ELEMENT.PUNCTUATION.$invalid">
+                                      <span data-ng-message="required">Este campo é obrigatório</span>
+                                      <span data-ng-message="number">O número não é valido</span>
+                                    </span>
+                                  </div>
+
+                                  <div class="form-group"
+                                    title="Relação das respostas consideradas corretas pelo sistema"
+                                    data-ng-if="element.useCorrectAnswers"
+                                    data-ng-class="ELEMENT.CORRECTANSWERS.$invalid ? 'has-error' : '' ">
+                                    <label class="control-label">Respostas Corretas</label>
+                                    <ui-select multiple name="CORRECTANSWERS" style="width: 100%;"
+                                      data-ng-model="element.correctAnswers" theme="bootstrap"
+                                      data-ng-required="element.useCorrectAnswers"
+                                      data-ng-disabled="!element.useCorrectAnswers"
+                                      title="Insira as respostas corretas">
+                                      <ui-select-match
+                                        placeholder="Insira as respostas corretas...">{{$item.value}}</ui-select-match>
+                                      <ui-select-choices
+                                        repeat="answer.id as answer in element.options | filter:$select.search">
+                                        {{answer.value}}
+                                      </ui-select-choices>
+                                    </ui-select>
+                                    <span class="help-block error-group"
+                                      data-ng-messages="ELEMENT.CORRECTANSWERS.$error"
+                                      data-ng-if="ELEMENT.CORRECTANSWERS.$dirty && ELEMENT.CORRECTANSWERS.$invalid">
+                                      <span data-ng-message="required">Este campo é obrigatório</span>
+                                    </span>
+                                  </div>
+
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row" data-ng-switch-when="file">
+                          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="portlet portlet-light" id="element-parent">
+                              <div class="portlet-title">
+                                <div class="caption">
+                                  <i class="fa-solid fa-file fa-xs"></i>
+                                  <span class="caption-subject bold uppercase">Arquivo</span>
+                                  <span class="caption-helper">elemento de arquivo</span>
+                                </div>
+
+                                <div class="actions element-hidden-child">
+                                  <div class="btn-group btn-group-xs">
+                                    <button type="button" class="btn btn-link"
+                                      title="Alterar ordem deste elemento para cima"
+                                      data-ng-click="ctrl.form.changeElementOrder(section.id, element, 'up');"><i
+                                        class="fa fa-arrow-up fa-xs"></i></button>
+                                    <button type="button" class="btn btn-link"
+                                      title="Alterar ordem deste elemento para baixo"
+                                      data-ng-click="ctrl.form.changeElementOrder(section.id, element, 'down');"><i
+                                        class="fa fa-arrow-down fa-xs"></i></button>
+                                    <button type="button" class="btn btn-link" title="Remover este elemento"
+                                      data-ng-click="ctrl.form.deleteElementFromSectionById(section.id, element.id);"><i
+                                        class="fa fa-trash fa-xs"></i></button>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="portlet-body">
+                                <div class="form-body">
+                                  <div class="form-group" title="Esta é a pergunta que será apresentada no formulário"
+                                    data-ng-class="ELEMENT.TITLE.$dirty && ELEMENT.TITLE.$invalid ? 'has-error' : '' ">
+                                    <label class="control-label">Título <span class="required">*</span></label>
+                                    <textarea type="text" class="form-control input-sm" data-ng-model="element.title"
+                                      placeholder="Qual é o título da pergunta" data-ng-required="true" minlength="3"
+                                      maxlength="1001" data-ng-minlength="3" data-ng-maxlength="1000" rows="1"
+                                      name="TITLE"></textarea>
+                                    <span class="help-block" data-ng-messages="ELEMENT.TITLE.$error"
+                                      data-ng-if="ELEMENT.TITLE.$dirty && ELEMENT.TITLE.$invalid">
+                                      <span data-ng-message="required">Este campo é obrigatório</span>
+                                      <span data-ng-message="minlength">O campo precisa ter no mínimo 3
+                                        caracteres</span>
+                                      <span data-ng-message="maxlength">O campo precisa ter no máximo 1000
+                                        caracteres</span>
+                                    </span>
+                                  </div>
+
+                                  <div class="form-group"
+                                    title="Este campo permite que sejam apresentadas maiores informações sobre a que se deseja na pergunta"
+                                    data-ng-class="ELEMENT.DESCRIPTION.$invalid ? 'has-error' : '' ">
+                                    <label class="control-label">Descrição</label>
+                                    <textarea type="text" class="form-control input-sm"
+                                      data-ng-model="element.description"
+                                      placeholder="Ajude o respondente explicando melhor o que se deseja com a resposta [opcional]"
+                                      maxlength="4001" data-ng-maxlength="4000" rows="1" name="DESCRIPTION"></textarea>
+                                    <span class="help-block error-group" data-ng-messages="ELEMENT.DESCRIPTION.$error"
+                                      data-ng-if="ELEMENT.DESCRIPTION.$dirty && ELEMENT.DESCRIPTION.$invalid">
+                                      <span data-ng-message="maxlength">O campo precisa ter no máximo 4000
+                                        caracteres</span>
+                                    </span>
+                                  </div>
+
+                                  <div class="form-group" title="Tipos de arquivos aceitos pelo sistema"
+                                    data-ng-class="ELEMENT.ACCEPTEDFILESEXTENSIONS.$invalid ? 'has-error' : '' ">
+                                    <label class="control-label">Tipos de Arquivos permitidos</label>
+                                    <ui-select multiple name="ACCEPTEDFILESEXTENSIONS" style="width: 100%;"
+                                      data-ng-model="element.acceptedFilesExtensions" theme="bootstrap"
+                                      data-ng-required="true" title="Selecione os tipos permitidos...">
+                                      <ui-select-match
+                                        placeholder="Escolha os tipos aceitos...">{{$item.title}}</ui-select-match>
+                                      <ui-select-choices
+                                        repeat="ext.ext as ext in ctrl.form.acceptedFilesExtensions | filter:$select.search">
+                                        {{ext.title}}
+                                        <small>[{{ext.ext}}]</small>
+                                      </ui-select-choices>
+                                    </ui-select>
+                                    <span class="help-block error-group"
+                                      data-ng-messages="ELEMENT.ACCEPTEDFILESEXTENSIONS.$error"
+                                      data-ng-if="ELEMENT.ACCEPTEDFILESEXTENSIONS.$dirty && ELEMENT.ACCEPTEDFILESEXTENSIONS.$invalid">
+                                      <span data-ng-message="required">Este campo é obrigatório</span>
+                                    </span>
+                                  </div>
+
+
+                                  <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                      <div class="form-group"
+                                        title="Define se o campo é de preenchimento obrigatório pelo respondente">
+                                        <label class="control-label">Preenchimento obrigatório <span
+                                            class="required">*</span></label>
+                                        <div class="block">
+                                          <label class="control-label inline-block"
+                                            title="Configura o preenchimento deste campo como obrigatório"><input
+                                              type="radio" name="radio-required-{{element.id}}" data-ng-value="true"
+                                              data-ng-model="element.required" />
+                                            Sim</label>
+                                          <label class="control-label inline-block"
+                                            title="Configura o preenchimento deste campo como não obrigatório"><input
+                                              type="radio" name="radio-required-{{element.id}}" data-ng-value="false"
+                                              data-ng-model="element.required" />
+                                            Não</label>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                      <div class="form-group"
+                                        title="Define se o sistema utilizará a funcionalidade de pontuação">
+                                        <label class="control-label">Usar Pontuação <span
+                                            class="required">*</span></label>
+                                        <div class="block">
+                                          <label class="control-label inline-block"
+                                            title="Configura o uso de pontuação como ativo"><input type="radio"
+                                              name="radio-punctuation-{{element.id}}" data-ng-value="true"
+                                              data-ng-model="element.usePunctuation" />
+                                            Sim</label>
+                                          <label class="control-label inline-block"
+                                            title="Configura o uso de pontuação como inativo"><input type="radio"
+                                              name="radio-punctuation-{{element.id}}" data-ng-value="false"
+                                              data-ng-model="element.usePunctuation" />
+                                            Não</label>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div class="form-group"
+                                    title="Quantidade de pontos atribuídos a resposta caso a mesma seja considerada correta pelo sistema"
+                                    data-ng-if="element.usePunctuation"
+                                    data-ng-class="ELEMENT.PUNCTUATION.$invalid ? 'has-error' : '' ">
+                                    <label class="control-label">Peso</label>
+                                    <input type="number" class="form-control input-sm" step="0.1"
+                                      data-ng-required="element.usePunctuation"
+                                      data-ng-disabled="!element.usePunctuation" data-ng-model="element.punctuation"
+                                      placeholder="(000 | 0.00) [opcional]" name="PUNCTUATION" />
+                                    <span class="help-block error-group" data-ng-messages="ELEMENT.PUNCTUATION.$error"
+                                      data-ng-if="ELEMENT.PUNCTUATION.$dirty && ELEMENT.PUNCTUATION.$invalid">
+                                      <span data-ng-message="required">Este campo é obrigatório</span>
+                                      <span data-ng-message="number">O número não é valido</span>
+                                    </span>
+                                  </div>
+
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div> -->
+
+                      </div>
+                  </div>
+
+                  </fieldset>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </main>
+
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="bower_components/angular/angular.min.js"></script>
+  <script src="bower_components/angular-messages/angular-messages.min.js"></script>
+  <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+  <script src="bower_components/angular-ui-select/dist/select.min.js"></script>
+  <script src="bower_components/angular-toastr/dist/angular-toastr.min.js"></script>
+  <script src="bower_components/angular-toastr/dist/angular-toastr.tpls.min.js"></script>
+  <script src="bower_components/lodash/dist/lodash.min.js"></script>
+
+  <script src="js/app.js"></script>
+  <script src="js/formResponseController.js"></script>
+  <script src="js/fornFormUtils.fact.js"></script>
+  <script src="js/file-model.drct.js"></script>
+
+</body>
+
+</html>

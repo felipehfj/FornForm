@@ -5,11 +5,11 @@
 
 	angular
 		.module('TestApp')
-		.controller('TestController', TestController);
+		.controller('FormCreateController', FormCreateController);
 
-	TestController.$inject = ['$scope', '$http', 'toastr', 'FornFormUtilsService', '_'];
+		FormCreateController.$inject = ['$scope', '$http', 'toastr', 'FornFormUtilsService', '_'];
 
-	function TestController($scope, $http, toastr, FFUService, _) {
+	function FormCreateController($scope, $http, toastr, FFUService, _) {
 		var vm = this;
 
 		vm.form = {
