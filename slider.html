@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+  <title>Form Response</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css" />
+  <link rel="stylesheet" href="bower_components/angular/angular-csp.css" />
+  <link rel="stylesheet" href="bower_components/angular-ui-select/dist/select.min.css" />
+  <link rel="stylesheet" href="bower_components/angular-toastr/dist/angular-toastr.min.css" />
+  <link rel="stylesheet" href="bower_components/Font-Awesome/css/all.min.css" />
+  <link rel="stylesheet" href="css/global-style.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/components-md.css" />
+  <link rel="stylesheet" href="css/plugins.css" />
+  <link rel="stylesheet" href="css/plugins-md.css" />
+  <link rel="stylesheet" href="css/slider.css" />
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+  <div class="container">
+    <div class="content">
+      <div class="slide vermelho"></div>
+      <div class="slide azul"></div>
+      <div class="slide verde"></div>
+    </div>
+
+    <div class="control-slide">
+      <button class="btn btn-default" onclick="plusDivs(-1)">❮ Voltar</button>
+      <button class="btn btn-default" onclick="plusDivs(1)">Próximo ❯</button>
+    </div>
+  </div>
+
+
+  <script>
+    var slideIndex = 1;
+    showDivs(slideIndex);
+
+    function plusDivs(n) {
+      showDivs(slideIndex += n);
+    }
+
+    function showDivs(n) {
+      var i;
+      var x = document.getElementsByClassName("slide");
+
+      if (n > x.length) { slideIndex = 1 }
+      if (n < 1) { slideIndex = x.length }
+      for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+      }
+
+      x[slideIndex - 1].style.display = "block";
+
+    }
+  </script>
+</body>
+
+</html>

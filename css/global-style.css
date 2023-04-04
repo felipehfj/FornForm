@@ -85,3 +85,14 @@ body {
 #option-parent:hover .option-hidden-child {
   visibility: visible;
 }
+
+.slide {
+  display: none;
+  width: 100%;    
+}
+
+.control-slide {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

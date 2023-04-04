@@ -13,8 +13,26 @@
     var vm = this;
 
     vm.form = {
+      slideIndex: 1,
       file: {},
       structure: [],
+      slideTo: function (n) {
+        console.log('slideTo',n)
+        this.showSlide(this.slideIndex += n);
+      },
+      showSlide: function (n) {
+        var i;
+        var x = document.getElementsByClassName("slide");
+
+        console.log(x.length);
+        if (n > x.length) { this.slideIndex = 1 }
+        if (n < 1) { this.slideIndex = x.length }
+        for (i = 0; i < x.length; i++) {
+          x[i].style.display = "none";
+        }
+
+        x[this.slideIndex - 1].style.display = "block";
+      },
       join: function (elements) {
         return elements.join(',');
       },
@@ -29,6 +47,8 @@
           console.log(event.target.result);
           vm.form.structure = angular.fromJson(event.target.result);
           toastr.info('Arquivo carregado com sucesso', 'Sucesso');
+          setTimeout(() => vm.form.showSlide(vm.form.slideIndex), 100);
+
         }
 
         document.getElementById('file').addEventListener('change', onChange);

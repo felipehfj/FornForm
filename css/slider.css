@@ -1,0 +1,23 @@
+.vermelho {
+  background-color: red
+}
+
+.azul {
+  background-color: blue
+}
+
+.verde {
+  background-color: green
+}
+
+.slide {
+  display: none;
+  width: 100%;  
+  height: calc(100vh - 100px);
+}
+
+.control-slide {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
