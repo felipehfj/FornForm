@@ -57,6 +57,8 @@
                   <div class="portlet-title">
                     <h3>{{section.title}}</h3>
                     <h4>{{section.description}}</h4>
+                    <div><i class="fa-solid"
+                        data-ng-class="SECTION.$valid ? 'fa-thumbs-up green':'fa-thumbs-down red'"></i></div>
                   </div>
                   <div class="portlet-body">
 
@@ -239,19 +241,17 @@
                                 <div class="col-md-12" data-ng-switch-when="file">
                                   <div class="form-body">
                                     <div class="form-group" title="Escreva a sua resposta"
-                                      data-ng-class="ELEMENT.RESPONSE.$dirty && ELEMENT.RESPONSE.$invalid ? 'has-error' : '' ">
+                                      data-ng-class="ELEMENT.RESPONSE.$invalid ? 'has-error' : '' ">
                                       <label class="control-label">Resposta <span class="required"
                                           data-ng-if="element.required">*</span></label>
                                       <input type="file" class="form-control input-sm"
                                         accept="{{ctrl.form.join(element.acceptedFilesExtensions)}}"
-                                        data-ng-fileModel="element.response[0]" placeholder="Escolha um arquivo"
-                                        data-ng-required="element.required" name="RESPONSE"></input>
+                                        data-ng-model="element.response[0]" file-model placeholder="Escolha um arquivo"
+                                        data-ng-required="element.required" name="RESPONSE" />
                                       <span class="help-block" data-ng-messages="ELEMENT.RESPONSE.$error"
-                                        data-ng-if="ELEMENT.RESPONSE.$dirty && ELEMENT.RESPONSE.$invalid">
+                                        data-ng-if="ELEMENT.RESPONSE.$invalid">
                                         <span data-ng-message="required">Este campo é obrigatório</span>
-                                        <span data-ng-message="maxlength">O campo precisa ter no máximo 200
-                                          caracteres</span>
-                                        <span data-ng-message="file">O campo precisa ter um arquivo válido</span>
+                                        <span data-ng-message="fileExtension">Extensão inválida</span>
                                       </span>
                                     </div>
                                   </div>
