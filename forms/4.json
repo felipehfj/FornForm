@@ -1,0 +1,29 @@
+[
+  {
+    "id": "RfXkdZcZ",
+    "order": 0,
+    "type": "section",
+    "title": "Seção A",
+    "description": "",
+    "navigation": "5zm8ISlz",
+    "elements": []
+  },
+  {
+    "id": "hSXguz4H",
+    "order": 1,
+    "type": "section",
+    "title": "Seção B",
+    "description": "",
+    "navigation": "end",
+    "elements": []
+  },
+  {
+    "id": "5zm8ISlz",
+    "order": 2,
+    "type": "section",
+    "title": "Seção C",
+    "description": "",
+    "navigation": "hSXguz4H",
+    "elements": []
+  }
+]

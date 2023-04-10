@@ -1,0 +1,39 @@
+[
+  {
+    "id": "mkTQkMBx",
+    "order": 0,
+    "type": "section",
+    "title": "Seção 1",
+    "description": "",
+    "navigation": "next",
+    "elements": [
+      {
+        "id": "jLBQdZeL",
+        "order": 0,
+        "type": "multiple",
+        "required": false,
+        "title": "Nova pergunta",
+        "description": "",
+        "usePunctuation": true,
+        "punctuation": 0,
+        "options": [
+          {
+            "id": "lUaOb55Y",
+            "order": 0,
+            "name": "lUaOb55Y",
+            "value": "Nova opção",
+            "description": "",
+            "checked": false
+          }
+        ],
+        "response": [],
+        "useCorrectAnswers": true,
+        "correctAnswers": [
+          "lUaOb55Y"
+        ],
+        "acceptedFilesExtensions": [],
+        "navigation": "next"
+      }
+    ]
+  }
+]

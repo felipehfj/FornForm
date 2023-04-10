@@ -50,230 +50,261 @@
         <div class="portlet-body">
           <div data-ng-form="" name="STRUCTURE" novalidate>
             <div data-ng-repeat="section in ctrl.form.structure" class="slide">
-
               <div data-ng-form="" name="SECTION" novalidate>
 
                 <div class="portlet portlet-light" id="section-parent">
                   <div class="portlet-title">
-                    <h3>{{section.title}}</h3>
+                    <h3>{{section.title}} - {{section.id}}</h3>
                     <h4>{{section.description}}</h4>
-                    <div><i class="fa-solid"
-                        data-ng-class="SECTION.$valid ? 'fa-thumbs-up green':'fa-thumbs-down red'"></i></div>
                   </div>
                   <div class="portlet-body">
+                    <div data-ng-switch="section.type">
+                      <div data-ng-switch-when="submit">
+                        <div class="note note-info">
+                          Você já pode enviar o formulário
+                        </div>
+                      </div>
+                      <div data-ng-switch-when="section">
+                        <fieldset>
+                          <legend></legend>
+                          <div class="row" data-ng-repeat="element in section.elements | orderBy: 'order' ">
 
-                    <fieldset>
-                      <legend></legend>
-                      <div class="row" data-ng-repeat="element in section.elements | orderBy: 'order' ">
-
-                        <div class="col-md-12">
-                          <div class="portlet portlet-light" id="element-parent">
-                            <div class="portlet-title">
-                              <h4><strong>{{element.title}}</strong></h4>
-                              <h5>{{element.description}}</h5>
-                            </div>
-                            <div class="portlet-body">
-                              <div data-ng-switch="element.type" data-ng-form name="ELEMENT" class="row">
-                                <div class="col-md-12" data-ng-switch-when="label"></div>
-                                <div class="col-md-12" data-ng-switch-when="text">
-                                  <div class="form-body">
-                                    <div class="form-group" title="Escreva a sua resposta"
-                                      data-ng-class="ELEMENT.RESPONSE.$dirty && ELEMENT.RESPONSE.$invalid ? 'has-error' : '' ">
-                                      <label class="control-label">Resposta <span class="required"
-                                          data-ng-if="element.required">*</span></label>
-                                      <textarea type="text" class="form-control input-sm"
-                                        data-ng-model="element.response[0]" placeholder="Escreva sua resposta aqui"
-                                        data-ng-required="element.required" maxlength="201" data-ng-maxlength="200"
-                                        rows="2" name="RESPONSE"></textarea>
-                                      <span class="help-block" data-ng-messages="ELEMENT.RESPONSE.$error"
-                                        data-ng-if="ELEMENT.RESPONSE.$dirty && ELEMENT.RESPONSE.$invalid">
-                                        <span data-ng-message="required">Este campo é obrigatório</span>
-                                        <span data-ng-message="maxlength">O campo precisa ter no máximo 200
-                                          caracteres</span>
-                                      </span>
-                                    </div>
-                                  </div>
+                            <div class="col-md-12">
+                              <div class="portlet portlet-light" id="element-parent">
+                                <div class="portlet-title">
+                                  <h4><strong>{{element.title}}</strong></h4>
+                                  <h5>{{element.description}}</h5>
                                 </div>
-                                <div class="col-md-12" data-ng-switch-when="paragraph">
-                                  <div class="form-body">
-                                    <div class="form-group" title="Escreva a sua resposta"
-                                      data-ng-class="ELEMENT.RESPONSE.$dirty && ELEMENT.RESPONSE.$invalid ? 'has-error' : '' ">
-                                      <label class="control-label">Resposta <span class="required"
-                                          data-ng-if="element.required">*</span></label>
-                                      <textarea type="text" class="form-control input-sm"
-                                        data-ng-model="element.response[0]" placeholder="Escreva sua resposta aqui"
-                                        data-ng-required="element.required" maxlength="4001" data-ng-maxlength="4000"
-                                        rows="4" name="RESPONSE"></textarea>
-                                      <span class="help-block" data-ng-messages="ELEMENT.RESPONSE.$error"
-                                        data-ng-if="ELEMENT.RESPONSE.$dirty && ELEMENT.RESPONSE.$invalid">
-                                        <span data-ng-message="required">Este campo é obrigatório</span>
-                                        <span data-ng-message="maxlength">O campo precisa ter no máximo 100
-                                          caracteres</span>
-                                      </span>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-md-12" data-ng-switch-when="number">
-                                  <div class="form-body">
-                                    <div class="form-group" title="Escreva a sua resposta"
-                                      data-ng-class="ELEMENT.RESPONSE.$dirty && ELEMENT.RESPONSE.$invalid ? 'has-error' : '' ">
-                                      <label class="control-label">Resposta <span class="required"
-                                          data-ng-if="element.required">*</span></label>
-                                      <input type="number" class="form-control input-sm"
-                                        data-ng-model="element.response[0]" placeholder="Escreva sua resposta aqui"
-                                        data-ng-required="element.required" name="RESPONSE"></input>
-                                      <span class="help-block" data-ng-messages="ELEMENT.RESPONSE.$error"
-                                        data-ng-if="ELEMENT.RESPONSE.$dirty && ELEMENT.RESPONSE.$invalid">
-                                        <span data-ng-message="required">Este campo é obrigatório</span>
-                                        <span data-ng-message="number">O campo precisa ter um número válido</span>
-                                      </span>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-md-12" data-ng-switch-when="email">
-                                  <div class="form-body">
-                                    <div class="form-group" title="Escreva a sua resposta"
-                                      data-ng-class="ELEMENT.RESPONSE.$dirty && ELEMENT.RESPONSE.$invalid ? 'has-error' : '' ">
-                                      <label class="control-label">Resposta <span class="required"
-                                          data-ng-if="element.required">*</span></label>
-                                      <input type="email" class="form-control input-sm"
-                                        data-ng-model="element.response[0]" placeholder="Escreva sua resposta aqui"
-                                        data-ng-maxlength="200" maxlength="201" data-ng-required="element.required"
-                                        name="RESPONSE"></input>
-                                      <span class="help-block" data-ng-messages="ELEMENT.RESPONSE.$error"
-                                        data-ng-if="ELEMENT.RESPONSE.$dirty && ELEMENT.RESPONSE.$invalid">
-                                        <span data-ng-message="required">Este campo é obrigatório</span>
-                                        <span data-ng-message="maxlength">O campo precisa ter no máximo 200
-                                          caracteres</span>
-                                        <span data-ng-message="email">O campo precisa ter um e-mail válido</span>
-                                      </span>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-md-12" data-ng-switch-when="date">
-                                  <div class="form-body">
-                                    <div class="form-group" title="Escreva a sua resposta"
-                                      data-ng-class="ELEMENT.RESPONSE.$dirty && ELEMENT.RESPONSE.$invalid ? 'has-error' : '' ">
-                                      <label class="control-label">Resposta <span class="required"
-                                          data-ng-if="element.required">*</span></label>
-                                      <input type="date" class="form-control input-sm"
-                                        data-ng-model="element.response[0]" placeholder="Escreva sua resposta aqui"
-                                        data-ng-maxlength="200" maxlength="201" data-ng-required="element.required"
-                                        name="RESPONSE"></input>
-                                      <span class="help-block" data-ng-messages="ELEMENT.RESPONSE.$error"
-                                        data-ng-if="ELEMENT.RESPONSE.$dirty && ELEMENT.RESPONSE.$invalid">
-                                        <span data-ng-message="required">Este campo é obrigatório</span>
-                                        <span data-ng-message="maxlength">O campo precisa ter no máximo 200
-                                          caracteres</span>
-                                        <span data-ng-message="email">O campo precisa ter um e-mail válido</span>
-                                      </span>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-md-12" data-ng-switch-when="radio">
-                                  <div class="form-body">
-                                    <div class="form-group" title="Escreva a sua resposta"
-                                      data-ng-class="ELEMENT.RESPONSE.$dirty && ELEMENT.RESPONSE.$invalid ? 'has-error' : '' ">
-                                      <label class="control-label">Resposta <span class="required"
-                                          data-ng-if="element.required">*</span></label>
-
-                                      <div data-ng-repeat="option in element.options">
-                                        <label title="{{option.description}}">
-                                          <input type="radio" name="{{option.name}}" data-ng-value="option.value"
-                                            data-ng-model="element.response[0]" /> {{option.value}}
-                                        </label>
+                                <div class="portlet-body">
+                                  <div data-ng-switch="element.type" data-ng-form name="ELEMENT" class="row">
+                                    <div class="col-md-12" data-ng-switch-when="label"></div>
+                                    <div class="col-md-12" data-ng-switch-when="text">
+                                      <div class="form-body">
+                                        <div class="form-group" title="Escreva a sua resposta"
+                                          data-ng-class="ELEMENT.RESPONSE.$dirty && ELEMENT.RESPONSE.$invalid ? 'has-error' : '' ">
+                                          <label class="control-label">Resposta <span class="required"
+                                              data-ng-if="element.required">*</span></label>
+                                          <textarea type="text" class="form-control input-sm"
+                                            data-ng-model="element.response[0]" placeholder="Escreva sua resposta aqui"
+                                            data-ng-required="element.required" maxlength="201" data-ng-maxlength="200"
+                                            rows="2" name="RESPONSE"></textarea>
+                                          <span class="help-block" data-ng-messages="ELEMENT.RESPONSE.$error"
+                                            data-ng-if="ELEMENT.RESPONSE.$dirty && ELEMENT.RESPONSE.$invalid">
+                                            <span data-ng-message="required">Este campo é obrigatório</span>
+                                            <span data-ng-message="maxlength">O campo precisa ter no máximo 200
+                                              caracteres</span>
+                                          </span>
+                                        </div>
                                       </div>
-                                      <span class="help-block" data-ng-messages="ELEMENT.RESPONSE.$error"
-                                        data-ng-if="ELEMENT.RESPONSE.$dirty && ELEMENT.RESPONSE.$invalid">
-                                        <span data-ng-message="required">Este campo é obrigatório</span>
-                                      </span>
                                     </div>
-                                  </div>
-                                </div>
-                                <div class="col-md-12" data-ng-switch-when="select">
-                                  <div class="form-body">
-                                    <div class="form-group" title="Escreva a sua resposta"
-                                      data-ng-class="ELEMENT.RESPONSE.$dirty && ELEMENT.RESPONSE.$invalid ? 'has-error' : '' ">
-                                      <label class="control-label">Resposta <span class="required"
-                                          data-ng-if="element.required">*</span></label>
-
-                                      <ui-select name="RESPONSE" style="width: 100%;"
-                                        data-ng-model="element.response[0]" data-ng-required="element.required"
-                                        theme="bootstrap" title="Insira as respostas corretas">
-                                        <ui-select-match
-                                          placeholder="Selecione sua resposta">{{$select.selected.value}}</ui-select-match>
-                                        <ui-select-choices
-                                          repeat="option.value as option in element.options | filter:$select.search">
-                                          {{option.value}}
-                                        </ui-select-choices>
-                                      </ui-select>
-
-                                      <span class="help-block" data-ng-messages="ELEMENT.RESPONSE.$error"
-                                        data-ng-if="ELEMENT.RESPONSE.$dirty && ELEMENT.RESPONSE.$invalid">
-                                        <span data-ng-message="required">Este campo é obrigatório</span>
-                                        <span data-ng-message="maxlength">O campo precisa ter no máximo 200
-                                          caracteres</span>
-                                        <span data-ng-message="email">O campo precisa ter um e-mail válido</span>
-                                      </span>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-md-12" data-ng-switch-when="multiple">
-                                  <div class="form-body">
-                                    <div class="form-group" title="Escreva a sua resposta"
-                                      data-ng-class="ELEMENT.RESPONSE.$dirty && ELEMENT.RESPONSE.$invalid ? 'has-error' : '' ">
-                                      <label class="control-label">Resposta <span class="required"
-                                          data-ng-if="element.required">*</span></label>
-
-                                      <div data-ng-repeat="option in element.options">
-                                        <label title="{{option.description}}">
-                                          <input type="checkbox" name="{{option.name}}" data-ng-value="option.value"
-                                            data-ng-model="element.response[$index]" /> {{option.value}}
-                                        </label>
+                                    <div class="col-md-12" data-ng-switch-when="paragraph">
+                                      <div class="form-body">
+                                        <div class="form-group" title="Escreva a sua resposta"
+                                          data-ng-class="ELEMENT.RESPONSE.$dirty && ELEMENT.RESPONSE.$invalid ? 'has-error' : '' ">
+                                          <label class="control-label">Resposta <span class="required"
+                                              data-ng-if="element.required">*</span></label>
+                                          <textarea type="text" class="form-control input-sm"
+                                            data-ng-model="element.response[0]" placeholder="Escreva sua resposta aqui"
+                                            data-ng-required="element.required" maxlength="4001"
+                                            data-ng-maxlength="4000" rows="4" name="RESPONSE"></textarea>
+                                          <span class="help-block" data-ng-messages="ELEMENT.RESPONSE.$error"
+                                            data-ng-if="ELEMENT.RESPONSE.$dirty && ELEMENT.RESPONSE.$invalid">
+                                            <span data-ng-message="required">Este campo é obrigatório</span>
+                                            <span data-ng-message="maxlength">O campo precisa ter no máximo 100
+                                              caracteres</span>
+                                          </span>
+                                        </div>
                                       </div>
-                                      <span class="help-block" data-ng-messages="ELEMENT.RESPONSE.$error"
-                                        data-ng-if="ELEMENT.RESPONSE.$dirty && ELEMENT.RESPONSE.$invalid">
-                                        <span data-ng-message="required">Este campo é obrigatório</span>
-                                      </span>
                                     </div>
-                                  </div>
-                                </div>
-                                <div class="col-md-12" data-ng-switch-when="file">
-                                  <div class="form-body">
-                                    <div class="form-group" title="Escreva a sua resposta"
-                                      data-ng-class="ELEMENT.RESPONSE.$invalid ? 'has-error' : '' ">
-                                      <label class="control-label">Resposta <span class="required"
-                                          data-ng-if="element.required">*</span></label>
-                                      <input type="file" class="form-control input-sm"
-                                        accept="{{ctrl.form.join(element.acceptedFilesExtensions)}}"
-                                        data-ng-model="element.response[0]" file-model placeholder="Escolha um arquivo"
-                                        data-ng-required="element.required" name="RESPONSE" />
-                                      <span class="help-block" data-ng-messages="ELEMENT.RESPONSE.$error"
-                                        data-ng-if="ELEMENT.RESPONSE.$invalid">
-                                        <span data-ng-message="required">Este campo é obrigatório</span>
-                                        <span data-ng-message="fileExtension">Extensão inválida</span>
-                                      </span>
+                                    <div class="col-md-12" data-ng-switch-when="number">
+                                      <div class="form-body">
+                                        <div class="form-group" title="Escreva a sua resposta"
+                                          data-ng-class="ELEMENT.RESPONSE.$dirty && ELEMENT.RESPONSE.$invalid ? 'has-error' : '' ">
+                                          <label class="control-label">Resposta <span class="required"
+                                              data-ng-if="element.required">*</span></label>
+                                          <input type="number" class="form-control input-sm"
+                                            data-ng-model="element.response[0]" placeholder="Escreva sua resposta aqui"
+                                            data-ng-required="element.required" name="RESPONSE"></input>
+                                          <span class="help-block" data-ng-messages="ELEMENT.RESPONSE.$error"
+                                            data-ng-if="ELEMENT.RESPONSE.$dirty && ELEMENT.RESPONSE.$invalid">
+                                            <span data-ng-message="required">Este campo é obrigatório</span>
+                                            <span data-ng-message="number">O campo precisa ter um número válido</span>
+                                          </span>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="col-md-12" data-ng-switch-when="email">
+                                      <div class="form-body">
+                                        <div class="form-group" title="Escreva a sua resposta"
+                                          data-ng-class="ELEMENT.RESPONSE.$dirty && ELEMENT.RESPONSE.$invalid ? 'has-error' : '' ">
+                                          <label class="control-label">Resposta <span class="required"
+                                              data-ng-if="element.required">*</span></label>
+                                          <input type="email" class="form-control input-sm"
+                                            data-ng-model="element.response[0]" placeholder="Escreva sua resposta aqui"
+                                            data-ng-maxlength="200" maxlength="201" data-ng-required="element.required"
+                                            name="RESPONSE"></input>
+                                          <span class="help-block" data-ng-messages="ELEMENT.RESPONSE.$error"
+                                            data-ng-if="ELEMENT.RESPONSE.$dirty && ELEMENT.RESPONSE.$invalid">
+                                            <span data-ng-message="required">Este campo é obrigatório</span>
+                                            <span data-ng-message="maxlength">O campo precisa ter no máximo 200
+                                              caracteres</span>
+                                            <span data-ng-message="email">O campo precisa ter um e-mail válido</span>
+                                          </span>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="col-md-12" data-ng-switch-when="date">
+                                      <div class="form-body">
+                                        <div class="form-group" title="Escreva a sua resposta"
+                                          data-ng-class="ELEMENT.RESPONSE.$dirty && ELEMENT.RESPONSE.$invalid ? 'has-error' : '' ">
+                                          <label class="control-label">Resposta <span class="required"
+                                              data-ng-if="element.required">*</span></label>
+                                          <input type="date" class="form-control input-sm"
+                                            data-ng-model="element.response[0]" placeholder="Escreva sua resposta aqui"
+                                            data-ng-maxlength="200" maxlength="201" data-ng-required="element.required"
+                                            name="RESPONSE"></input>
+                                          <span class="help-block" data-ng-messages="ELEMENT.RESPONSE.$error"
+                                            data-ng-if="ELEMENT.RESPONSE.$dirty && ELEMENT.RESPONSE.$invalid">
+                                            <span data-ng-message="required">Este campo é obrigatório</span>
+                                            <span data-ng-message="maxlength">O campo precisa ter no máximo 200
+                                              caracteres</span>
+                                            <span data-ng-message="email">O campo precisa ter um e-mail válido</span>
+                                          </span>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="col-md-12" data-ng-switch-when="radio">
+                                      <div class="form-body">
+                                        <div class="form-group" title="Escreva a sua resposta"
+                                          data-ng-class="ELEMENT.RESPONSE.$dirty && ELEMENT.RESPONSE.$invalid ? 'has-error' : '' ">
+                                          <label class="control-label">Resposta <span class="required"
+                                              data-ng-if="element.required">*</span></label>
+
+                                          <div data-ng-repeat="option in element.options">
+                                            <label title="{{option.description}}">
+                                              <input type="radio" name="{{option.name}}" data-ng-value="option.value"
+                                                data-ng-model="element.response[0]"
+                                                data-ng-click="ctrl.form.control.setSectionNavigationOnOptionSelect(section, option.navigateTo);"
+                                                data-ng-required="element.required && !element.response[0]" />
+                                              {{option.value}}
+                                            </label>
+                                          </div>
+                                          <span class="help-block" data-ng-messages="ELEMENT.RESPONSE.$error"
+                                            data-ng-if="ELEMENT.RESPONSE.$dirty && ELEMENT.RESPONSE.$invalid">
+                                            <span data-ng-message="required">Este campo é obrigatório</span>
+                                          </span>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="col-md-12" data-ng-switch-when="select">
+                                      <div class="form-body">
+                                        <div class="form-group" title="Escreva a sua resposta"
+                                          data-ng-class="ELEMENT.RESPONSE.$dirty && ELEMENT.RESPONSE.$invalid ? 'has-error' : '' ">
+                                          <label class="control-label">Resposta <span class="required"
+                                              data-ng-if="element.required">*</span></label>
+
+                                          <ui-select name="RESPONSE" style="width: 100%;"
+                                            data-ng-model="element.response[0]" data-ng-required="element.required"
+                                            on-select="ctrl.form.control.setSectionNavigationOnOptionSelect(section, $select.selected.navigateTo);"
+                                            theme="bootstrap" title="Insira as respostas corretas">
+                                            <ui-select-match
+                                              placeholder="Selecione sua resposta">{{$select.selected.value}}</ui-select-match>
+                                            <ui-select-choices
+                                              repeat="option.value as option in element.options | filter:$select.search">
+                                              {{option.value}}
+                                            </ui-select-choices>
+                                          </ui-select>
+
+                                          <span class="help-block" data-ng-messages="ELEMENT.RESPONSE.$error"
+                                            data-ng-if="ELEMENT.RESPONSE.$dirty && ELEMENT.RESPONSE.$invalid">
+                                            <span data-ng-message="required">Este campo é obrigatório</span>
+                                            <span data-ng-message="maxlength">O campo precisa ter no máximo 200
+                                              caracteres</span>
+                                            <span data-ng-message="email">O campo precisa ter um e-mail válido</span>
+                                          </span>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="col-md-12" data-ng-switch-when="multiple">
+                                      <div class="form-body">
+                                        <div class="form-group" title="Escreva a sua resposta"
+                                          data-ng-class="ELEMENT.RESPONSE.$dirty && ELEMENT.RESPONSE.$invalid ? 'has-error' : '' ">
+                                          <label class="control-label">Resposta <span class="required"
+                                              data-ng-if="element.required">*</span></label>
+
+                                          <div data-ng-repeat="option in element.options">
+                                            <label title="{{option.description}}">
+                                              <input type="checkbox" name="{{option.name}}" data-ng-value="option.value"
+                                                data-ng-model="element.response[$index]"
+                                                data-ng-required="element.required && !ctrl.form.hasAlmostOne(element.response)" />
+                                              {{option.value}}
+                                            </label>
+                                          </div>
+                                          <span class="help-block" data-ng-messages="ELEMENT.RESPONSE.$error"
+                                            data-ng-if="ELEMENT.RESPONSE.$dirty && ELEMENT.RESPONSE.$invalid">
+                                            <span data-ng-message="required">Este campo é obrigatório</span>
+                                          </span>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="col-md-12" data-ng-switch-when="file">
+                                      <div class="form-body">
+                                        <div class="form-group" title="Escreva a sua resposta"
+                                          data-ng-class="ELEMENT.RESPONSE.$invalid ? 'has-error' : '' ">
+                                          <label class="control-label">Resposta <span class="required"
+                                              data-ng-if="element.required">*</span></label>
+                                          <input type="file" class="form-control input-sm"
+                                            accept="{{ctrl.form.join(element.acceptedFilesExtensions)}}"
+                                            data-ng-model="element.response[0]" file-model
+                                            placeholder="Escolha um arquivo" data-ng-required="element.required"
+                                            name="RESPONSE" />
+                                          <span class="help-block" data-ng-messages="ELEMENT.RESPONSE.$error"
+                                            data-ng-if="ELEMENT.RESPONSE.$invalid">
+                                            <span data-ng-message="required">Este campo é obrigatório</span>
+                                            <span data-ng-message="fileExtension">Extensão inválida</span>
+                                          </span>
+                                        </div>
+                                      </div>
                                     </div>
                                   </div>
                                 </div>
                               </div>
                             </div>
                           </div>
-                        </div>
+                        </fieldset>
                       </div>
+                    </div>
                   </div>
 
-                  </fieldset>
+                  <div class="section-required">
+                    <div class="info">
+                      <span class="required">*</span> Campos obrigatórios
+                    </div>
+                  </div>
+                  <div class="alert alert-danger" data-ng-if="SECTION.$invalid">
+                    Existem campos obrigatórios não preenchidos ou inválidos.
+                  </div>
+                </div>
+              </div>
+
+              <div class="control-slide" data-ng-switch="section.type">
+                <div data-ng-switch-when="section" class="control-slide">
+                  <button class="btn btn-default" type="button" data-ng-disabled="ctrl.form.control.isFirst"
+                    data-ng-click="ctrl.form.control.goToPreviousSection();">❮ Voltar</button>
+                  <button class="btn btn-default" type="button" data-ng-disabled="SECTION.$invalid"
+                    data-ng-click="ctrl.form.control.goToNextSection(section.navigation, section.id)">Avançar
+                    ❯</button>
                 </div>
 
+                <div data-ng-switch-when="submit" class="control-slide">
+                  <button class="btn btn-default" type="button" data-ng-disabled="ctrl.form.control.isFirst"
+                    data-ng-click="ctrl.form.control.goToPreviousSection();">❮ Voltar</button>
+                  <button class="btn btn-default" type="button" data-ng-disabled="SECTION.$invalid"
+                    data-ng-click="ctrl.form.submit()">Enviar ❯</button>
+                </div>
               </div>
 
             </div>
-          </div>
-
-          <div class="control-slide">
-            <button class="btn btn-default" data-ng-click="ctrl.form.slideTo(-1)">❮ Voltar</button>
-            <button class="btn btn-default" data-ng-click="ctrl.form.slideTo(1)">Próximo ❯</button>
           </div>
         </div>
       </div>

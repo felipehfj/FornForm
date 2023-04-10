@@ -71,7 +71,8 @@
         };
         const NavigationType = {
             NextSection: "next",
-            EndForm: "end"
+            EndForm: "end",
+            SubmitForm: "submit"
         };
         const AllowedFileExtensions = [
             { title: "Processador de Texto", ext: ".doc,.docx,.odt" },

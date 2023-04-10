@@ -1,0 +1,163 @@
+[
+  {
+    "id": "bvor3LQQ",
+    "order": 0,
+    "type": "section",
+    "title": "Seção A",
+    "description": "",
+    "navigation": "next",
+    "elements": [
+      {
+        "id": "eXo021M5",
+        "order": 0,
+        "type": "radio",
+        "required": true,
+        "title": "Nova pergunta",
+        "description": "",
+        "usePunctuation": false,
+        "punctuation": 0,
+        "options": [
+          {
+            "id": "ISVoxJJn",
+            "order": 0,
+            "name": "eXo021M5",
+            "value": "Vai para C",
+            "description": "",
+            "checked": false,
+            "navigateTo": "WamkECdj"
+          },
+          {
+            "id": "OfvhR28j",
+            "order": 1,
+            "name": "eXo021M5",
+            "value": "Vai para D",
+            "description": "",
+            "checked": false,
+            "navigateTo": "Y4lKNLBJ"
+          }
+        ],
+        "response": [],
+        "useCorrectAnswers": false,
+        "correctAnswers": [],
+        "acceptedFilesExtensions": [],
+        "navigation": "next"
+      }
+    ]
+  },
+  {
+    "id": "JGLutCDr",
+    "order": 1,
+    "type": "section",
+    "title": "Seção B",
+    "description": "",
+    "navigation": "next",
+    "elements": [
+      {
+        "id": "iEjqNIuZ",
+        "order": 0,
+        "type": "select",
+        "required": true,
+        "title": "Nova pergunta",
+        "description": "",
+        "usePunctuation": false,
+        "punctuation": 0,
+        "options": [
+          {
+            "id": "tOQgZiCT",
+            "order": 0,
+            "name": "iEjqNIuZ",
+            "value": "Vai para A",
+            "description": "",
+            "checked": false,
+            "navigateTo": "bvor3LQQ"
+          },
+          {
+            "id": "KrgHacAl",
+            "order": 1,
+            "name": "iEjqNIuZ",
+            "value": "Vai para o Fim",
+            "description": "",
+            "checked": false,
+            "navigateTo": "end"
+          }
+        ],
+        "response": [],
+        "useCorrectAnswers": false,
+        "correctAnswers": [],
+        "acceptedFilesExtensions": [],
+        "navigation": "next"
+      }
+    ]
+  },
+  {
+    "id": "WamkECdj",
+    "order": 2,
+    "type": "section",
+    "title": "Seção C",
+    "description": "",
+    "navigation": "bvor3LQQ",
+    "elements": [
+      {
+        "id": "Wln2MRd4",
+        "order": 0,
+        "type": "paragraph",
+        "required": true,
+        "title": "Nova pergunta",
+        "description": "",
+        "usePunctuation": false,
+        "punctuation": 0,
+        "options": [],
+        "response": [],
+        "useCorrectAnswers": false,
+        "correctAnswers": [],
+        "acceptedFilesExtensions": [],
+        "navigation": "next"
+      }
+    ]
+  },
+  {
+    "id": "Y4lKNLBJ",
+    "order": 3,
+    "type": "section",
+    "title": "Seção D",
+    "description": "",
+    "navigation": "next",
+    "elements": [
+      {
+        "id": "fwML89wg",
+        "order": 0,
+        "type": "select",
+        "required": true,
+        "title": "Nova pergunta",
+        "description": "",
+        "usePunctuation": false,
+        "punctuation": 0,
+        "options": [
+          {
+            "id": "9O2urZnm",
+            "order": 0,
+            "name": "fwML89wg",
+            "value": "Vai pra B",
+            "description": "",
+            "checked": false,
+            "navigateTo": "JGLutCDr"
+          },
+          {
+            "id": "GzOQBDB5",
+            "order": 1,
+            "name": "fwML89wg",
+            "value": "Fim",
+            "description": "",
+            "checked": false,
+            "navigateTo": "end"
+          }
+        ],
+        "response": [],
+        "useCorrectAnswers": false,
+        "correctAnswers": [],
+        "acceptedFilesExtensions": [],
+        "navigation": "next"
+      }
+    ]
+  }
+]

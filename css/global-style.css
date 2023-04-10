@@ -31,6 +31,7 @@ body {
   padding: 5px 5px;
 }
 
+
 .float-right {
   float: right;
 }
@@ -38,6 +39,7 @@ body {
 .scale-dot1 {
   transform: scale(.9);
 }
+
 .scale-dot2 {
   transform: scale(.8);
 }
@@ -45,6 +47,7 @@ body {
 .scale-1dot {
   transform: scale(1.1);
 }
+
 .scale-2dot {
   transform: scale(1.2);
 }
@@ -88,11 +91,25 @@ body {
 
 .slide {
   display: none;
-  width: 100%;    
+  width: 100%;
 }
 
 .control-slide {
   display: flex;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
+
+}
+
+.section-required {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 5px 5px;
+}
+
+.section-required .info {
+  font-weight: 500;
 }
