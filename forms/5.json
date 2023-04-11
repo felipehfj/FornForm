@@ -1,0 +1,989 @@
+[
+  {
+    "id": "4ZfOODYc",
+    "order": 0,
+    "type": "section",
+    "title": "",
+    "description": "",
+    "navigation": "next",
+    "elements": [
+      {
+        "id": "Gh8nhIs5",
+        "order": 0,
+        "type": "label",
+        "required": false,
+        "title": "1. GENERAL INFORMATION",
+        "description": "",
+        "usePunctuation": false,
+        "punctuation": 0,
+        "options": [],
+        "response": [],
+        "useCorrectAnswers": false,
+        "correctAnswers": [],
+        "acceptedFilesExtensions": [],
+        "navigation": "next"
+      },
+      {
+        "id": "nbdEGZjH",
+        "order": 1,
+        "type": "label",
+        "required": false,
+        "title": "1.1 ESTABLISHMENT IDENTIFICATION",
+        "description": "",
+        "usePunctuation": false,
+        "punctuation": 0,
+        "options": [],
+        "response": [],
+        "useCorrectAnswers": false,
+        "correctAnswers": [],
+        "acceptedFilesExtensions": [],
+        "navigation": "next"
+      },
+      {
+        "id": "Jl0OgxW2",
+        "order": 2,
+        "type": "text",
+        "required": true,
+        "title": "COMPANY NAME",
+        "description": "",
+        "usePunctuation": false,
+        "punctuation": 0,
+        "options": [],
+        "response": [],
+        "useCorrectAnswers": false,
+        "correctAnswers": [],
+        "acceptedFilesExtensions": [],
+        "navigation": "next"
+      },
+      {
+        "id": "8Iszgdfl",
+        "order": 3,
+        "type": "text",
+        "required": true,
+        "title": "TRADING NAME",
+        "description": "",
+        "usePunctuation": false,
+        "punctuation": 0,
+        "options": [],
+        "response": [],
+        "useCorrectAnswers": false,
+        "correctAnswers": [],
+        "acceptedFilesExtensions": [],
+        "navigation": "next"
+      },
+      {
+        "id": "GJ5UoqBM",
+        "order": 4,
+        "type": "text",
+        "required": true,
+        "title": "TIN (TAX IDENTIFICATION NUMBER)",
+        "description": "",
+        "usePunctuation": false,
+        "punctuation": 0,
+        "options": [],
+        "response": [],
+        "useCorrectAnswers": false,
+        "correctAnswers": [],
+        "acceptedFilesExtensions": [],
+        "navigation": "next"
+      },
+      {
+        "id": "wDrTr4W7",
+        "order": 5,
+        "type": "text",
+        "required": true,
+        "title": "ADDRESS",
+        "description": "",
+        "usePunctuation": false,
+        "punctuation": 0,
+        "options": [],
+        "response": [],
+        "useCorrectAnswers": false,
+        "correctAnswers": [],
+        "acceptedFilesExtensions": [],
+        "navigation": "next"
+      },
+      {
+        "id": "2ZT18O4j",
+        "order": 6,
+        "type": "text",
+        "required": true,
+        "title": "CITY",
+        "description": "",
+        "usePunctuation": false,
+        "punctuation": 0,
+        "options": [],
+        "response": [],
+        "useCorrectAnswers": false,
+        "correctAnswers": [],
+        "acceptedFilesExtensions": [],
+        "navigation": "next"
+      },
+      {
+        "id": "2yeGEEV8",
+        "order": 7,
+        "type": "text",
+        "required": true,
+        "title": "STATE",
+        "description": "",
+        "usePunctuation": false,
+        "punctuation": 0,
+        "options": [],
+        "response": [],
+        "useCorrectAnswers": false,
+        "correctAnswers": [],
+        "acceptedFilesExtensions": [],
+        "navigation": "next"
+      },
+      {
+        "id": "T6UkBlvF",
+        "order": 8,
+        "type": "text",
+        "required": true,
+        "title": "COUNTRY",
+        "description": "",
+        "usePunctuation": false,
+        "punctuation": 0,
+        "options": [],
+        "response": [],
+        "useCorrectAnswers": false,
+        "correctAnswers": [],
+        "acceptedFilesExtensions": [],
+        "navigation": "next"
+      },
+      {
+        "id": "WznATITN",
+        "order": 9,
+        "type": "text",
+        "required": true,
+        "title": "ZIP CODE",
+        "description": "",
+        "usePunctuation": false,
+        "punctuation": 0,
+        "options": [],
+        "response": [],
+        "useCorrectAnswers": false,
+        "correctAnswers": [],
+        "acceptedFilesExtensions": [],
+        "navigation": "next"
+      },
+      {
+        "id": "hL4dv2cW",
+        "order": 10,
+        "type": "text",
+        "required": true,
+        "title": "PHONE",
+        "description": "",
+        "usePunctuation": false,
+        "punctuation": 0,
+        "options": [],
+        "response": [],
+        "useCorrectAnswers": false,
+        "correctAnswers": [],
+        "acceptedFilesExtensions": [],
+        "navigation": "next"
+      },
+      {
+        "id": "5pocNvdc",
+        "order": 11,
+        "type": "text",
+        "required": true,
+        "title": "E-MAIL",
+        "description": "",
+        "usePunctuation": false,
+        "punctuation": 0,
+        "options": [],
+        "response": [],
+        "useCorrectAnswers": false,
+        "correctAnswers": [],
+        "acceptedFilesExtensions": [],
+        "navigation": "next"
+      },
+      {
+        "id": "WxtlLpYY",
+        "order": 12,
+        "type": "radio",
+        "required": true,
+        "title": "1.2 WICH ACTIVITIES IS THE COMPANY AUTHORIZED TO PERFORM?",
+        "description": "",
+        "usePunctuation": false,
+        "punctuation": 0,
+        "options": [
+          {
+            "id": "7wkMEsTT",
+            "order": 0,
+            "name": "WxtlLpYY",
+            "value": "MANUFACTURING",
+            "checked": false,
+            "navigateTo": "next"
+          },
+          {
+            "id": "SKxbx1UM",
+            "order": 1,
+            "name": "WxtlLpYY",
+            "value": "PARTIAL MANUFACTURING",
+            "checked": false,
+            "navigateTo": "next"
+          },
+          {
+            "id": "othaPs6r",
+            "order": 2,
+            "name": "WxtlLpYY",
+            "value": "IMPORT",
+            "checked": false,
+            "navigateTo": "next"
+          },
+          {
+            "id": "9cgMnTQB",
+            "order": 3,
+            "name": "WxtlLpYY",
+            "value": "EXPORT",
+            "checked": false,
+            "navigateTo": "next"
+          },
+          {
+            "id": "sa9PvnMc",
+            "order": 4,
+            "name": "WxtlLpYY",
+            "value": "DISTRIBUTION",
+            "checked": false,
+            "navigateTo": "next"
+          },
+          {
+            "id": "7zymY3Pc",
+            "order": 5,
+            "name": "WxtlLpYY",
+            "value": "TANSPORT",
+            "checked": false,
+            "navigateTo": "next"
+          },
+          {
+            "id": "C4NLYGWz",
+            "order": 6,
+            "name": "WxtlLpYY",
+            "value": "SERVICES",
+            "checked": false,
+            "navigateTo": "next"
+          },
+          {
+            "id": "1x7LenNV",
+            "order": 7,
+            "name": "WxtlLpYY",
+            "value": "OTHERS",
+            "checked": false,
+            "navigateTo": "next"
+          }
+        ],
+        "response": [],
+        "useCorrectAnswers": false,
+        "correctAnswers": [],
+        "acceptedFilesExtensions": [],
+        "navigation": "next"
+      },
+      {
+        "id": "Eq3MWAnz",
+        "order": 13,
+        "type": "text",
+        "required": false,
+        "title": "IF THE COMPANY CAN PERFORM ANY OTHER ACTIVITY, PLEASE DESCRIBE WHICH ONE BELOW:",
+        "description": "",
+        "usePunctuation": false,
+        "punctuation": 0,
+        "options": [],
+        "response": [],
+        "useCorrectAnswers": false,
+        "correctAnswers": [],
+        "acceptedFilesExtensions": [],
+        "navigation": "next"
+      },
+      {
+        "id": "CmbpQvOw",
+        "order": 14,
+        "type": "label",
+        "required": false,
+        "title": "2. ORGANIZATION",
+        "description": "",
+        "usePunctuation": false,
+        "punctuation": 0,
+        "options": [],
+        "response": [],
+        "useCorrectAnswers": false,
+        "correctAnswers": [],
+        "acceptedFilesExtensions": [],
+        "navigation": "next"
+      },
+      {
+        "id": "VyOCZ3sp",
+        "order": 15,
+        "type": "text",
+        "required": true,
+        "title": "NUMBER OF EMPLOYEES",
+        "description": "",
+        "usePunctuation": false,
+        "punctuation": 0,
+        "options": [],
+        "response": [],
+        "useCorrectAnswers": false,
+        "correctAnswers": [],
+        "acceptedFilesExtensions": [],
+        "navigation": "next"
+      },
+      {
+        "id": "k5x67NNG",
+        "order": 16,
+        "type": "radio",
+        "required": true,
+        "title": "ARE THERE WRITTEN JOB DESCRIPTIONS FOR KEY FUNCTIONS?",
+        "description": "",
+        "usePunctuation": false,
+        "punctuation": 0,
+        "options": [
+          {
+            "id": "hxThcCg2",
+            "order": 0,
+            "name": "k5x67NNG",
+            "value": "YES",
+            "checked": false,
+            "navigateTo": "next"
+          },
+          {
+            "id": "mmuYvBsy",
+            "order": 1,
+            "name": "k5x67NNG",
+            "value": "NO",
+            "checked": false,
+            "navigateTo": "next"
+          }
+        ],
+        "response": [],
+        "useCorrectAnswers": false,
+        "correctAnswers": [],
+        "acceptedFilesExtensions": [],
+        "navigation": "next"
+      },
+      {
+        "id": "mpNi5hmx",
+        "order": 17,
+        "type": "radio",
+        "required": true,
+        "title": "ARE THERE TRAINING PROGRAMS IMPLEMENTED?",
+        "description": "",
+        "usePunctuation": false,
+        "punctuation": 0,
+        "options": [
+          {
+            "id": "hVM2E90C",
+            "order": 0,
+            "name": "mpNi5hmx",
+            "value": "YES",
+            "checked": false,
+            "navigateTo": "next"
+          },
+          {
+            "id": "mXKt9kPU",
+            "order": 1,
+            "name": "mpNi5hmx",
+            "value": "NO",
+            "checked": false,
+            "navigateTo": "next"
+          }
+        ],
+        "response": [],
+        "useCorrectAnswers": false,
+        "correctAnswers": [],
+        "acceptedFilesExtensions": [],
+        "navigation": "next"
+      },
+      {
+        "id": "LTgz41oR",
+        "order": 18,
+        "type": "radio",
+        "required": true,
+        "title": "ARE PERIODIC MEDICAL EXAMS PERFORMED ON EMPLOYEES?",
+        "description": "",
+        "usePunctuation": false,
+        "punctuation": 0,
+        "options": [
+          {
+            "id": "riEbIinG",
+            "order": 0,
+            "name": "LTgz41oR",
+            "value": "YES",
+            "checked": false,
+            "navigateTo": "next"
+          },
+          {
+            "id": "2MjMv5wg",
+            "order": 1,
+            "name": "LTgz41oR",
+            "value": "NO",
+            "checked": false,
+            "navigateTo": "next"
+          }
+        ],
+        "response": [],
+        "useCorrectAnswers": false,
+        "correctAnswers": [],
+        "acceptedFilesExtensions": [],
+        "navigation": "next"
+      },
+      {
+        "id": "6uMhk3oX",
+        "order": 19,
+        "type": "text",
+        "required": true,
+        "title": "WHO IS THE LEGAL REPRESENTATIVE OF THE COMPANY?",
+        "description": "",
+        "usePunctuation": false,
+        "punctuation": 0,
+        "options": [],
+        "response": [],
+        "useCorrectAnswers": false,
+        "correctAnswers": [],
+        "acceptedFilesExtensions": [],
+        "navigation": "next"
+      },
+      {
+        "id": "uSZHFCs0",
+        "order": 20,
+        "type": "paragraph",
+        "required": true,
+        "title": "WHO IS THE TECHNICAL PERSON RESPONSIBLE OF THE COMPANY?",
+        "description": "",
+        "usePunctuation": false,
+        "punctuation": 0,
+        "options": [],
+        "response": [],
+        "useCorrectAnswers": false,
+        "correctAnswers": [],
+        "acceptedFilesExtensions": [],
+        "navigation": "next"
+      },
+      {
+        "id": "vBvyh56o",
+        "order": 21,
+        "type": "label",
+        "required": false,
+        "title": "3. QUALITY SYSTEM",
+        "description": "",
+        "usePunctuation": false,
+        "punctuation": 0,
+        "options": [],
+        "response": [],
+        "useCorrectAnswers": false,
+        "correctAnswers": [],
+        "acceptedFilesExtensions": [],
+        "navigation": "next"
+      },
+      {
+        "id": "Wg8IkTmJ",
+        "order": 22,
+        "type": "radio",
+        "required": true,
+        "title": "IS THERE A STRUCTURED QUALITY SYSTEM IN PLACE?",
+        "description": "",
+        "usePunctuation": false,
+        "punctuation": 0,
+        "options": [
+          {
+            "id": "A7fdDzEM",
+            "order": 0,
+            "name": "Wg8IkTmJ",
+            "value": "YES",
+            "checked": false,
+            "navigateTo": "next"
+          },
+          {
+            "id": "mZy3bmmQ",
+            "order": 1,
+            "name": "Wg8IkTmJ",
+            "value": "NO",
+            "checked": false,
+            "navigateTo": "next"
+          }
+        ],
+        "response": [],
+        "useCorrectAnswers": false,
+        "correctAnswers": [],
+        "acceptedFilesExtensions": [],
+        "navigation": "next"
+      },
+      {
+        "id": "Hau7ui32",
+        "order": 23,
+        "type": "radio",
+        "required": true,
+        "title": "DOES THE COMPANY HAVE ANY CERTIFICATION?",
+        "description": "",
+        "usePunctuation": false,
+        "punctuation": 0,
+        "options": [
+          {
+            "id": "3FikeIoV",
+            "order": 0,
+            "name": "Hau7ui32",
+            "value": "YES",
+            "checked": false,
+            "navigateTo": "next"
+          },
+          {
+            "id": "BgXTo3DC",
+            "order": 1,
+            "name": "Hau7ui32",
+            "value": "NO",
+            "checked": false,
+            "navigateTo": "next"
+          }
+        ],
+        "response": [],
+        "useCorrectAnswers": false,
+        "correctAnswers": [],
+        "acceptedFilesExtensions": [],
+        "navigation": "next"
+      },
+      {
+        "id": "ZduaaWEN",
+        "order": 24,
+        "type": "text",
+        "required": true,
+        "title": "IF YES, WHICH ONE?",
+        "description": "",
+        "usePunctuation": false,
+        "punctuation": 0,
+        "options": [],
+        "response": [],
+        "useCorrectAnswers": false,
+        "correctAnswers": [],
+        "acceptedFilesExtensions": [],
+        "navigation": "next"
+      },
+      {
+        "id": "wjK2p7Kk",
+        "order": 25,
+        "type": "radio",
+        "required": true,
+        "title": "HAS THE COMPANY ALREADY BEEN AUDITED BY OTHER COMPANIES FOR QUALIFICATION?",
+        "description": "",
+        "usePunctuation": false,
+        "punctuation": 0,
+        "options": [
+          {
+            "id": "kEtdrs8L",
+            "order": 0,
+            "name": "wjK2p7Kk",
+            "value": "YES",
+            "checked": false,
+            "navigateTo": "next"
+          },
+          {
+            "id": "PZJZZ6Qk",
+            "order": 1,
+            "name": "wjK2p7Kk",
+            "value": "NO",
+            "checked": false,
+            "navigateTo": "next"
+          }
+        ],
+        "response": [],
+        "useCorrectAnswers": false,
+        "correctAnswers": [],
+        "acceptedFilesExtensions": [],
+        "navigation": "next"
+      },
+      {
+        "id": "24yUFR9P",
+        "order": 26,
+        "type": "text",
+        "required": true,
+        "title": "IF YES, WHICH COMPANIES?",
+        "description": "",
+        "usePunctuation": false,
+        "punctuation": 0,
+        "options": [],
+        "response": [],
+        "useCorrectAnswers": false,
+        "correctAnswers": [],
+        "acceptedFilesExtensions": [],
+        "navigation": "next"
+      },
+      {
+        "id": "Szg2V1Cm",
+        "order": 27,
+        "type": "radio",
+        "required": true,
+        "title": "DOES THE COMPANY HAVE WRITTEN PROCEDURES FOR THE MAIN ACTIVITIES?",
+        "description": "",
+        "usePunctuation": false,
+        "punctuation": 0,
+        "options": [
+          {
+            "id": "bwuRB2oy",
+            "order": 0,
+            "name": "Szg2V1Cm",
+            "value": "YES",
+            "checked": false,
+            "navigateTo": "next"
+          },
+          {
+            "id": "NaEcX8qJ",
+            "order": 1,
+            "name": "Szg2V1Cm",
+            "value": "NO",
+            "checked": false,
+            "navigateTo": "next"
+          }
+        ],
+        "response": [],
+        "useCorrectAnswers": false,
+        "correctAnswers": [],
+        "acceptedFilesExtensions": [],
+        "navigation": "next"
+      },
+      {
+        "id": "fM9y7vTq",
+        "order": 28,
+        "type": "radio",
+        "required": true,
+        "title": "DOES THE COMPANY ALLOW VISIT TO ITS FACILITIES IF FORMALLY REQUESTED?",
+        "description": "",
+        "usePunctuation": false,
+        "punctuation": 0,
+        "options": [
+          {
+            "id": "OXPVIfHt",
+            "order": 0,
+            "name": "fM9y7vTq",
+            "value": "YES",
+            "checked": false,
+            "navigateTo": "next"
+          },
+          {
+            "id": "WMU3NmUb",
+            "order": 1,
+            "name": "fM9y7vTq",
+            "value": "NO",
+            "checked": false,
+            "navigateTo": "next"
+          }
+        ],
+        "response": [],
+        "useCorrectAnswers": false,
+        "correctAnswers": [],
+        "acceptedFilesExtensions": [],
+        "navigation": "next"
+      },
+      {
+        "id": "SQSY2j03",
+        "order": 29,
+        "type": "label",
+        "required": false,
+        "title": "4. REGULATORY AFFAIRS",
+        "description": "",
+        "usePunctuation": false,
+        "punctuation": 0,
+        "options": [],
+        "response": [],
+        "useCorrectAnswers": false,
+        "correctAnswers": [],
+        "acceptedFilesExtensions": [],
+        "navigation": "next"
+      },
+      {
+        "id": "3BhfkA06",
+        "order": 30,
+        "type": "label",
+        "required": false,
+        "title": "DOES THE COMPANY HAVE THE DOCUMENTS BELOW? IF YES, PLEASE SEND A COPY",
+        "description": "",
+        "usePunctuation": false,
+        "punctuation": 0,
+        "options": [],
+        "response": [],
+        "useCorrectAnswers": false,
+        "correctAnswers": [],
+        "acceptedFilesExtensions": [],
+        "navigation": "next"
+      },
+      {
+        "id": "emzizasK",
+        "order": 31,
+        "type": "radio",
+        "required": true,
+        "title": "OPERATING LICENSE",
+        "description": "",
+        "usePunctuation": false,
+        "punctuation": 0,
+        "options": [
+          {
+            "id": "olhoClbm",
+            "order": 0,
+            "name": "emzizasK",
+            "value": "YES",
+            "checked": false,
+            "navigateTo": "next"
+          },
+          {
+            "id": "4YbCM7bz",
+            "order": 1,
+            "name": "emzizasK",
+            "value": "NO",
+            "checked": false,
+            "navigateTo": "next"
+          }
+        ],
+        "response": [],
+        "useCorrectAnswers": false,
+        "correctAnswers": [],
+        "acceptedFilesExtensions": [],
+        "navigation": "next"
+      },
+      {
+        "id": "2NfAyCqY",
+        "order": 32,
+        "type": "radio",
+        "required": true,
+        "title": "HEALTH LICENSE",
+        "description": "",
+        "usePunctuation": false,
+        "punctuation": 0,
+        "options": [
+          {
+            "id": "FMTIZLCy",
+            "order": 0,
+            "name": "2NfAyCqY",
+            "value": "YES",
+            "checked": false,
+            "navigateTo": "next"
+          },
+          {
+            "id": "X1zWVjCu",
+            "order": 1,
+            "name": "2NfAyCqY",
+            "value": "NO",
+            "checked": false,
+            "navigateTo": "next"
+          }
+        ],
+        "response": [],
+        "useCorrectAnswers": false,
+        "correctAnswers": [],
+        "acceptedFilesExtensions": [],
+        "navigation": "next"
+      },
+      {
+        "id": "dWu7U9K3",
+        "order": 33,
+        "type": "radio",
+        "required": true,
+        "title": "GMP CERTIFICATE",
+        "description": "",
+        "usePunctuation": false,
+        "punctuation": 0,
+        "options": [
+          {
+            "id": "r8wnRxlO",
+            "order": 0,
+            "name": "dWu7U9K3",
+            "value": "YES",
+            "checked": false,
+            "navigateTo": "next"
+          },
+          {
+            "id": "2HPmp9Uj",
+            "order": 1,
+            "name": "dWu7U9K3",
+            "value": "NO",
+            "checked": false,
+            "navigateTo": "next"
+          }
+        ],
+        "response": [],
+        "useCorrectAnswers": false,
+        "correctAnswers": [],
+        "acceptedFilesExtensions": [],
+        "navigation": "next"
+      },
+      {
+        "id": "1UGpkJoP",
+        "order": 34,
+        "type": "radio",
+        "required": true,
+        "title": "ISO 9001 CERTIFICATE",
+        "description": "",
+        "usePunctuation": false,
+        "punctuation": 0,
+        "options": [
+          {
+            "id": "24fGA06R",
+            "order": 0,
+            "name": "1UGpkJoP",
+            "value": "YES",
+            "checked": false,
+            "navigateTo": "next"
+          },
+          {
+            "id": "rNsqGUxQ",
+            "order": 1,
+            "name": "1UGpkJoP",
+            "value": "NO",
+            "checked": false,
+            "navigateTo": "next"
+          }
+        ],
+        "response": [],
+        "useCorrectAnswers": false,
+        "correctAnswers": [],
+        "acceptedFilesExtensions": [],
+        "navigation": "next"
+      },
+      {
+        "id": "ymzOWxxI",
+        "order": 35,
+        "type": "radio",
+        "required": true,
+        "title": "ISO 13485 CERTIFICATE",
+        "description": "",
+        "usePunctuation": false,
+        "punctuation": 0,
+        "options": [
+          {
+            "id": "jDsN9IOt",
+            "order": 0,
+            "name": "ymzOWxxI",
+            "value": "YES",
+            "checked": false,
+            "navigateTo": "next"
+          },
+          {
+            "id": "zrfYWdcP",
+            "order": 1,
+            "name": "ymzOWxxI",
+            "value": "NO",
+            "checked": false,
+            "navigateTo": "next"
+          }
+        ],
+        "response": [],
+        "useCorrectAnswers": false,
+        "correctAnswers": [],
+        "acceptedFilesExtensions": [],
+        "navigation": "next"
+      },
+      {
+        "id": "6n0E167q",
+        "order": 36,
+        "type": "radio",
+        "required": true,
+        "title": "ENVIROMENTAL PERMIT",
+        "description": "",
+        "usePunctuation": false,
+        "punctuation": 0,
+        "options": [
+          {
+            "id": "Ph9vvc3Y",
+            "order": 0,
+            "name": "6n0E167q",
+            "value": "YES",
+            "checked": false,
+            "navigateTo": "next"
+          },
+          {
+            "id": "x2k7m4DZ",
+            "order": 1,
+            "name": "6n0E167q",
+            "value": "NO",
+            "checked": false,
+            "navigateTo": "next"
+          }
+        ],
+        "response": [],
+        "useCorrectAnswers": false,
+        "correctAnswers": [],
+        "acceptedFilesExtensions": [],
+        "navigation": "next"
+      },
+      {
+        "id": "Zh5zokI9",
+        "order": 37,
+        "type": "radio",
+        "required": true,
+        "title": "FIRE DEPARTMENT LICENSE",
+        "description": "",
+        "usePunctuation": false,
+        "punctuation": 0,
+        "options": [
+          {
+            "id": "gtiYiUCl",
+            "order": 0,
+            "name": "Zh5zokI9",
+            "value": "YES",
+            "checked": false,
+            "navigateTo": "next"
+          },
+          {
+            "id": "PAA2HaE4",
+            "order": 1,
+            "name": "Zh5zokI9",
+            "value": "NO",
+            "checked": false,
+            "navigateTo": "next"
+          }
+        ],
+        "response": [],
+        "useCorrectAnswers": false,
+        "correctAnswers": [],
+        "acceptedFilesExtensions": [],
+        "navigation": "next"
+      },
+      {
+        "id": "GYrHbYhm",
+        "order": 38,
+        "type": "text",
+        "required": true,
+        "title": "WHO IS THE TECHNICAL PERSON RESPONSIBLE OF THE COMPANY?",
+        "description": "",
+        "usePunctuation": false,
+        "punctuation": 0,
+        "options": [],
+        "response": [],
+        "useCorrectAnswers": false,
+        "correctAnswers": [],
+        "acceptedFilesExtensions": [],
+        "navigation": "next"
+      },
+      {
+        "id": "TNDVrKwB",
+        "order": 39,
+        "type": "radio",
+        "required": true,
+        "title": "DOES THE COMPANY HAVE ITS PRODUCTS REGISTERED WITH THE REGULATORY AGENCY?",
+        "description": "",
+        "usePunctuation": false,
+        "punctuation": 0,
+        "options": [
+          {
+            "id": "oEaTLWko",
+            "order": 0,
+            "name": "TNDVrKwB",
+            "value": "YES",
+            "checked": false,
+            "navigateTo": "next"
+          },
+          {
+            "id": "6PMiGgF7",
+            "order": 1,
+            "name": "TNDVrKwB",
+            "value": "NO",
+            "checked": false,
+            "navigateTo": "next"
+          }
+        ],
+        "response": [],
+        "useCorrectAnswers": false,
+        "correctAnswers": [],
+        "acceptedFilesExtensions": [],
+        "navigation": "next"
+      }
+    ]
+  }
+]

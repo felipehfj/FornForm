@@ -68,7 +68,7 @@
                         <fieldset>
                           <legend></legend>
                           <div class="row" data-ng-repeat="element in section.elements | orderBy: 'order' ">
-
+                            <div  data-ng-form="" name="ELEMENT" novalidate>
                             <div class="col-md-12">
                               <div class="portlet portlet-light" id="element-parent">
                                 <div class="portlet-title">
@@ -76,7 +76,7 @@
                                   <h5>{{element.description}}</h5>
                                 </div>
                                 <div class="portlet-body">
-                                  <div data-ng-switch="element.type" data-ng-form name="ELEMENT" class="row">
+                                  <div data-ng-switch="element.type" class="row">
                                     <div class="col-md-12" data-ng-switch-when="label"></div>
                                     <div class="col-md-12" data-ng-switch-when="text">
                                       <div class="form-body">
@@ -269,6 +269,7 @@
                                   </div>
                                 </div>
                               </div>
+                            </div>
                             </div>
                           </div>
                         </fieldset>

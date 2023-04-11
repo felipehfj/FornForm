@@ -1,0 +1,169 @@
+[
+  {
+    "id": "qZOGZroC",
+    "order": 0,
+    "type": "section",
+    "title": "Seção 1",
+    "description": "",
+    "navigation": "next",
+    "elements": [
+      {
+        "id": "QX9PnEIJ",
+        "order": 0,
+        "type": "radio",
+        "required": true,
+        "title": "Nova pergunta 1",
+        "description": "",
+        "usePunctuation": false,
+        "punctuation": 0,
+        "options": [
+          {
+            "id": "7o36rGhI",
+            "order": 0,
+            "name": "QX9PnEIJ",
+            "value": "Nova opção",
+            "description": "",
+            "checked": false,
+            "navigateTo": "next"
+          },
+          {
+            "id": "64ydQvA3",
+            "order": 1,
+            "name": "QX9PnEIJ",
+            "value": "Nova opção 1",
+            "description": "",
+            "checked": false,
+            "navigateTo": "next"
+          }
+        ],
+        "response": [],
+        "useCorrectAnswers": false,
+        "correctAnswers": [],
+        "acceptedFilesExtensions": [],
+        "navigation": "next"
+      },
+      {
+        "id": "MyUNcbtc",
+        "order": 1,
+        "type": "radio",
+        "required": true,
+        "title": "Nova pergunta 2",
+        "description": "",
+        "usePunctuation": false,
+        "punctuation": 0,
+        "options": [
+          {
+            "id": "ChZY4Kvn",
+            "order": 0,
+            "name": "MyUNcbtc",
+            "value": "Nova opção",
+            "description": "",
+            "checked": false,
+            "navigateTo": "next"
+          },
+          {
+            "id": "1IR8n2Gn",
+            "order": 1,
+            "name": "MyUNcbtc",
+            "value": "Nova opção 1",
+            "description": "",
+            "checked": false,
+            "navigateTo": "next"
+          }
+        ],
+        "response": [],
+        "useCorrectAnswers": false,
+        "correctAnswers": [],
+        "acceptedFilesExtensions": [],
+        "navigation": "next"
+      },
+      {
+        "id": "ks2vy4Zz",
+        "order": 2,
+        "type": "select",
+        "required": true,
+        "title": "Nova pergunta 3",
+        "description": "",
+        "usePunctuation": false,
+        "punctuation": 0,
+        "options": [
+          {
+            "id": "r0eXGH50",
+            "order": 0,
+            "name": "ks2vy4Zz",
+            "value": "Nova opção",
+            "description": "",
+            "checked": false,
+            "navigateTo": "next"
+          },
+          {
+            "id": "ze7z0IdG",
+            "order": 1,
+            "name": "ks2vy4Zz",
+            "value": "Nova opção 1",
+            "description": "",
+            "checked": false,
+            "navigateTo": "next"
+          }
+        ],
+        "response": [],
+        "useCorrectAnswers": false,
+        "correctAnswers": [],
+        "acceptedFilesExtensions": [],
+        "navigation": "next"
+      },
+      {
+        "id": "j7GxljFT",
+        "order": 3,
+        "type": "multiple",
+        "required": true,
+        "title": "Nova pergunta 4",
+        "description": "",
+        "usePunctuation": false,
+        "punctuation": 0,
+        "options": [
+          {
+            "id": "4ro0TMz3",
+            "order": 0,
+            "name": "4ro0TMz3",
+            "value": "Nova opção",
+            "description": "",
+            "checked": false
+          },
+          {
+            "id": "JUoKWJov",
+            "order": 1,
+            "name": "j7GxljFT",
+            "value": "Nova opção 1",
+            "description": "",
+            "checked": false,
+            "navigateTo": "next"
+          },
+          {
+            "id": "honx21tY",
+            "order": 2,
+            "name": "j7GxljFT",
+            "value": "Nova opção 2",
+            "description": "",
+            "checked": false,
+            "navigateTo": "next"
+          },
+          {
+            "id": "ueVnoaxU",
+            "order": 3,
+            "name": "j7GxljFT",
+            "value": "Nova opção 3",
+            "description": "",
+            "checked": false,
+            "navigateTo": "next"
+          }
+        ],
+        "response": [],
+        "useCorrectAnswers": false,
+        "correctAnswers": [],
+        "acceptedFilesExtensions": [],
+        "navigation": "next"
+      }
+    ]
+  }
+]

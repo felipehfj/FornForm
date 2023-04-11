@@ -348,7 +348,7 @@
 						option = {
 							id: id,
 							order: elementOrder,
-							name: id,
+							name: elementId,
 							value: `Nova opção ${optionsLength}`,
 							description: "",
 							checked: false,
