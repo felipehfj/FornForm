@@ -169,6 +169,7 @@
 								value: "Nova opção",
 								description: "",
 								checked: false,
+								punctuation:0,
 								navigateTo: FFUService.NavigationType.NextSection
 							}
 						]
@@ -184,6 +185,7 @@
 								value: "Nova opção",
 								description: "",
 								checked: false,
+								punctuation:0,
 								navigateTo: FFUService.NavigationType.NextSection
 							}
 						]
@@ -198,6 +200,7 @@
 								name: id,
 								value: "Nova opção",
 								description: "",
+								punctuation:0,
 								checked: false,
 							}
 						]
@@ -328,6 +331,7 @@
 							value: `Nova opção ${optionsLength}`,
 							description: "",
 							checked: false,
+							punctuation: 0,
 							navigateTo: FFUService.NavigationType.NextSection
 						};
 
@@ -340,6 +344,7 @@
 							value: `Nova opção ${optionsLength}`,
 							description: "",
 							checked: false,
+							punctuation: 0,
 							navigateTo: FFUService.NavigationType.NextSection
 						};
 						break;
@@ -352,6 +357,7 @@
 							value: `Nova opção ${optionsLength}`,
 							description: "",
 							checked: false,
+							punctuation: 0
 						};
 						break;
 					default: break;

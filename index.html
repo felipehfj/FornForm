@@ -522,27 +522,7 @@
                                                 Não</label>
                                             </div>
                                           </div>
-                                        </div>
-
-                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                          <div class="form-group"
-                                            title="Define se o sistema utilizará a funcionalidade de respostas corretas para aplicar a pontuação">
-                                            <label class="control-label">Usar Respostas Corretas <span
-                                                class="required">*</span></label>
-                                            <div class="block">
-                                              <label class="control-label inline-block"
-                                                title="Configura o uso de respostas corretas como ativo"><input
-                                                  type="radio" name="radio-correct-{{element.id}}" data-ng-value="true"
-                                                  data-ng-model="element.useCorrectAnswers" />
-                                                Sim</label>
-                                              <label class="control-label inline-block"
-                                                title="Configura o uso de respostas corretas como inativo"><input
-                                                  type="radio" name="radio-correct-{{element.id}}" data-ng-value="false"
-                                                  data-ng-model="element.useCorrectAnswers" />
-                                                Não</label>
-                                            </div>
-                                          </div>
-                                        </div>
+                                        </div>                                        
                                       </div>
 
                                       <div class="form-group"
@@ -560,31 +540,7 @@
                                           <span data-ng-message="required">Este campo é obrigatório</span>
                                           <span data-ng-message="number">O número não é valido</span>
                                         </span>
-                                      </div>
-
-                                      <div class="form-group"
-                                        title="Relação das respostas consideradas corretas pelo sistema"
-                                        data-ng-if="element.useCorrectAnswers"
-                                        data-ng-class="ELEMENT.CORRECTANSWERS.$invalid ? 'has-error' : '' ">
-                                        <label class="control-label">Respostas Corretas</label>
-                                        <ui-select multiple tagging tagging-label="false" name="CORRECTANSWERS"
-                                          style="width: 100%;" data-ng-model="element.correctAnswers" theme="bootstrap"
-                                          data-ng-required="element.useCorrectAnswers"
-                                          data-ng-disabled="!element.useCorrectAnswers"
-                                          title="Insira as respostas corretas">
-                                          <ui-select-match
-                                            placeholder="Insira as respostas corretas...">{{$item}}</ui-select-match>
-                                          <ui-select-choices
-                                            repeat="answer in element.correctAnswers | filter:$select.search">
-                                            {{answer}}
-                                          </ui-select-choices>
-                                        </ui-select>
-                                        <span class="help-block error-group"
-                                          data-ng-messages="ELEMENT.CORRECTANSWERS.$error"
-                                          data-ng-if="ELEMENT.CORRECTANSWERS.$dirty && ELEMENT.CORRECTANSWERS.$invalid">
-                                          <span data-ng-message="required">Este campo é obrigatório</span>
-                                        </span>
-                                      </div>
+                                      </div>                                      
 
                                     </div>
                                   </div>
@@ -868,27 +824,7 @@
                                                 Não</label>
                                             </div>
                                           </div>
-                                        </div>
-
-                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                          <div class="form-group"
-                                            title="Define se o sistema utilizará a funcionalidade de respostas corretas para aplicar a pontuação">
-                                            <label class="control-label">Usar Respostas Corretas <span
-                                                class="required">*</span></label>
-                                            <div class="block">
-                                              <label class="control-label inline-block"
-                                                title="Configura o uso de respostas corretas como ativo"><input
-                                                  type="radio" name="radio-correct-{{element.id}}" data-ng-value="true"
-                                                  data-ng-model="element.useCorrectAnswers" />
-                                                Sim</label>
-                                              <label class="control-label inline-block"
-                                                title="Configura o uso de respostas corretas como inativo"><input
-                                                  type="radio" name="radio-correct-{{element.id}}" data-ng-value="false"
-                                                  data-ng-model="element.useCorrectAnswers" />
-                                                Não</label>
-                                            </div>
-                                          </div>
-                                        </div>
+                                        </div>                                        
                                       </div>
 
                                       <div class="form-group"
@@ -905,30 +841,6 @@
                                           data-ng-if="ELEMENT.PUNCTUATION.$dirty && ELEMENT.PUNCTUATION.$invalid">
                                           <span data-ng-message="required">Este campo é obrigatório</span>
                                           <span data-ng-message="number">O número não é valido</span>
-                                        </span>
-                                      </div>
-
-                                      <div class="form-group"
-                                        title="Relação das respostas consideradas corretas pelo sistema"
-                                        data-ng-if="element.useCorrectAnswers"
-                                        data-ng-class="ELEMENT.CORRECTANSWERS.$invalid ? 'has-error' : '' ">
-                                        <label class="control-label">Respostas Corretas</label>
-                                        <ui-select multiple tagging tagging-label="false" name="CORRECTANSWERS"
-                                          style="width: 100%;" data-ng-model="element.correctAnswers" theme="bootstrap"
-                                          data-ng-required="element.useCorrectAnswers"
-                                          data-ng-disabled="!element.useCorrectAnswers"
-                                          title="Insira as respostas corretas">
-                                          <ui-select-match
-                                            placeholder="Insira as respostas corretas...">{{$item}}</ui-select-match>
-                                          <ui-select-choices
-                                            repeat="answer in element.correctAnswers | filter:$select.search">
-                                            {{answer}}
-                                          </ui-select-choices>
-                                        </ui-select>
-                                        <span class="help-block error-group"
-                                          data-ng-messages="ELEMENT.CORRECTANSWERS.$error"
-                                          data-ng-if="ELEMENT.CORRECTANSWERS.$dirty && ELEMENT.CORRECTANSWERS.$invalid">
-                                          <span data-ng-message="required">Este campo é obrigatório</span>
                                         </span>
                                       </div>
 
@@ -1041,27 +953,7 @@
                                                 Não</label>
                                             </div>
                                           </div>
-                                        </div>
-
-                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                          <div class="form-group"
-                                            title="Define se o sistema utilizará a funcionalidade de respostas corretas para aplicar a pontuação">
-                                            <label class="control-label">Usar Respostas Corretas <span
-                                                class="required">*</span></label>
-                                            <div class="block">
-                                              <label class="control-label inline-block"
-                                                title="Configura o uso de respostas corretas como ativo"><input
-                                                  type="radio" name="radio-correct-{{element.id}}" data-ng-value="true"
-                                                  data-ng-model="element.useCorrectAnswers" />
-                                                Sim</label>
-                                              <label class="control-label inline-block"
-                                                title="Configura o uso de respostas corretas como inativo"><input
-                                                  type="radio" name="radio-correct-{{element.id}}" data-ng-value="false"
-                                                  data-ng-model="element.useCorrectAnswers" />
-                                                Não</label>
-                                            </div>
-                                          </div>
-                                        </div>
+                                        </div>                                        
                                       </div>
 
                                       <div class="form-group"
@@ -1079,32 +971,7 @@
                                           <span data-ng-message="required">Este campo é obrigatório</span>
                                           <span data-ng-message="number">O número não é valido</span>
                                         </span>
-                                      </div>
-
-                                      <div class="form-group"
-                                        title="Relação das respostas consideradas corretas pelo sistema"
-                                        data-ng-if="element.useCorrectAnswers"
-                                        data-ng-class="ELEMENT.CORRECTANSWERS.$invalid ? 'has-error' : '' ">
-                                        <label class="control-label">Respostas Corretas</label>
-                                        <ui-select multiple tagging tagging-label="false" name="CORRECTANSWERS"
-                                          style="width: 100%;" data-ng-model="element.correctAnswers" theme="bootstrap"
-                                          data-ng-required="element.useCorrectAnswers"
-                                          data-ng-disabled="!element.useCorrectAnswers"
-                                          title="Insira as respostas corretas">
-                                          <ui-select-match
-                                            placeholder="Insira as respostas corretas...">{{$item}}</ui-select-match>
-                                          <ui-select-choices
-                                            repeat="answer in element.correctAnswers | filter:$select.search">
-                                            {{answer}}
-                                          </ui-select-choices>
-                                        </ui-select>
-                                        <span class="help-block error-group"
-                                          data-ng-messages="ELEMENT.CORRECTANSWERS.$error"
-                                          data-ng-if="ELEMENT.CORRECTANSWERS.$dirty && ELEMENT.CORRECTANSWERS.$invalid">
-                                          <span data-ng-message="required">Este campo é obrigatório</span>
-                                        </span>
-                                      </div>
-
+                                      </div>                                      
                                     </div>
                                   </div>
                                 </div>
@@ -1179,10 +1046,11 @@
 
                                         <div data-ng-repeat="option in element.options" data-ng-form name="OPTION">
                                           <div class="row" id="option-parent">
-                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                               <div class="form-group form-md-line-input"
                                                 data-ng-class="OPTION.VALUE.$invalid ? 'has-error' : '' ">
-                                                <input type="text" class="form-control" placeholder="Título da opção"
+                                                <label class="control-label">Opção <span class="required">*</span></label>
+                                                <input type="text" class="form-control input-sm" placeholder="Título da opção"
                                                   data-ng-required="true" data-ng-maxlength="50" maxlength="51"
                                                   name="VALUE" data-ng-model="option.value">
                                                 <span class="help-block error-group"
@@ -1198,7 +1066,8 @@
                                             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                               <div class="form-group form-md-line-input"
                                                 data-ng-class="OPTION.DESCRIPTION.$invalid ? 'has-error' : '' ">
-                                                <input type="text" class="form-control" placeholder="Descrição da opção"
+                                                <label class="control-label">Descrição</label>
+                                                <input type="text" class="form-control input-sm" placeholder="Descrição da opção"
                                                   data-ng-maxlength="50" maxlength="51" name="DESCRIPTION"
                                                   data-ng-model="option.description">
                                                 <span class="help-block error-group"
@@ -1210,11 +1079,32 @@
                                               </div>
                                             </div>
 
+                                            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
+                                              <div class="form-group form-md-line-input"
+                                                data-ng-if="element.usePunctuation"
+                                                data-ng-class="OPTION.PUNCTUATION.$invalid ? 'has-error' : '' "
+                                                title="Quantidade de pontos atribuídos a resposta caso a mesma seja considerada correta pelo sistema">
+                                                <label class="control-label">Peso <span data-ng-if="element.required" class="required">*</span></label>
+                                                <input type="number" class="form-control input-sm" placeholder="Pontos"
+                                                  step="0.1" data-ng-required="element.usePunctuation"
+                                                  data-ng-disabled="!element.usePunctuation"
+                                                  data-ng-required="element.required" name="PUNCTUATION"
+                                                  data-ng-model="option.punctuation">
+                                                <span class="help-block error-group"
+                                                  data-ng-messages="OPTION.PUNCTUATION.$error"
+                                                  data-ng-if="OPTION.PUNCTUATION.$dirty && OPTION.PUNCTUATION.$invalid">
+                                                  <span data-ng-message="required">Este campo é obrigatório</span>
+                                                </span>
+                                              </div>
+                                            </div>
+
                                             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                              <div class="form-group" title="Navegação de seção"
-                                                data-ng-class="OPTION.NAVIGATETO.$invalid ? 'has-error' : '' ">
+                                              <div class="form-group form-md-line-input" title="Navegação de seção"
+                                                data-ng-class="OPTION.NAVIGATETO.$invalid ? 'has-error' : '' "
+                                                title="Seção para a qual o formulário será encaminhado caso esta resposta seja escolhida">
                                                 <label class="control-label">Navegação</label>
                                                 <ui-select name="NAVIGATETO" style="width: 100%;"
+                                                class="input-sm"
                                                   data-ng-model="option.navigateTo" theme="bootstrap"
                                                   title="Selecione a rota">
                                                   <ui-select-match
@@ -1317,7 +1207,7 @@
                                         </div>
                                       </div>
 
-                                      <div class="form-group"
+                                      <!-- <div class="form-group"
                                         title="Quantidade de pontos atribuídos a resposta caso a mesma seja considerada correta pelo sistema"
                                         data-ng-if="element.usePunctuation"
                                         data-ng-class="ELEMENT.PUNCTUATION.$invalid ? 'has-error' : '' ">
@@ -1332,7 +1222,7 @@
                                           <span data-ng-message="required">Este campo é obrigatório</span>
                                           <span data-ng-message="number">O número não é valido</span>
                                         </span>
-                                      </div>
+                                      </div> -->
 
                                       <div class="form-group"
                                         title="Relação das respostas consideradas corretas pelo sistema"
@@ -1432,10 +1322,11 @@
 
                                         <div data-ng-repeat="option in element.options" data-ng-form name="OPTION">
                                           <div class="row" id="option-parent">
-                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                               <div class="form-group form-md-line-input"
                                                 data-ng-class="OPTION.VALUE.$invalid ? 'has-error' : '' ">
-                                                <input type="text" class="form-control" placeholder="Título da opção"
+                                                <label class="control-label">Opção <span class="required">*</span></label>
+                                                <input type="text" class="form-control input-sm" placeholder="Título da opção"
                                                   data-ng-required="true" data-ng-maxlength="50" maxlength="51"
                                                   name="VALUE" data-ng-model="option.value">
                                                 <span class="help-block error-group"
@@ -1451,7 +1342,7 @@
                                             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                               <div class="form-group form-md-line-input"
                                                 data-ng-class="OPTION.DESCRIPTION.$invalid ? 'has-error' : '' ">
-                                                <input type="text" class="form-control" placeholder="Descrição da opção"
+                                                <input type="text" class="form-control  input-sm" placeholder="Descrição da opção"
                                                   data-ng-maxlength="50" maxlength="51" name="DESCRIPTION"
                                                   data-ng-model="option.description">
                                                 <span class="help-block error-group"
@@ -1463,9 +1354,29 @@
                                               </div>
                                             </div>
 
+                                            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
+                                              <div class="form-group form-md-line-input"
+                                                data-ng-if="element.usePunctuation"
+                                                data-ng-class="OPTION.PUNCTUATION.$invalid ? 'has-error' : '' "
+                                                title="Quantidade de pontos atribuídos a resposta caso a mesma seja considerada correta pelo sistema">
+                                                <label class="control-label">Peso <span data-ng-if="element.required" class="required">*</span></label>
+                                                <input type="number" class="form-control input-sm" placeholder="Pontos"
+                                                  step="0.1" data-ng-required="element.usePunctuation"
+                                                  data-ng-disabled="!element.usePunctuation"
+                                                  data-ng-required="element.required" name="PUNCTUATION"
+                                                  data-ng-model="option.punctuation">
+                                                <span class="help-block error-group"
+                                                  data-ng-messages="OPTION.PUNCTUATION.$error"
+                                                  data-ng-if="OPTION.PUNCTUATION.$dirty && OPTION.PUNCTUATION.$invalid">
+                                                  <span data-ng-message="required">Este campo é obrigatório</span>
+                                                </span>
+                                              </div>
+                                            </div>
+
                                             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                               <div class="form-group" title="Navegação de seção"
-                                                data-ng-class="OPTION.NAVIGATETO.$invalid ? 'has-error' : '' ">
+                                                data-ng-class="OPTION.NAVIGATETO.$invalid ? 'has-error' : '' "
+                                                title="Seção para a qual o formulário será encaminhado caso esta resposta seja escolhida">
                                                 <label class="control-label">Navegação</label>
                                                 <ui-select name="NAVIGATETO" style="width: 100%;"
                                                   data-ng-model="option.navigateTo" theme="bootstrap"
@@ -1570,7 +1481,7 @@
                                         </div>
                                       </div>
 
-                                      <div class="form-group"
+                                      <!-- <div class="form-group"
                                         title="Quantidade de pontos atribuídos a resposta caso a mesma seja considerada correta pelo sistema"
                                         data-ng-if="element.usePunctuation"
                                         data-ng-class="ELEMENT.PUNCTUATION.$invalid ? 'has-error' : '' ">
@@ -1585,7 +1496,7 @@
                                           <span data-ng-message="required">Este campo é obrigatório</span>
                                           <span data-ng-message="number">O número não é valido</span>
                                         </span>
-                                      </div>
+                                      </div> -->
 
                                       <div class="form-group"
                                         title="Relação das respostas consideradas corretas pelo sistema"
@@ -1685,10 +1596,11 @@
 
                                         <div data-ng-repeat="option in element.options" data-ng-form name="OPTION">
                                           <div class="row" id="option-parent">
-                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
                                               <div class="form-group form-md-line-input"
                                                 data-ng-class="OPTION.VALUE.$invalid ? 'has-error' : '' ">
-                                                <input type="text" class="form-control" placeholder="Título da opção"
+                                                
+                                                <input type="text" class="form-control input-sm" placeholder="Título da opção"
                                                   data-ng-required="true" data-ng-maxlength="50" maxlength="51"
                                                   name="VALUE" data-ng-model="option.value">
                                                 <span class="help-block error-group"
@@ -1704,7 +1616,7 @@
                                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                               <div class="form-group form-md-line-input"
                                                 data-ng-class="OPTION.DESCRIPTION.$invalid ? 'has-error' : '' ">
-                                                <input type="text" class="form-control" placeholder="Descrição da opção"
+                                                <input type="text" class="form-control input-sm" placeholder="Descrição da opção"
                                                   data-ng-maxlength="50" maxlength="51" name="DESCRIPTION"
                                                   data-ng-model="option.description">
                                                 <span class="help-block error-group"
@@ -1712,6 +1624,25 @@
                                                   data-ng-if="OPTION.DESCRIPTION.$dirty && OPTION.DESCRIPTION.$invalid">
                                                   <span data-ng-message="maxlength">O campo precisa ter no máximo 50
                                                     caracteres</span>
+                                                </span>
+                                              </div>
+                                            </div>
+
+                                            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
+                                              <div class="form-group form-md-line-input"
+                                                data-ng-if="element.usePunctuation"
+                                                data-ng-class="OPTION.PUNCTUATION.$invalid ? 'has-error' : '' "
+                                                title="Quantidade de pontos atribuídos a resposta caso a mesma seja considerada correta pelo sistema">
+                                                <label class="control-label">Peso <span data-ng-if="element.required" class="required">*</span></label>
+                                                <input type="number" class="form-control input-sm" placeholder="Pontos"
+                                                  step="0.1" data-ng-required="element.usePunctuation"
+                                                  data-ng-disabled="!element.usePunctuation"
+                                                  data-ng-required="element.required" name="PUNCTUATION"
+                                                  data-ng-model="option.punctuation">
+                                                <span class="help-block error-group"
+                                                  data-ng-messages="OPTION.PUNCTUATION.$error"
+                                                  data-ng-if="OPTION.PUNCTUATION.$dirty && OPTION.PUNCTUATION.$invalid">
+                                                  <span data-ng-message="required">Este campo é obrigatório</span>
                                                 </span>
                                               </div>
                                             </div>
@@ -1800,7 +1731,7 @@
                                         </div>
                                       </div>
 
-                                      <div class="form-group"
+                                      <!-- <div class="form-group"
                                         title="Quantidade de pontos atribuídos a resposta caso a mesma seja considerada correta pelo sistema"
                                         data-ng-if="element.usePunctuation"
                                         data-ng-class="ELEMENT.PUNCTUATION.$invalid ? 'has-error' : '' ">
@@ -1815,7 +1746,7 @@
                                           <span data-ng-message="required">Este campo é obrigatório</span>
                                           <span data-ng-message="number">O número não é valido</span>
                                         </span>
-                                      </div>
+                                      </div> -->
 
                                       <div class="form-group"
                                         title="Relação das respostas consideradas corretas pelo sistema"
